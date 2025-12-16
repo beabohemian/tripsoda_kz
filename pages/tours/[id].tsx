@@ -60,10 +60,10 @@ const tours = [
         image: '/images/tour_kaindy.png',
         description: '쏟아지는 별과 웅장한 캐년, 신비로운 호수까지. 카자흐스탄 자연의 모든 것을 담았습니다. 캠핑의 로망을 실현해보세요.',
         schedule: [
-            { time: 'Day 1 09:00', title: '출발 & 아씨 고원', desc: '알마티 출발 후 아씨 고원으로 이동. 끝없는 초원에서 인생 사진 남기기!' },
-            { time: 'Day 1 18:00', title: '캠핑 & 별 보기', desc: '아씨 고원 또는 콜사이 호수 인근에서 캠핑(또는 게스트하우스). 밤하늘 쏟아지는 별을 보며 불멍 타임.' },
-            { time: 'Day 2 09:00', title: '카인디 & 콜사이', desc: '아침 일찍 신비로운 카인디 호수와 콜사이 호수 산책. 상쾌한 공기를 마셔보세요.' },
-            { time: 'Day 2 14:00', title: '차른 캐년', desc: '돌아오는 길에 차른 캐년의 웅장함을 감상합니다. 빛에 따라 변하는 암석의 색감이 예술이에요.' },
+            { time: 'Day 1 09:00', title: '출발 & 아씨 고원', desc: '알마티 출발 후 아씨 고원으로 이동. 끝없는 초원에서 인생 사진 남기기!', image: '/images/tour_assy.png' },
+            { time: 'Day 1 18:00', title: '캠핑 & 별 보기', desc: '아씨 고원 또는 콜사이 호수 인근에서 캠핑(또는 게스트하우스). 밤하늘 쏟아지는 별을 보며 불멍 타임.', image: '/images/camping_stars.png' },
+            { time: 'Day 2 09:00', title: '카인디 & 콜사이', desc: '아침 일찍 신비로운 카인디 호수와 콜사이 호수 산책. 상쾌한 공기를 마셔보세요.', image: '/images/kaindy_morning.png' },
+            { time: 'Day 2 14:00', title: '차른 캐년', desc: '돌아오는 길에 차른 캐년의 웅장함을 감상합니다. 빛에 따라 변하는 암석의 색감이 예술이에요.', image: '/images/charyn_light.png' },
             { time: 'Day 2 19:00', title: '알마티 도착', desc: '1박 2일의 알찬 여정을 마치고 시내로 복귀합니다.' }
         ],
         inclusions: ['전용 차량', '가이드', '숙박(캠핑/게스트하우스)', '식사(4식)', '입장료'],
@@ -76,9 +76,9 @@ const tours = [
         image: '/images/tour_kolsai_1765784008248.png',
         description: '여유롭게 즐기는 카자흐스탄. 천천히 대자연의 숨결을 느껴보세요. 알짜배기 명소를 모두 둘러보는 마스터 코스.',
         schedule: [
-            { time: 'Day 1', title: '아씨 고원 & 별밤', desc: '아씨 고원의 광활함과 천문대의 신비로움을 즐기고, 쏟아지는 별빛 아래서 첫날밤을 보냅니다.' },
-            { time: 'Day 2', title: '카인디 & 콜사이 호수', desc: '물에 잠긴 숲 카인디와 알마티의 진주 콜사이 호수에서 힐링의 시간을 가집니다.' },
-            { time: 'Day 3', title: '차른 캐년 & BAO', desc: '차른 캐년의 붉은 매력에 빠졌다가, 시내로 돌아와 에메랄드 빛 빅 알마티 호수로 마무리하는 완벽한 일정!' }
+            { time: 'Day 1', title: '아씨 고원 & 별밤', desc: '아씨 고원의 광활함과 천문대의 신비로움을 즐기고, 쏟아지는 별빛 아래서 첫날밤을 보냅니다.', image: '/images/assy_observatory.png' },
+            { time: 'Day 2', title: '카인디 & 콜사이 호수', desc: '물에 잠긴 숲 카인디와 알마티의 진주 콜사이 호수에서 힐링의 시간을 가집니다.', image: '/images/kaindy_morning.png' },
+            { time: 'Day 3', title: '차른 캐년 & BAO', desc: '차른 캐년의 붉은 매력에 빠졌다가, 시내로 돌아와 에메랄드 빛 빅 알마티 호수로 마무리하는 완벽한 일정!', image: '/images/tour_charyn_1765783988719.png' }
         ],
         inclusions: ['전용 차량', '전 일정 가이드', '숙박 2박', '전 일정 식사', '모든 입장료'],
         exclusions: ['개인 경비']
@@ -108,7 +108,7 @@ const tours = [
             { time: '14:00', title: '판필로프 공원 & 젠코프 성당', desc: '못을 하나도 쓰지 않고 지은 목조 건축물, 젠코프 성당의 아름다움에 빠져보세요.', image: '/images/zenkov_cathedral.png' },
             { time: '15:30', title: '그린 바자르 (재래시장)', desc: '현지인들의 삶이 녹아있는 시장! 신선한 과일과 견과류, 고려인 반찬 등을 시식하고 구경해요.', image: '/images/green_bazaar.png' },
             { time: '17:00', title: '콕토베 언덕 케이블카', desc: '알마티 시내가 한눈에 내려다보이는 콕토베 언덕으로 이동합니다.', image: '/images/kok_tobe.png' },
-            { time: '18:30', title: '야경 감상 & 투어 종료', desc: '황홀한 알마티의 야경을 감상하며 낭만적인 마무리. 가이드님이 추천 맛집도 알려드려요!' }
+            { time: '18:30', title: '야경 감상 & 투어 종료', desc: '황홀한 알마티의 야경을 감상하며 낭만적인 마무리. 가이드님이 추천 맛집도 알려드려요!', image: '/images/almaty_night_view.png' }
         ],
         inclusions: ['한국어 가이드', '콕토베 케이블카 왕복 티켓'],
         exclusions: ['교통비(도보/택시 이용)', '개인 식음료']
@@ -122,7 +122,7 @@ const tours = [
         schedule: [
             { time: '10:00', title: '메데우 빙상장', desc: '세계에서 가장 높은 곳에 위치한 야외 빙상장. 웅장한 설산을 배경으로 인생샷!', image: '/images/medeu_rink.png' },
             { time: '11:00', title: '침블락 케이블카', desc: '3단계에 걸친 케이블카를 타고 해발 3,200m까지 올라갑니다. 발 아래 펼쳐지는 풍경이 예술이에요.', image: '/images/tour_shymbulak.png' },
-            { time: '13:00', title: '정상에서의 점심', desc: '구름 위 카페에서 따뜻한 커피 한 잔과 식사. (자유식)' },
+            { time: '13:00', title: '정상에서의 점심', desc: '구름 위 카페에서 따뜻한 커피 한 잔과 식사. (자유식)', image: '/images/shymbulak_cafe.png' },
             { time: '15:00', title: '자유 시간 & 하산', desc: '주변을 산책하거나 눈썰매/스키 등 액티비티를 즐기고 내려옵니다.' }
         ],
         inclusions: ['차량 및 기사', '가이드', '케이블카 왕복 티켓'],
@@ -135,11 +135,11 @@ const tours = [
         image: '/images/tour_ethno_village.png',
         description: '카자흐스탄 유목민들은 어떻게 살았을까? 전통 가옥 유르트 체험, 승마, 전통 공연까지! 가족 여행으로 강력 추천합니다.',
         schedule: [
-            { time: '09:00', title: '에스노 빌리지로 이동', desc: '알마티 시내를 벗어나 전통 마을로 이동합니다.' },
+            { time: '09:00', title: '에스노 빌리지로 이동', desc: '알마티 시내를 벗어나 전통 마을로 이동합니다.', image: '/images/tour_city_1765784027581.png' },
             { time: '11:00', title: '환영식 & 전통 관습 체험', desc: '전통 의상을 입은 분들의 환대와 맛있는 빵(바우트삭) 시식!', image: '/images/tour_ethno_village.png' },
-            { time: '12:00', title: '기마 공연 관람', desc: '박진감 넘치는 유목민들의 말 타기 솜씨! 눈앞에서 펼쳐지는 기예에 입이 쩍 벌어질걸요?' },
-            { time: '13:00', title: '전통식 점심', desc: '푸짐하게 차려진 카자흐스탄 전통 요리로 배를 채웁니다.' },
-            { time: '14:30', title: '승마 체험 & 활쏘기', desc: '직접 말을 타고 초원을 거닐어보고, 활쏘기도 배워보세요.' },
+            { time: '12:00', title: '기마 공연 관람', desc: '박진감 넘치는 유목민들의 말 타기 솜씨! 눈앞에서 펼쳐지는 기예에 입이 쩍 벌어질걸요?', image: '/images/horse_performance.png' },
+            { time: '13:00', title: '전통식 점심', desc: '푸짐하게 차려진 카자흐스탄 전통 요리로 배를 채웁니다.', image: '/images/kazakh_lunch.png' },
+            { time: '14:30', title: '승마 체험 & 활쏘기', desc: '직접 말을 타고 초원을 거닐어보고, 활쏘기도 배워보세요.', image: '/images/horse_riding_activity.png' },
             { time: '17:00', title: '알마티 복귀', desc: '특별한 추억을 안고 시내로 돌아옵니다.' }
         ],
         inclusions: ['전용 차량', '가이드', '에스노 빌리지 프로그램 이용권', '점심 식사'],

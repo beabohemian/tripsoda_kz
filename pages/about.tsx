@@ -74,7 +74,7 @@ export default function About() {
                         <div className="absolute top-0 left-8 md:left-12 transform -translate-y-1/2 w-16 h-16 bg-tripsoda-main rounded-full flex items-center justify-center text-3xl text-white shadow-md">
                             ❝
                         </div>
-                        <div className="mt-6 space-y-6 text-gray-600 leading-relaxed text-lg text-justify md:text-left">
+                        <div className="mt-6 space-y-6 text-gray-600 leading-relaxed text-base md:text-lg text-left tracking-tight md:tracking-normal">
                             <p>
                                 안녕하세요, <strong>트립소다 카자흐스탄 대표 이진기</strong>입니다.
                             </p>
@@ -84,7 +84,8 @@ export default function About() {
                                 많은 분들이 선뜻 여행을 떠나지 못하는 현실이 안타까웠습니다.
                             </p>
                             <p>
-                                그래서 결심했습니다. <span className="bg-yellow-100 px-1">"한국인이 가장 마음 편히, 깊이 있게 즐길 수 있는 여행을 직접 만들자."</span>
+                                그래서 결심했습니다. <br className="block md:hidden" />
+                                <span className="bg-yellow-100 px-1 inline-block mt-1 md:mt-0">"한국인이 가장 마음 편히, 깊이 있게 즐길 수 있는 여행을 직접 만들자."</span>
                             </p>
                             <p>
                                 트립소다 카자흐스탄은 현지에서 직접 운영하는 여행사입니다.
