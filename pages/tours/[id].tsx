@@ -78,7 +78,7 @@ const tours = [
         schedule: [
             { time: 'Day 1', title: '아씨 고원 & 별밤', desc: '아씨 고원의 광활함과 천문대의 신비로움을 즐기고, 쏟아지는 별빛 아래서 첫날밤을 보냅니다.', image: '/images/assy_observatory.png' },
             { time: 'Day 2', title: '카인디 & 콜사이 호수', desc: '물에 잠긴 숲 카인디와 알마티의 진주 콜사이 호수에서 힐링의 시간을 가집니다.', image: '/images/kaindy_morning.png' },
-            { time: 'Day 3', title: '차른 캐년 & BAO', desc: '차른 캐년의 붉은 매력에 빠졌다가, 시내로 돌아와 에메랄드 빛 빅 알마티 호수로 마무리하는 완벽한 일정!', image: '/images/tour_charyn_1765783988719.png' }
+            { time: 'Day 3', title: '차른 캐년 & BAO', desc: '차른 캐년의 붉은 매력에 빠졌다가, 시내로 돌아와 에메랄드 빛 빅 알마티 호수로 마무리하는 완벽한 일정!', image: '/images/tour_bao.png' }
         ],
         inclusions: ['전용 차량', '전 일정 가이드', '숙박 2박', '전 일정 식사', '모든 입장료'],
         exclusions: ['개인 경비']
@@ -92,7 +92,7 @@ const tours = [
         schedule: [
             { time: 'Day 1', title: '알틴 예멜 국립공원', desc: '바람이 불면 노래를 한다는 "싱잉 듄(Singing Dune)" 사막 체험. 사막 썰매도 타볼까요?', image: '/images/singing_dune.png' },
             { time: 'Day 2', title: '악타우 & 카투타우', desc: '다채로운 색깔의 지형이 펼쳐지는 악타우 산맥. 화산 활동의 흔적을 찾아 떠나는 지질 탐험.', image: '/images/aktau_mountains.png' },
-            { time: 'Day 3', title: '차른 캐년 & 콜사이', desc: '국립공원을 이동하며 차른 캐년과 콜사이 호수의 대조적인 아름다움을 감상합니다.', image: '/images/tour_charyn_1765783988719.png' },
+            { time: 'Day 3', title: '차른 캐년 & 콜사이', desc: '국립공원을 이동하며 차른 캐년과 콜사이 호수의 대조적인 아름다움을 감상합니다.', image: '/images/black_canyon.png' },
             { time: 'Day 4', title: '카인디 & 아씨 & 복귀', desc: '신비의 호수 카인디를 보고 아씨 고원을 가로질러 알마티로 복귀하는 대장정.', image: '/images/tour_kaindy.png' }
         ],
         inclusions: ['4륜 구동 차량', '전문 가이드', '숙박 3박', '전 일정 식사', '국립공원 입장료'],
@@ -123,7 +123,7 @@ const tours = [
             { time: '10:00', title: '메데우 빙상장', desc: '세계에서 가장 높은 곳에 위치한 야외 빙상장. 웅장한 설산을 배경으로 인생샷!', image: '/images/medeu_rink.png' },
             { time: '11:00', title: '침블락 케이블카', desc: '3단계에 걸친 케이블카를 타고 해발 3,200m까지 올라갑니다. 발 아래 펼쳐지는 풍경이 예술이에요.', image: '/images/tour_shymbulak.png' },
             { time: '13:00', title: '정상에서의 점심', desc: '구름 위 카페에서 따뜻한 커피 한 잔과 식사. (자유식)', image: '/images/shymbulak_cafe.png' },
-            { time: '15:00', title: '자유 시간 & 하산', desc: '주변을 산책하거나 눈썰매/스키 등 액티비티를 즐기고 내려옵니다.' }
+            { time: '15:00', title: '자유 시간 & 하산', desc: '주변을 산책하거나 눈썰매/스키 등 액티비티를 즐기고 내려옵니다.', image: '/images/tour_shymbulak.png' }
         ],
         inclusions: ['차량 및 기사', '가이드', '케이블카 왕복 티켓'],
         exclusions: ['점심 식사', '스키 장비 렌탈']
@@ -140,7 +140,7 @@ const tours = [
             { time: '12:00', title: '기마 공연 관람', desc: '박진감 넘치는 유목민들의 말 타기 솜씨! 눈앞에서 펼쳐지는 기예에 입이 쩍 벌어질걸요?', image: '/images/horse_performance.png' },
             { time: '13:00', title: '전통식 점심', desc: '푸짐하게 차려진 카자흐스탄 전통 요리로 배를 채웁니다.', image: '/images/kazakh_lunch.png' },
             { time: '14:30', title: '승마 체험 & 활쏘기', desc: '직접 말을 타고 초원을 거닐어보고, 활쏘기도 배워보세요.', image: '/images/horse_riding_activity.png' },
-            { time: '17:00', title: '알마티 복귀', desc: '특별한 추억을 안고 시내로 돌아옵니다.' }
+            { time: '17:00', title: '알마티 복귀', desc: '특별한 추억을 안고 시내로 돌아옵니다.', image: '/images/tour_city_1765784027581.png' }
         ],
         inclusions: ['전용 차량', '가이드', '에스노 빌리지 프로그램 이용권', '점심 식사'],
         exclusions: ['개인 경비']
