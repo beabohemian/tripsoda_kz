@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Layout>
             <Head>
                 <link rel="stylesheet" as="style" crossOrigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-                <link rel="icon" href="/favicon.png?v=6" type="image/png" />
+                <link rel="icon" href="/favicon_mint_v2.png" type="image/png" />
             </Head>
             <Component {...pageProps} />
         </Layout>
