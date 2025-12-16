@@ -59,20 +59,20 @@ export default function Home() {
 
                 {/* Content Layer - Moves with mouse slightly */}
                 <div
-                    className="relative z-10 px-4 max-w-5xl mx-auto space-y-8 text-center animate-float"
+                    className="relative z-10 px-4 max-w-5xl mx-auto space-y-6 md:space-y-8 text-center"
                     style={{ transform: `translate(${mousePos.x * 10}px, ${mousePos.y * 10}px)` }}
                 >
                     <div className="animate-fade-in-up">
-                        <span className="inline-block py-1 px-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-tripsoda-light text-sm font-bold mb-4 tracking-wider uppercase">
+                        <span className="inline-block py-1 px-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-tripsoda-light text-xs md:text-sm font-bold mb-4 tracking-wider uppercase">
                             Unveiling the Unknown
                         </span>
-                        <h1 className="text-5xl md:text-7xl font-extrabold font-sans leading-tight text-white drop-shadow-2xl">
+                        <h1 className="text-4xl md:text-7xl font-extrabold font-sans leading-tight text-white drop-shadow-2xl tracking-tight">
                             압도적 대자연, <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-tripsoda-light to-white">그 숨겨진 걸작을 만나다</span>
                         </h1>
                     </div>
 
-                    <p className="text-xl md:text-2xl font-light text-gray-100 opacity-95 animate-fade-in-up animate-delay-slow max-w-2xl mx-auto leading-relaxed shadow-black drop-shadow-md">
+                    <p className="text-lg md:text-2xl font-light text-gray-100 opacity-95 animate-fade-in-up animate-delay-slow max-w-2xl mx-auto leading-relaxed shadow-black drop-shadow-md tracking-tight">
                         당신의 심장을 뛰게 할 <strong>카자흐스탄</strong>의 대자연. <br className="hidden md:block" />
                         트립소다 현지 법인이 가장 감각적인 여행을 선사합니다.
                     </p>

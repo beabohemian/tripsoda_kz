@@ -20,12 +20,12 @@ export default function Tours() {
                 <title>투어 상품 | 트립소다 카자흐스탄</title>
             </Head>
 
-            <div className="bg-tripsoda-main py-20 text-center text-white">
-                <h1 className="text-4xl font-bold">투어 둘러보기</h1>
-                <p className="opacity-90 mt-2">카자흐스탄 어디든, 어떤 경험이든 OK!</p>
+            <div className="bg-tripsoda-main py-12 md:py-20 text-center text-white">
+                <h1 className="text-3xl md:text-4xl font-bold">투어 둘러보기</h1>
+                <p className="opacity-90 mt-2 text-sm md:text-base">카자흐스탄 어디든, 어떤 경험이든 OK!</p>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 py-20">
+            <div className="max-w-7xl mx-auto px-4 py-12 md:py-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {tours.map((tour) => (
                         <div key={tour.id} className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden border border-gray-100 flex flex-col">
@@ -61,7 +61,7 @@ export default function Tours() {
                 </div>
 
                 {/* Custom Inquiry CTA */}
-                <div className="mt-20 bg-tripsoda-light rounded-3xl p-10 text-center border border-tripsoda-main/20">
+                <div className="mt-12 md:mt-20 bg-tripsoda-light rounded-3xl p-6 md:p-10 text-center border border-tripsoda-main/20">
                     <h2 className="text-2xl font-bold text-tripsoda-textMain mb-4">찾으시는 여행이 없으신가요?</h2>
                     <p className="text-tripsoda-textSub mb-8 max-w-2xl mx-auto">
                         트립소다 카자흐스탄은 목록에 없는 여행지나 특별한 맞춤 일정도 전문으로 기획합니다. <br className="hidden md:block" />

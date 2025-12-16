@@ -63,8 +63,8 @@ export default function Contact() {
                 <title>문의하기 | 트립소다 카자흐스탄</title>
             </Head>
 
-            <div className="max-w-7xl mx-auto px-4 py-20">
-                <h1 className="text-4xl font-bold text-center text-tripsoda-textMain mb-12">문의하기</h1>
+            <div className="max-w-7xl mx-auto px-4 py-12 md:py-20">
+                <h1 className="text-3xl md:text-4xl font-bold text-center text-tripsoda-textMain mb-8 md:mb-12">문의하기</h1>
 
                 <div className="grid md:grid-cols-2 gap-12">
                     {/* Contact Info */}
@@ -109,7 +109,7 @@ export default function Contact() {
                     </div>
 
                     {/* Contact Form */}
-                    <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden">
+                    <div className="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden">
                         {status === 'success' && (
                             <div className="absolute inset-0 z-20 bg-white/95 flex flex-col items-center justify-center animate-fade-in text-center p-8">
                                 <div className="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-6 shadow-lg transform scale-110">
