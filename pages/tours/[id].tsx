@@ -14,7 +14,7 @@ const tours = [
             { time: '08:00', title: '설레는 출발', desc: '알마티 시내 호텔/숙소 픽업! 쾌적한 4륜 구동 차량에 탑승하여 가이드님과 인사를 나눕니다.', image: '/images/tour_city_1765784027581.png' },
             { time: '11:00', title: '아씨 고원 도착', desc: '해발 2,600m에 펼쳐지는 끝없는 초록빛 파노라마! 가슴이 뻥 뚫리는 기분을 만끽하세요.', image: '/images/tour_assy.png' },
             { time: '13:00', title: '낭만적인 피크닉', desc: '대자연을 배경으로 즐기는 꿀맛 같은 점심 식사. (현지 상황에 따라 메뉴는 변경될 수 있습니다)', image: '/images/tour_kolsai_1765784008248.png' },
-            { time: '15:00', title: '천문대 탐방', desc: '과거 소비에트 시절 건설된 붉은 천문대. 시간이 멈춘 듯한 독특한 분위기에서 인증샷 필수!', image: '/images/tour_bao.png' },
+            { time: '15:00', title: '천문대 탐방', desc: '과거 소비에트 시절 건설된 붉은 천문대. 시간이 멈춘 듯한 독특한 분위기에서 인증샷 필수!', image: '/images/assy_observatory.png' },
             { time: '18:00', title: '알마티 복귀', desc: '아쉬움을 뒤로하고 알마티로 복귀합니다. 안전하게 숙소까지 모셔다 드려요.' }
         ],
         inclusions: ['4륜 구동 전용 차량', '한국어 가이드', '점심 식사 (도시락/현지식)', '국립공원 입장료', '생수'],
@@ -29,7 +29,7 @@ const tours = [
         schedule: [
             { time: '07:00', title: '부지런한 출발', desc: '조금 일찍 서둘러요! 하루 꽉 찬 일정으로 알마티 핵심 명소를 모두 정복하러 떠납니다.' },
             { time: '10:00', title: '차른 캐년 트레킹', desc: '지구가 아닌 것 같은 붉은 암석의 향연. "여기가 화성인가요?" 감탄이 절로 나오는 웅장함을 걸어보세요.', image: '/images/tour_charyn_1765783988719.png' },
-            { time: '13:00', title: '블랙 캐년 & 점심', desc: '아찔한 절벽 위에서 내려다보는 블랙 캐년. 든든하게 점심을 먹고 에너지를 충전합니다.', image: '/images/tour_kolsai_1765784008248.png' },
+            { time: '13:00', title: '블랙 캐년 & 점심', desc: '아찔한 절벽 위에서 내려다보는 블랙 캐년. 든든하게 점심을 먹고 에너지를 충전합니다.', image: '/images/black_canyon.png' },
             { time: '15:00', title: '카인디 호수', desc: '물 속에 잠겨있는 자작나무 숲? 신비로움 그 자체. 4륜 구동(푸르공) 차량을 타고 오프로드를 달리는 재미까지!', image: '/images/tour_kaindy.png' },
             { time: '17:00', title: '콜사이 호수', desc: '알마티의 진주, 콜사이 호수. 보트를 타거나 호수가를 거닐며 여유를 즐기세요.', image: '/images/tour_kolsai_1765784008248.png' },
             { time: '21:00', title: '알마티 도착', desc: '하루 만에 알마티 정복 완료! 피곤하지만 마음만은 꽉 찬 하루.' }
@@ -46,7 +46,7 @@ const tours = [
         schedule: [
             { time: '09:00', title: '여유로운 출발', desc: '호텔 픽업 후 출발! 시내에서 가까워서 이동이 부담 없어요.', image: '/images/tour_city_1765784027581.png' },
             { time: '10:30', title: '빅 알마티 호수 (BAO)', desc: '에메랄드 물감 풀어놓은 듯한 호수 색깔 실화? 백두산 천지보다 아름답다는 그곳!', image: '/images/tour_bao.png' },
-            { time: '12:30', title: '코스모 스테이션', desc: '구름보다 높은 곳! 해발 3,200m까지 올라가 만년설을 눈앞에서 마주합니다. 공기부터 달라요.', image: '/images/tour_shymbulak.png' },
+            { time: '12:30', title: '코스모 스테이션', desc: '구름보다 높은 곳! 해발 3,200m까지 올라가 만년설을 눈앞에서 마주합니다. 공기부터 달라요.', image: '/images/cosmo_station.png' },
             { time: '13:30', title: '산장 점심 식사', desc: '산을 내려오며 맛있는 샤슬릭(꼬치구이)으로 점심 식사!' },
             { time: '16:00', title: '시내 복귀', desc: '오후 시간을 알마티 시내에서 즐기실 수 있도록 적절한 시간에 복귀합니다.' }
         ],
