@@ -53,23 +53,45 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Menu */}
-            {isOpen && (
-                <div className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {/* Mobile Menu Drawer */}
+            <div className={`fixed inset-0 z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden`}>
+                {/* Backdrop overlay - Closes menu when clicked */}
+                <div
+                    className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
+                    onClick={() => setIsOpen(false)}
+                ></div>
+
+                {/* Drawer Content */}
+                <div className="absolute right-0 top-0 h-full w-[280px] bg-white shadow-2xl flex flex-col p-6">
+                    <div className="flex justify-end mb-8">
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            className="text-gray-500 hover:text-gray-900 focus:outline-none"
+                        >
+                            <X size={32} />
+                        </button>
+                    </div>
+
+                    <div className="flex flex-col space-y-6">
                         {navLinks.map((link) => (
                             <Link key={link.name} href={link.href}>
                                 <a
                                     onClick={() => setIsOpen(false)}
-                                    className="block px-3 py-2 rounded-md text-base font-medium text-tripsoda-textMain hover:text-tripsoda-main hover:bg-tripsoda-light"
+                                    className="text-xl font-medium text-gray-800 hover:text-tripsoda-main transition-colors"
                                 >
                                     {link.name}
                                 </a>
                             </Link>
                         ))}
                     </div>
+
+                    <div className="mt-auto pt-8 border-t border-gray-100">
+                        <p className="text-xs text-gray-400 text-center">
+                            © 2025 Tripsoda Kazakhstan
+                        </p>
+                    </div>
                 </div>
-            )}
+            </div>
         </header>
     )
 }
