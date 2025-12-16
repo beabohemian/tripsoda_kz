@@ -23,7 +23,7 @@ export default function Navbar() {
                                 <img
                                     src="/images/logo.png"
                                     alt="Tripsoda Kazakhstan"
-                                    className="h-10 w-auto" // Adjusted height for visibility
+                                    className="h-8 md:h-10 w-auto" // Responsive height
                                 />
                             </a>
                         </Link>

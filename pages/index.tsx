@@ -62,7 +62,7 @@ export default function Home() {
                     className="relative z-10 px-4 max-w-5xl mx-auto space-y-6 md:space-y-8 text-center"
                     style={{ transform: `translate(${mousePos.x * 10}px, ${mousePos.y * 10}px)` }}
                 >
-                    <div className="animate-fade-in-up">
+                    <div>
                         <span className="inline-block py-1 px-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-tripsoda-light text-xs md:text-sm font-bold mb-4 tracking-wider uppercase">
                             Unveiling the Unknown
                         </span>
@@ -72,12 +72,12 @@ export default function Home() {
                         </h1>
                     </div>
 
-                    <p className="text-lg md:text-2xl font-light text-gray-100 opacity-95 animate-fade-in-up animate-delay-slow max-w-2xl mx-auto leading-relaxed shadow-black drop-shadow-md tracking-tight">
+                    <p className="text-lg md:text-2xl font-light text-gray-100 opacity-95 max-w-2xl mx-auto leading-relaxed shadow-black drop-shadow-md tracking-tight">
                         당신의 심장을 뛰게 할 <strong>카자흐스탄</strong>의 대자연. <br className="hidden md:block" />
                         트립소다 현지 법인이 가장 감각적인 여행을 선사합니다.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12 animate-fade-in-up animate-delay-slower">
+                    <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
                         <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="group relative px-8 py-4 bg-white text-tripsoda-main rounded-full font-bold overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                             <span className="relative z-10 flex items-center gap-2">여행사 제휴 문의 (B2B)</span>
                             <div className="absolute inset-0 bg-tripsoda-light transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 opacity-20"></div>
@@ -225,6 +225,20 @@ export default function Home() {
                         ))}
                     </div>
                 </div>
+            </section>
+
+            {/* Instagram Feed */}
+            <section className="py-12 bg-white text-center">
+                <h2 className="text-3xl font-bold text-tripsoda-textMain mb-4">우리의 인스타그램</h2>
+                <p className="text-tripsoda-textSub mb-8 max-w-2xl mx-auto">
+                    트립소다 카자흐스탄의 최신 소식을 인스타그램에서 만나보세요.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center">
+                    <blockquote className="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/POST_ID_1/" data-instgrm-version="14"></blockquote>
+                    <blockquote className="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/POST_ID_2/" data-instgrm-version="14"></blockquote>
+                    <blockquote className="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/POST_ID_3/" data-instgrm-version="14"></blockquote>
+                </div>
+                <script async src="//www.instagram.com/embed.js"></script>
             </section>
         </>
     )
