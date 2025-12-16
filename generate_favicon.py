@@ -30,18 +30,25 @@ def create_favicon(input_path, output_path, bg_color):
     white_symbol.putalpha(mask)
     
     # Create background
-    # Square with rounded corners or just circle? 
-    # Favicons are usually square, browser rounds them. 
-    # User asked for Mint background.
     favicon_size = (512, 512)
     bg = Image.new("RGBA", favicon_size, bg_color)
     
-    # Resize symbol to fit in background with padding
-    padding = int(favicon_size[0] * 0.2)
+    # Resize symbol to fit in background with MINIMAL padding (Maximized size)
+    # User said "Too small", so we reduce padding significantly.
+    padding = int(favicon_size[0] * 0.08) # Reduced from 0.2 to 0.08
     target_size = (favicon_size[0] - padding*2, favicon_size[1] - padding*2)
     
     # Maintain aspect ratio
     white_symbol.thumbnail(target_size, Image.Resampling.LANCZOS)
+    
+    # Ensure the white symbol is fully opaque where the mask exists
+    # If the "dot" was semi-transparent in original, we want it SOLID WHITE here.
+    # We can threshold the alpha channel of the white_symbol.
+    r, g, b, a = white_symbol.split()
+    # Any pixel with alpha > 20 becomes fully opaque (255)
+    # This ensures "faint" or "glassy" parts of the logo become solid white.
+    a = a.point(lambda p: 255 if p > 20 else 0)
+    white_symbol.putalpha(a)
     
     # Center paste
     paste_x = (favicon_size[0] - white_symbol.width) // 2
