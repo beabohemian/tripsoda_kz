@@ -15,7 +15,7 @@ const tours = [
             { time: '11:00', title: '아씨 고원 도착', desc: '해발 2,600m에 펼쳐지는 끝없는 초록빛 파노라마! 가슴이 뻥 뚫리는 기분을 만끽하세요.', image: '/images/tour_assy.png' },
             { time: '13:00', title: '낭만적인 피크닉', desc: '대자연을 배경으로 즐기는 꿀맛 같은 점심 식사. (현지 상황에 따라 메뉴는 변경될 수 있습니다)', image: '/images/tour_kolsai_1765784008248.png' },
             { time: '15:00', title: '천문대 탐방', desc: '과거 소비에트 시절 건설된 붉은 천문대. 시간이 멈춘 듯한 독특한 분위기에서 인증샷 필수!', image: '/images/assy_observatory.png' },
-            { time: '18:00', title: '알마티 복귀', desc: '아쉬움을 뒤로하고 알마티로 복귀합니다. 안전하게 숙소까지 모셔다 드려요.' }
+            { time: '18:00', title: '알마티 복귀', desc: '아쉬움을 뒤로하고 알마티로 복귀합니다. 안전하게 숙소까지 모셔다 드려요.', image: '/images/tour_city_1765784027581.png' }
         ],
         inclusions: ['4륜 구동 전용 차량', '한국어 가이드', '점심 식사 (도시락/현지식)', '국립공원 입장료', '생수'],
         exclusions: ['개인 경비', '여행자 보험']
@@ -32,7 +32,7 @@ const tours = [
             { time: '13:00', title: '블랙 캐년 & 점심', desc: '아찔한 절벽 위에서 내려다보는 블랙 캐년. 든든하게 점심을 먹고 에너지를 충전합니다.', image: '/images/black_canyon.png' },
             { time: '15:00', title: '카인디 호수', desc: '물 속에 잠겨있는 자작나무 숲? 신비로움 그 자체. 4륜 구동(푸르공) 차량을 타고 오프로드를 달리는 재미까지!', image: '/images/tour_kaindy.png' },
             { time: '17:00', title: '콜사이 호수', desc: '알마티의 진주, 콜사이 호수. 보트를 타거나 호수가를 거닐며 여유를 즐기세요.', image: '/images/tour_kolsai_1765784008248.png' },
-            { time: '21:00', title: '알마티 도착', desc: '하루 만에 알마티 정복 완료! 피곤하지만 마음만은 꽉 찬 하루.' }
+            { time: '21:00', title: '알마티 도착', desc: '하루 만에 알마티 정복 완료! 피곤하지만 마음만은 꽉 찬 하루.', image: '/images/almaty_night_view.png' }
         ],
         inclusions: ['전용 차량', '전문 가이드', '중식 1회', '모든 입장료 및 에코 택스', '카인디 호수 4륜 구동 환승비'],
         exclusions: ['개인 경비', '매너 팁', '석식']
@@ -48,7 +48,7 @@ const tours = [
             { time: '10:30', title: '빅 알마티 호수 (BAO)', desc: '에메랄드 물감 풀어놓은 듯한 호수 색깔 실화? 백두산 천지보다 아름답다는 그곳!', image: '/images/tour_bao.png' },
             { time: '12:30', title: '코스모 스테이션', desc: '구름보다 높은 곳! 해발 3,200m까지 올라가 만년설을 눈앞에서 마주합니다. 공기부터 달라요.', image: '/images/cosmo_station.png' },
             { time: '13:30', title: '산장 점심 식사', desc: '산을 내려오며 맛있는 샤슬릭(꼬치구이)으로 점심 식사!' },
-            { time: '16:00', title: '시내 복귀', desc: '오후 시간을 알마티 시내에서 즐기실 수 있도록 적절한 시간에 복귀합니다.' }
+            { time: '16:00', title: '시내 복귀', desc: '오후 시간을 알마티 시내에서 즐기실 수 있도록 적절한 시간에 복귀합니다.', image: '/images/tour_city_1765784027581.png' }
         ],
         inclusions: ['차량 및 기사', '가이드', '국립공원 입장료', '생수'],
         exclusions: ['개인 식사 비용 (현지 지불)']
@@ -64,7 +64,7 @@ const tours = [
             { time: 'Day 1 18:00', title: '캠핑 & 별 보기', desc: '아씨 고원 또는 콜사이 호수 인근에서 캠핑(또는 게스트하우스). 밤하늘 쏟아지는 별을 보며 불멍 타임.', image: '/images/camping_stars.png' },
             { time: 'Day 2 09:00', title: '카인디 & 콜사이', desc: '아침 일찍 신비로운 카인디 호수와 콜사이 호수 산책. 상쾌한 공기를 마셔보세요.', image: '/images/kaindy_morning.png' },
             { time: 'Day 2 14:00', title: '차른 캐년', desc: '돌아오는 길에 차른 캐년의 웅장함을 감상합니다. 빛에 따라 변하는 암석의 색감이 예술이에요.', image: '/images/charyn_light.png' },
-            { time: 'Day 2 19:00', title: '알마티 도착', desc: '1박 2일의 알찬 여정을 마치고 시내로 복귀합니다.' }
+            { time: 'Day 2 19:00', title: '알마티 도착', desc: '1박 2일의 알찬 여정을 마치고 시내로 복귀합니다.', image: '/images/almaty_night_view.png' }
         ],
         inclusions: ['전용 차량', '가이드', '숙박(캠핑/게스트하우스)', '식사(4식)', '입장료'],
         exclusions: ['개인 경비', '주류 및 음료']
