@@ -1,0 +1,30 @@
+{
+  "name": "tripsoda-kazakhstan",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "lucide-react": "0.263.1",
+    "next": "12.3.4",
+    "nodemailer": "^7.0.11",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "18.15.0",
+    "@types/nodemailer": "^7.0.4",
+    "@types/react": "17.0.58",
+    "@types/react-dom": "17.0.11",
+    "autoprefixer": "^10.4.14",
+    "eslint": "8.40.0",
+    "eslint-config-next": "12.3.4",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
+    "typescript": "4.9.5"
+  }
+}
