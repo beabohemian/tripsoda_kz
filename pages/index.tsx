@@ -3,7 +3,13 @@ import Link from 'next/link'
 import { Users, Languages, Wallet, FileText } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
-export default function Home() {
+import { InstagramPost } from '../lib/instagram';
+
+interface HomeProps {
+    instagramPosts: InstagramPost[];
+}
+
+export default function Home({ instagramPosts }: HomeProps) {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const heroRef = useRef<HTMLElement>(null);
 
