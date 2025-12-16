@@ -56,15 +56,19 @@ export default function Navbar() {
 
             {/* Mobile Menu Drawer - Rendered via Portal */}
             <Portal>
-                <div className={`fixed inset-0 z-[9999] transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden`}>
-                    {/* Backdrop overlay - Closes menu when clicked */}
+                {/* Container for Portal content - controls visibility */}
+                <div className={`fixed inset-0 z-[9999] md:hidden ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+
+                    {/* Backdrop overlay - Fades in/out */}
                     <div
-                        className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
+                        className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}
                         onClick={() => setIsOpen(false)}
                     ></div>
 
-                    {/* Drawer Content */}
-                    <div className="absolute right-0 top-0 h-full w-[280px] bg-white shadow-2xl flex flex-col p-6">
+                    {/* Drawer Content - Slides in from right */}
+                    <div
+                        className={`absolute right-0 top-0 h-full w-[280px] bg-white shadow-2xl flex flex-col p-6 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                    >
                         <div className="flex justify-end mb-8">
                             <button
                                 onClick={() => setIsOpen(false)}

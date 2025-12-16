@@ -228,19 +228,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Instagram Feed */}
-            <section className="py-12 bg-white text-center">
-                <h2 className="text-3xl font-bold text-tripsoda-textMain mb-4">우리의 인스타그램</h2>
-                <p className="text-tripsoda-textSub mb-8 max-w-2xl mx-auto">
-                    트립소다 카자흐스탄의 최신 소식을 인스타그램에서 만나보세요.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center">
-                    <blockquote className="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/POST_ID_1/" data-instgrm-version="14"></blockquote>
-                    <blockquote className="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/POST_ID_2/" data-instgrm-version="14"></blockquote>
-                    <blockquote className="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/POST_ID_3/" data-instgrm-version="14"></blockquote>
-                </div>
-                <script async src="//www.instagram.com/embed.js"></script>
-            </section>
+
         </>
     )
 }
