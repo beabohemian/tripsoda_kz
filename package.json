@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build-production": "dotenv -e _envs/.env.production -- next build",
+    "start": "dotenv -e _envs/.env.production -- next start -p ${PORT:-4011}"
   },
   "dependencies": {
     "lucide-react": "0.263.1",
@@ -21,6 +22,7 @@
     "@types/react": "17.0.58",
     "@types/react-dom": "17.0.11",
     "autoprefixer": "^10.4.14",
+    "dotenv-cli": "^7.2.1",
     "eslint": "8.40.0",
     "eslint-config-next": "12.3.4",
     "postcss": "^8.4.24",
