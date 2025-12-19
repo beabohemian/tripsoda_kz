@@ -18,9 +18,26 @@ export default function Footer() {
                     <div>
                         <h3 className="text-lg font-semibold text-tripsoda-textMain mb-4">바로가기</h3>
                         <ul className="space-y-2">
-                            <li><Link href="/about"><a className="text-tripsoda-textSub hover:text-tripsoda-main transition-colors">회사 소개</a></Link></li>
-                            <li><Link href="/tours"><a className="text-tripsoda-textSub hover:text-tripsoda-main transition-colors">투어 상품</a></Link></li>
-                            <li><Link href="/contact"><a className="text-tripsoda-textSub hover:text-tripsoda-main transition-colors">문의하기</a></Link></li>
+                            <li>
+                                <Link href="/about">
+                                    <a className="text-tripsoda-textSub hover:text-tripsoda-main transition-colors">회사 소개</a>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/tours">
+                                    <a className="text-tripsoda-textSub hover:text-tripsoda-main transition-colors">투어 소개</a>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/tours/guides">
+                                    <a className="text-tripsoda-textSub hover:text-tripsoda-main transition-colors">가이드 소개</a>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/contact">
+                                    <a className="text-tripsoda-textSub hover:text-tripsoda-main transition-colors">문의하기</a>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
