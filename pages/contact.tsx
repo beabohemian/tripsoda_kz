@@ -63,18 +63,26 @@ export default function Contact() {
                 <title>문의하기 | 트립소다 카자흐스탄</title>
             </Head>
 
-            <div className="max-w-7xl mx-auto px-4 py-12 md:py-20">
-                <h1 className="text-3xl md:text-4xl font-bold text-center text-tripsoda-textMain mb-8 md:mb-12">문의하기</h1>
+            {/* Hero Section */}
+            <div className="relative py-24 bg-gray-900 overflow-hidden">
+                <div className="absolute inset-0 bg-[url('/images/hero_bg_1765783966744.png')] bg-cover bg-center opacity-40"></div>
+                <div className="relative max-w-7xl mx-auto px-4 text-center">
+                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+                        문의하기
+                    </h1>
+                    <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-light">
+                        여행 관련 궁금한 점은 언제든 문의해주세요.<br className="hidden sm:block" />
+                        현지 담당자가 친절하게 답변해 드립니다.
+                    </p>
+                </div>
+            </div>
 
+            <div className="max-w-7xl mx-auto px-4 py-12 md:py-20">
                 <div className="grid md:grid-cols-2 gap-12">
                     {/* Contact Info */}
                     <div className="space-y-8">
                         <div>
                             <h2 className="text-2xl font-bold text-tripsoda-textMain mb-4">연락처 및 위치</h2>
-                            <p className="text-gray-600 mb-6">
-                                여행 관련 궁금한 점은 언제든 문의해주세요. <br />
-                                현지 담당자가 친절하게 답변해 드립니다.
-                            </p>
                         </div>
 
                         <div className="flex items-start space-x-4">

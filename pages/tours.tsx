@@ -20,9 +20,16 @@ export default function Tours() {
                 <title>투어 상품 | 트립소다 카자흐스탄</title>
             </Head>
 
-            <div className="bg-tripsoda-main py-12 md:py-20 text-center text-white">
-                <h1 className="text-3xl md:text-4xl font-bold">투어 둘러보기</h1>
-                <p className="opacity-90 mt-2 text-sm md:text-base">카자흐스탄 어디든, 어떤 경험이든 OK!</p>
+            <div className="relative py-24 bg-gray-900 overflow-hidden">
+                <div className="absolute inset-0 bg-[url('/images/hero_bg_1765783966744.png')] bg-cover bg-center opacity-40"></div>
+                <div className="relative max-w-7xl mx-auto px-4 text-center">
+                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+                        투어 소개
+                    </h1>
+                    <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-light">
+                        카자흐스탄 어디든, 어떤 경험이든 OK!
+                    </p>
+                </div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 py-12 md:py-20">

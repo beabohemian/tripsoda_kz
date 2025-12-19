@@ -9,7 +9,8 @@ export default function Navbar() {
     const navLinks = [
         { name: '홈', href: '/' },
         { name: '회사 소개', href: '/about' },
-        { name: '투어 상품', href: '/tours' },
+        { name: '투어 소개', href: '/tours' },
+        { name: '가이드 소개', href: '/tours/guides' },
         { name: '문의하기', href: '/contact' },
     ]
 
