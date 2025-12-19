@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next build && next export",
     "lint": "next lint",
     "build-production": "dotenv -e _envs/.env.production -- next build",
     "start": "dotenv -e _envs/.env.production -- next start -p ${PORT:-4011}"

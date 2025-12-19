@@ -2,8 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  trailingSlash: true,
   images: {
-    domains: ['images.unsplash.com'],
+    unoptimized: true,
   },
 }
 
