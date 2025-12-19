@@ -186,8 +186,8 @@ export default function About() {
                                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 transform origin-left">💰</div>
                                 <h3 className="font-bold text-xl mb-2">글로벌 투자 유치</h3>
                                 <p className="text-gray-400 text-sm">
-                                    미국 실리콘밸리 벤처캐피탈(Strong Ventures) 및<br />
-                                    국내 유수 투자사로부터 투자를 유치한 유망 스타트업입니다.
+                                    국내외 유수 투자사로부터<br />
+                                    투자를 유치한 유망 스타트업입니다.
                                 </p>
                             </div>
 
