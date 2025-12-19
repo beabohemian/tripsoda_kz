@@ -2,3 +2,4 @@ _envs
 .next
 node_modules
 .env.local
+.next/*
