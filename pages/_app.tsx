@@ -4,7 +4,6 @@ import Head from 'next/head';
 import Layout from '../components/layout/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  console.log('test invalid cache');
   return (
     <Layout>
       <Head>
