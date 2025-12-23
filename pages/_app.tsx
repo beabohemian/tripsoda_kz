@@ -4,7 +4,6 @@ import Head from 'next/head';
 import Layout from '../components/layout/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  console.log('this is tripsoda kz');
   return (
     <Layout>
       <Head>
