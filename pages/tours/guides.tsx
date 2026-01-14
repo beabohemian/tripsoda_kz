@@ -42,13 +42,12 @@ const guides: Guide[] = [
         id: 'g4',
         name: '숄판 (Sholpan)',
         role: '전문 관광 가이드 / 트레킹 전문',
-        image: '/images/guides/sholpan_young.png',
+        image: '/images/guides/sholpan.jpg',
         languages: ['한국어', '영어', '러시아어', '카자흐어'],
         bio: '공인 트레킹 가이드 자격증을 보유한 산악 전문 가이드입니다. 자연과 함께하는 여행을 사랑하며, 세심한 배려로 초보자도 즐길 수 있는 안전하고 편안한 트레킹을 안내합니다.',
         specialties: ['공인 트레킹 가이드', '초보자/가족 산행', '자연 생태 해설'],
         experience: '3년',
         location: '카자흐스탄',
-        isPlaceholder: true
     },
     {
         id: 'g1',
