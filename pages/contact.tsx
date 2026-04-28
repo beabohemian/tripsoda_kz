@@ -292,7 +292,7 @@ export default function Contact() {
                         onChange={handleChange}
                         >
                         <option value="hotel">호텔 (3~4성급)</option>
-                        <option value="luxury">럭셔리 호텔 (5성급)</option>
+                        <option value="luxury">고급 호텔 (4~5성급)</option>
                         <option value="yurt">유르트 (전통 체험)</option>
                         <option value="guesthouse">게스트하우스 (가성비)</option>
                         <option value="camping">캠핑/글램핑</option>

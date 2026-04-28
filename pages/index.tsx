@@ -48,10 +48,10 @@ export default function Home() {
         <>
             <Head>
                 <title>트립소다 카자흐스탄 - 진정한 여정의 시작</title>
-                <meta name="description" content="카자흐스탄 현지 법인 직영 프리미엄 여행사. 비교할 수 없는 디테일과 장인정신이 담긴 투어를 경험하세요." />
+                <meta name="description" content="카자흐스탄 현지 법인 직영 여행사. 중간 마진 없는 가장 합리적이고 투명한 배낭여행·자유여행 투어를 경험하세요." />
             </Head>
 
-            {/* Premium Cinematic Hero Section */}
+            {/* Cinematic Hero Section */}
             <section className="relative h-screen flex flex-col justify-center bg-black overflow-hidden perspective-1000">
                 {/* Parallax Background Image */}
                 <motion.div
@@ -231,9 +231,9 @@ export default function Home() {
                             <div className="w-14 h-14 bg-white shadow-sm rounded-2xl flex items-center justify-center mb-6 border border-gray-50 group-hover:-translate-y-2 transition-transform duration-500">
                                 <FileText size={28} className="text-blue-500" />
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 relative z-10">나에게 딱 맞춘 비스포크 설계</h3>
+                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 relative z-10">나에게 딱 맞춘 1:1 맞춤 견적</h3>
                             <p className="text-gray-600 max-w-lg relative z-10 leading-relaxed">
-                                꽉 막힌 패키지는 싫고 자유여행은 막막하다면? 당신의 취향과 일정에 맞춰 단 하나뿐인 완벽한 여행 코스를 디자인해 드립니다.
+                                꽉 막힌 패키지는 싫고 혼자 가는 자유여행은 막막하다면? 배낭여행객의 예산과 취향에 맞춰 거품 없는 코스를 디자인해 드립니다.
                             </p>
                         </div>
                     </div>
