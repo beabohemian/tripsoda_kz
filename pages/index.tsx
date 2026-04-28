@@ -52,14 +52,11 @@ export default function Home() {
             </Head>
 
             {/* Premium Cinematic Hero Section */}
-            <motion.section 
-                className="relative h-screen flex flex-col justify-center bg-black overflow-hidden perspective-1000"
-                style={{ opacity: heroOpacity }}
-            >
+            <section className="relative h-screen flex flex-col justify-center bg-black overflow-hidden perspective-1000">
                 {/* Parallax Background Image */}
                 <motion.div
                     className="absolute inset-0 z-0 origin-bottom"
-                    style={{ y: heroY, scale: heroScale }}
+                    style={{ y: heroY, scale: heroScale, opacity: heroOpacity }}
                 >
                     <div 
                         className="absolute inset-0 bg-cover bg-center"
@@ -71,7 +68,10 @@ export default function Home() {
                 </motion.div>
 
                 {/* Main Content Layer */}
-                <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 mt-20 md:mt-32">
+                <motion.div 
+                    className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 mt-20 md:mt-32"
+                    style={{ opacity: heroOpacity }}
+                >
                     <motion.div 
                         variants={staggerContainer}
                         initial="hidden"
@@ -130,51 +130,53 @@ export default function Home() {
                             </div>
                         </motion.div>
                     </motion.div>
-                </div>
+                </motion.div>
 
                 {/* Glassmorphism Quick Info Bar (Bottom) */}
-                <motion.div 
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1, duration: 0.8 }}
-                    className="absolute bottom-10 left-0 w-full px-6 z-30 hidden lg:block"
-                >
-                    <div className="max-w-7xl mx-auto flex justify-between items-end">
-                        <div className="flex gap-4">
-                            <div className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white">
-                                <p className="text-xs text-white/60 font-bold uppercase tracking-widest mb-1">Location</p>
-                                <p className="font-medium">알마티, 카자흐스탄</p>
+                <motion.div style={{ opacity: heroOpacity }}>
+                    <motion.div 
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1, duration: 0.8 }}
+                        className="absolute bottom-10 left-0 w-full px-6 z-30 hidden lg:block"
+                    >
+                        <div className="max-w-7xl mx-auto flex justify-between items-end">
+                            <div className="flex gap-4">
+                                <div className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white">
+                                    <p className="text-xs text-white/60 font-bold uppercase tracking-widest mb-1">Location</p>
+                                    <p className="font-medium">알마티, 카자흐스탄</p>
+                                </div>
+                                <div className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white">
+                                    <p className="text-xs text-white/60 font-bold uppercase tracking-widest mb-1">Expertise</p>
+                                    <p className="font-medium">안전하고 투명한 정찰제 투어</p>
+                                </div>
                             </div>
-                            <div className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white">
-                                <p className="text-xs text-white/60 font-bold uppercase tracking-widest mb-1">Expertise</p>
-                                <p className="font-medium">안전하고 투명한 정찰제 투어</p>
+
+                            {/* Scroll Indicator */}
+                            <div className="flex flex-col items-center gap-3 mr-10 cursor-pointer group" onClick={() => window.scrollTo({top: window.innerHeight, behavior: 'smooth'})}>
+                                <p className="text-xs text-white/50 font-bold tracking-widest uppercase group-hover:text-white transition-colors">Scroll</p>
+                                <div className="w-8 h-14 border-2 border-white/30 rounded-full flex justify-center p-1 group-hover:border-white/60 transition-colors">
+                                    <motion.div 
+                                        animate={{ y: [0, 24, 0] }}
+                                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                                        className="w-1.5 h-3 bg-white rounded-full"
+                                    />
+                                </div>
                             </div>
                         </div>
+                    </motion.div>
 
-                        {/* Scroll Indicator */}
-                        <div className="flex flex-col items-center gap-3 mr-10 cursor-pointer group" onClick={() => window.scrollTo({top: window.innerHeight, behavior: 'smooth'})}>
-                            <p className="text-xs text-white/50 font-bold tracking-widest uppercase group-hover:text-white transition-colors">Scroll</p>
-                            <div className="w-8 h-14 border-2 border-white/30 rounded-full flex justify-center p-1 group-hover:border-white/60 transition-colors">
-                                <motion.div 
-                                    animate={{ y: [0, 24, 0] }}
-                                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                                    className="w-1.5 h-3 bg-white rounded-full"
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    {/* Mobile Scroll Indicator */}
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1.5 }}
+                        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 lg:hidden flex flex-col items-center gap-2"
+                    >
+                        <ChevronDown size={24} className="text-white/50 animate-bounce" />
+                    </motion.div>
                 </motion.div>
-
-                {/* Mobile Scroll Indicator */}
-                <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.5 }}
-                    className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 lg:hidden flex flex-col items-center gap-2"
-                >
-                    <ChevronDown size={24} className="text-white/50 animate-bounce" />
-                </motion.div>
-            </motion.section>
+            </section>
 
             {/* Bright Bento Box Section */}
             <section className="py-32 bg-gray-50 relative overflow-hidden">
