@@ -11,17 +11,18 @@
     "start": "dotenv -e _envs/.env.production -- next start -p ${PORT:-4011}"
   },
   "dependencies": {
+    "framer-motion": "^10.16.16",
     "lucide-react": "0.263.1",
     "next": "12.3.4",
     "nodemailer": "^7.0.11",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "18.15.0",
     "@types/nodemailer": "^7.0.4",
-    "@types/react": "17.0.58",
-    "@types/react-dom": "17.0.11",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
     "autoprefixer": "^10.4.14",
     "dotenv-cli": "^7.2.1",
     "eslint": "8.40.0",

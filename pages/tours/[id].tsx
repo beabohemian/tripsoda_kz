@@ -2,6 +2,12 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 import { MapPin, Clock, Calendar } from 'lucide-react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
+
+if (typeof global !== 'undefined' && typeof (global as any).performance === 'undefined') {
+    (global as any).performance = { now: () => Date.now() };
+}
 
 const tours = [
     {
@@ -151,154 +157,230 @@ export default function TourDetail() {
     const router = useRouter()
     const { id } = router.query
 
-    // Find the tour regardless of string/number type match
-    // Fallback to tour 1 or specific generic data if detailed data is missing for others
+    // Parallax Scroll logic
+    const { scrollY } = useScroll()
+    const y1 = useTransform(scrollY, [0, 500], [0, 150])
+    const opacity = useTransform(scrollY, [0, 300], [1, 0])
+
+    // Find the tour
     const tour = tours.find(t => t.id == Number(id)) || tours[0]
 
     if (!tour) return null
 
     return (
-        <>
+        <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }}
+            className="bg-gray-50/50"
+        >
             <Head>
                 <title>{tour.title} | 트립소다 카자흐스탄</title>
             </Head>
 
-            {/* Hero Image */}
-            <div className="relative h-[60vh] bg-gray-900">
-                <div
-                    className="absolute inset-0 bg-cover bg-center opacity-80"
-                    style={{ backgroundImage: `url('${tour.image}')` }}
-                ></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
+            {/* Parallax Hero Image */}
+            <div className="relative h-[65vh] bg-gray-900 overflow-hidden">
+                <motion.div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url('${tour.image}')`, y: y1 }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+                
+                <motion.div 
+                    style={{ opacity }}
+                    className="absolute bottom-0 left-0 w-full p-8 md:p-16 z-10"
+                >
                     <div className="max-w-7xl mx-auto">
-                        <span className="bg-tripsoda-main text-white px-4 py-1 rounded-full text-sm font-bold mb-4 inline-block">{tour.duration}</span>
-                        <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">{tour.title}</h1>
+                        <motion.span 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="bg-tripsoda-main/90 backdrop-blur-md text-white px-5 py-1.5 rounded-full text-sm font-bold tracking-widest mb-6 inline-block shadow-lg"
+                        >
+                            {tour.duration}
+                        </motion.span>
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight tracking-tight drop-shadow-xl max-w-4xl"
+                        >
+                            {tour.title}
+                        </motion.h1>
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             {/* Content */}
-            <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div className="md:col-span-2 space-y-12">
+            <div className="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 relative">
+                
+                {/* Main Content Area */}
+                <div className="lg:col-span-2 space-y-16">
                     <section>
-                        <h2 className="text-2xl font-bold text-tripsoda-textMain mb-6">투어 소개</h2>
-                        <p className="text-lg text-gray-700 leading-relaxed border-l-4 border-tripsoda-main pl-6 bg-gray-50 py-4 rounded-r-lg">
-                            {tour.description}
-                        </p>
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100"
+                        >
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                                <span className="w-8 h-8 rounded-full bg-tripsoda-main/10 flex items-center justify-center text-tripsoda-main">✨</span>
+                                투어 소개
+                            </h2>
+                            <p className="text-lg text-gray-600 leading-relaxed">
+                                {tour.description}
+                            </p>
 
-                        {/* Highlights (Generic for now) */}
-                        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-                            {['인생샷 보장', '편안한 이동', '전문 가이드', '알찬 일정'].map((tag, i) => (
-                                <div key={i} className="bg-tripsoda-light/50 text-tripsoda-main text-center py-3 rounded-lg font-bold text-sm">
-                                    #{tag}
-                                </div>
-                            ))}
-                        </div>
+                            {/* Highlights */}
+                            <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {['인생샷 보장', '편안한 이동', '전문 가이드', '알찬 일정'].map((tag, i) => (
+                                    <div key={i} className="bg-gray-50 text-gray-700 text-center py-4 rounded-2xl font-bold text-sm border border-gray-100 hover:border-tripsoda-main hover:text-tripsoda-main transition-colors">
+                                        #{tag}
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
                     </section>
 
-                    {/* Detailed Schedule */}
+                    {/* Interactive Timeline */}
                     <section>
-                        <h2 className="text-2xl font-bold text-tripsoda-textMain mb-8 border-b pb-4">상세 일정</h2>
-                        <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-300 before:to-transparent">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-12">여정 안내</h2>
+                        <div className="space-y-0 relative before:absolute before:inset-0 before:ml-[1.4rem] md:before:ml-[2.2rem] before:h-full before:w-0.5 before:bg-gray-200">
                             {tour.schedule ? tour.schedule.map((item, index) => (
-                                <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                                    {/* Icon/Dot */}
-                                    <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-tripsoda-main text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 absolute left-0 md:static">
-                                        <span className="text-xs font-bold">{index + 1}</span>
+                                <motion.div 
+                                    key={index} 
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    variants={{
+                                        hidden: { opacity: 0.3, scale: 0.95, x: -10 },
+                                        visible: { opacity: 1, scale: 1, x: 0, transition: { duration: 0.5 } }
+                                    }}
+                                    className="relative flex items-start group mb-12 last:mb-0"
+                                >
+                                    {/* Animated Dot */}
+                                    <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-gray-200 group-[.is-active]:bg-tripsoda-main shrink-0 z-10 transition-colors duration-500 md:ml-4 shadow-sm group-hover:bg-tripsoda-main">
+                                        <div className="w-3 h-3 bg-white rounded-full"></div>
                                     </div>
 
                                     {/* Content Card */}
-                                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow ml-14 md:ml-0">
-                                        <div className="flex items-center justify-between mb-3">
-                                            <span className="font-bold text-tripsoda-main text-sm bg-tripsoda-light px-2 py-1 rounded">{item.time}</span>
+                                    <div className="w-full bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 ml-6 group-hover:-translate-y-1">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <span className="font-bold text-tripsoda-main text-sm bg-tripsoda-main/10 px-3 py-1.5 rounded-full">{item.time}</span>
                                         </div>
-                                        <h3 className="font-bold text-lg text-gray-800 mb-2">{item.title}</h3>
-                                        <p className="text-gray-600 text-sm leading-relaxed mb-3">{item.desc}</p>
+                                        <h3 className="font-bold text-xl text-gray-900 mb-3">{item.title}</h3>
+                                        <p className="text-gray-600 text-base leading-relaxed mb-4">{item.desc}</p>
                                         {item.image && (
-                                            <div className="rounded-xl overflow-hidden h-32 w-full mt-3">
-                                                <img src={item.image} alt={item.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                                            <div className="rounded-2xl overflow-hidden h-48 w-full mt-4">
+                                                <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                                             </div>
                                         )}
                                     </div>
-                                </div>
+                                </motion.div>
                             )) : (
-                                <div className="text-center py-10 bg-gray-50 rounded-xl">일정 정보 업데이트 중입니다.</div>
+                                <div className="text-center py-10 bg-white rounded-3xl border border-gray-100">일정 정보 업데이트 중입니다.</div>
                             )}
                         </div>
-                        {/* Disclaimer */}
-                        <div className="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-200 text-center text-sm text-gray-500">
-                            📢 위 일정은 예시입니다. 현지 기상 상황, 교통편, 그리고 맞춤 견적 내용에 따라 실제 일정은 유동적으로 변경될 수 있습니다.
+                        <div className="mt-10 p-5 bg-tripsoda-main/5 rounded-2xl border border-tripsoda-main/20 text-center text-sm text-gray-600 font-medium">
+                            📢 위 일정은 예시입니다. 현지 기상 상황 및 교통편에 따라 실제 일정은 변경될 수 있습니다.
                         </div>
                     </section>
 
                     {/* Inclusions / Exclusions */}
-                    <section className="grid md:grid-cols-2 gap-8">
-                        <div className="bg-blue-50 p-6 rounded-2xl">
-                            <h3 className="flex items-center font-bold text-blue-800 mb-4 text-lg">
-                                <span className="mr-2">🙆‍♂️</span> 포함 사항
+                    <section className="grid md:grid-cols-2 gap-6">
+                        <motion.div 
+                            whileHover={{ y: -5 }}
+                            className="bg-blue-50/80 p-8 rounded-3xl border border-blue-100"
+                        >
+                            <h3 className="flex items-center font-bold text-blue-900 mb-6 text-xl">
+                                <span className="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center mr-3 text-blue-700">✓</span> 포함 사항
                             </h3>
-                            <ul className="space-y-2">
+                            <ul className="space-y-4">
                                 {(tour.inclusions || ['차량', '가이드']).map((item, i) => (
-                                    <li key={i} className="flex items-start text-blue-900 text-sm">
-                                        <span className="mr-2 text-blue-500">✔</span> {item}
+                                    <li key={i} className="flex items-start text-blue-900/80 text-base font-medium">
+                                        <span className="mr-3 text-blue-500">•</span> {item}
                                     </li>
                                 ))}
                             </ul>
-                        </div>
-                        <div className="bg-red-50 p-6 rounded-2xl">
-                            <h3 className="flex items-center font-bold text-red-800 mb-4 text-lg">
-                                <span className="mr-2">🙅‍♀️</span> 불포함 사항
+                        </motion.div>
+                        <motion.div 
+                            whileHover={{ y: -5 }}
+                            className="bg-red-50/80 p-8 rounded-3xl border border-red-100"
+                        >
+                            <h3 className="flex items-center font-bold text-red-900 mb-6 text-xl">
+                                <span className="w-8 h-8 rounded-full bg-red-200 flex items-center justify-center mr-3 text-red-700">✕</span> 불포함 사항
                             </h3>
-                            <ul className="space-y-2">
+                            <ul className="space-y-4">
                                 {(tour.exclusions || ['개인 경비']).map((item, i) => (
-                                    <li key={i} className="flex items-start text-red-900 text-sm">
-                                        <span className="mr-2 text-red-400">✖</span> {item}
+                                    <li key={i} className="flex items-start text-red-900/80 text-base font-medium">
+                                        <span className="mr-3 text-red-400">•</span> {item}
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </motion.div>
                     </section>
                 </div>
 
-                {/* Sidebar Widget */}
-                <div className="md:col-span-1">
-                    <div className="sticky top-24 bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-                        <h3 className="text-xl font-bold text-tripsoda-textMain mb-6">여행 상담 및 예약</h3>
+                {/* Sticky Sidebar Widget */}
+                <div className="lg:col-span-1">
+                    <motion.div 
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5 }}
+                        className="sticky top-28 bg-white rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100"
+                    >
+                        <h3 className="text-2xl font-bold text-gray-900 mb-8 border-b border-gray-100 pb-6">여정 요약</h3>
 
-                        <div className="space-y-4 mb-8">
-                            <div className="flex items-center text-gray-600">
-                                <Clock size={20} className="mr-3 text-tripsoda-main" />
-                                <span>소요 시간: {tour.duration}</span>
+                        <div className="space-y-6 mb-10">
+                            <div className="flex items-center text-gray-700">
+                                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center mr-4">
+                                    <Clock size={24} className="text-tripsoda-main" />
+                                </div>
+                                <div>
+                                    <div className="text-xs text-gray-400 mb-1">소요 시간</div>
+                                    <div className="font-bold">{tour.duration}</div>
+                                </div>
                             </div>
-                            <div className="flex items-center text-gray-600">
-                                <MapPin size={20} className="mr-3 text-tripsoda-main" />
-                                <span>출발지: 알마티 시내</span>
+                            <div className="flex items-center text-gray-700">
+                                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center mr-4">
+                                    <MapPin size={24} className="text-tripsoda-main" />
+                                </div>
+                                <div>
+                                    <div className="text-xs text-gray-400 mb-1">출발지</div>
+                                    <div className="font-bold">알마티 시내 픽업</div>
+                                </div>
                             </div>
-                            <div className="flex items-center text-gray-600">
-                                <Calendar size={20} className="mr-3 text-tripsoda-main" />
-                                <span>매일 출발 가능</span>
+                            <div className="flex items-center text-gray-700">
+                                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center mr-4">
+                                    <Calendar size={24} className="text-tripsoda-main" />
+                                </div>
+                                <div>
+                                    <div className="text-xs text-gray-400 mb-1">출발일</div>
+                                    <div className="font-bold">매일 출발 (상담 요망)</div>
+                                </div>
                             </div>
                         </div>
 
-                        <Link href="/contact">
-                            <a className="block w-full bg-tripsoda-main text-white text-center font-bold py-4 rounded-xl hover:bg-tripsoda-dark transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 mb-3">
-                                견적 문의하기
-                            </a>
-                        </Link>
+                        <div className="space-y-3">
+                            <Link href="/contact">
+                                <a className="block w-full bg-gray-900 text-white text-center font-bold py-4 rounded-2xl hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                                    견적 문의하기
+                                </a>
+                            </Link>
 
-                        <div className="relative group">
-                            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-300 to-[#FEE500] rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                            <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="relative flex items-center justify-center w-full bg-[#FEE500] border-2 border-[#FEE500] text-black text-center font-bold py-4 rounded-xl hover:bg-yellow-300 hover:border-yellow-300 transition-all">
-                                <span className="mr-2">💬</span> 카카오톡 바로 상담
-                            </a>
+                            <div className="relative group">
+                                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-300 to-[#FEE500] rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                                <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="relative flex items-center justify-center w-full bg-[#FEE500] text-black text-center font-bold py-4 rounded-2xl hover:bg-[#f4dc00] transition-all">
+                                    <span className="mr-2 text-xl">💬</span> 카카오톡 빠른 상담
+                                </a>
+                            </div>
                         </div>
-                        <p className="text-xs text-gray-400 text-center mt-3">
-                            평일/주말 09:00 - 18:00 (현지 시간 기준)
+                        <p className="text-xs text-gray-400 text-center mt-6">
+                            평일/주말 09:00 - 18:00 (현지 시간)
                         </p>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
-        </>
+        </motion.div>
     )
 }

@@ -1,0 +1,62 @@
+
+> tripsoda-kazakhstan@0.1.0 build /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지
+> next build
+
+info  - Loaded env from /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/.env.local
+info  - Skipping linting
+info  - Checking validity of types...
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Collecting page data...
+info  - Generating static pages (0/8)
+ReferenceError: performance is not defined
+    at Object.now (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/motion-dom/dist/es/frameloop/sync-time.mjs:21:19)
+    at MotionValue.setCurrent (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/motion-dom/dist/es/value/index.mjs:69:31)
+    at new MotionValue (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/motion-dom/dist/es/value/index.mjs:64:14)
+    at motionValue (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/motion-dom/dist/es/value/index.mjs:320:12)
+    at createScrollMotionValues (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/framer-motion/dist/es/value/use-scroll.mjs:11:14)
+    at useConstant (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/framer-motion/dist/es/utils/use-constant.mjs:14:23)
+    at useScroll (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/framer-motion/dist/es/value/use-scroll.mjs:43:20)
+    at TourDetail (/Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/.next/server/pages/tours/[id].js:460:82)
+    at Wc (/Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/react-dom/cjs/react-dom-server.browser.production.min.js:68:44)
+    at Zc (/Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/react-dom/cjs/react-dom-server.browser.production.min.js:70:253)
+
+Error occurred prerendering page "/tours/[id]". Read more: https://nextjs.org/docs/messages/prerender-error
+ReferenceError: performance is not defined
+    at Object.now (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/motion-dom/dist/es/frameloop/sync-time.mjs:21:19)
+    at MotionValue.setCurrent (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/motion-dom/dist/es/value/index.mjs:69:31)
+    at new MotionValue (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/motion-dom/dist/es/value/index.mjs:64:14)
+    at motionValue (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/motion-dom/dist/es/value/index.mjs:320:12)
+    at createScrollMotionValues (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/framer-motion/dist/es/value/use-scroll.mjs:11:14)
+    at useConstant (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/framer-motion/dist/es/utils/use-constant.mjs:14:23)
+    at useScroll (file:///Users/jinki/Desktop/%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1/%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%80%E1%85%B5/3.%20%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A9%E1%84%83%E1%85%A1%20%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%A1%E1%84%92%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%86%AB/7.%20%E1%84%92%E1%85%A9%E1%86%B7%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5/node_modules/framer-motion/dist/es/value/use-scroll.mjs:43:20)
+    at TourDetail (/Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/.next/server/pages/tours/[id].js:460:82)
+    at Wc (/Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/react-dom/cjs/react-dom-server.browser.production.min.js:68:44)
+    at Zc (/Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/react-dom/cjs/react-dom-server.browser.production.min.js:70:253)
+info  - Generating static pages (2/8)
+info  - Generating static pages (4/8)
+info  - Generating static pages (6/8)
+info  - Generating static pages (8/8)
+
+> Build error occurred
+Error: Export encountered errors on following paths:
+	/tours/[id]
+    at /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/next/dist/export/index.js:404:19
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async Span.traceAsyncFn (/Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/next/dist/trace/trace.js:79:20)
+    at async /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/next/dist/build/index.js:1230:21
+    at async Span.traceAsyncFn (/Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/next/dist/trace/trace.js:79:20)
+    at async /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/next/dist/build/index.js:1092:17
+    at async Span.traceAsyncFn (/Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/next/dist/trace/trace.js:79:20)
+    at async Object.build [as default] (/Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/next/dist/build/index.js:65:29)
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! tripsoda-kazakhstan@0.1.0 build: `next build`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the tripsoda-kazakhstan@0.1.0 build script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/jinki/.npm/_logs/2026-04-28T08_21_14_783Z-debug.log

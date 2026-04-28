@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import { motion, Variants } from 'framer-motion'
 
 interface Guide {
     id: string
@@ -61,85 +61,143 @@ const guides: Guide[] = [
     },
 ]
 
+// Animation Variants
+const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+}
+
+const staggerContainer: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15
+        }
+    }
+}
+
 export default function GuidePage() {
     return (
-        <>
+        <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }}
+        >
             <Head>
                 <title>가이드 소개 - Tripsoda Kazakhstan</title>
                 <meta name="description" content="트립소다 카자흐스탄의 전문 가이드를 소개합니다. 검증된 현지 전문가와 함께 안전하고 즐거운 여행을 떠나보세요." />
             </Head>
 
             {/* Hero Section */}
-            {/* Hero Section */}
-            <div className="relative py-24 bg-gray-900 overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/images/hero_bg_1765783966744.png')] bg-cover bg-center opacity-40"></div>
-                <div className="relative max-w-7xl mx-auto px-4 text-center">
-                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+            <div className="relative py-32 bg-gray-900 overflow-hidden">
+                <motion.div 
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 0.4 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="absolute inset-0 bg-[url('/images/hero_bg_1765783966744.png')] bg-cover bg-center"
+                />
+                <div className="relative max-w-7xl mx-auto px-4 text-center z-10">
+                    <motion.h1 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg"
+                    >
                         가이드 소개
-                    </h1>
-                    <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-light">
+                    </motion.h1>
+                    <motion.p 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-light leading-relaxed drop-shadow-md"
+                    >
                         현지의 매력을 가장 잘 아는 엄선된 가이드들이<br className="hidden sm:block" />
                         여러분의 여행을 더욱 특별하게 만들어 드립니다.
-                    </p>
+                    </motion.p>
                 </div>
             </div>
 
             {/* Intro Text Section */}
-            <div className="bg-white py-16 sm:py-20">
+            <div className="bg-white py-24">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                    <motion.h2 
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={fadeInUp}
+                        className="text-3xl md:text-4xl font-bold text-gray-900 mb-12"
+                    >
                         왜 트립소다 가이드인가요?
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div className="p-6 bg-gray-50 rounded-2xl">
-                            <div className="text-4xl mb-4">🤝</div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">엄격한 선발 기준</h3>
-                            <p className="text-gray-600">
-                                경력, 언어 능력, 자격증 검증, 서비스 마인드 등<br />
+                    </motion.h2>
+                    <motion.div 
+                        variants={staggerContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                    >
+                        <motion.div variants={fadeInUp} className="p-8 bg-gray-50 rounded-[2rem] border border-gray-100 hover:shadow-xl transition-shadow group">
+                            <div className="text-5xl mb-6 group-hover:scale-110 transition-transform transform origin-bottom">🤝</div>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-3">엄격한 선발 기준</h3>
+                            <p className="text-gray-600 leading-relaxed">
+                                경력, 언어 능력, 자격증 검증, 서비스 마인드 등
                                 꼼꼼한 기준으로 선발된 검증된 가이드
                             </p>
-                        </div>
-                        <div className="p-6 bg-gray-50 rounded-2xl">
-                            <div className="text-4xl mb-4">💬</div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">원활한 소통</h3>
-                            <p className="text-gray-600">
+                        </motion.div>
+                        <motion.div variants={fadeInUp} className="p-8 bg-gray-50 rounded-[2rem] border border-gray-100 hover:shadow-xl transition-shadow group">
+                            <div className="text-5xl mb-6 group-hover:scale-110 transition-transform transform origin-bottom">💬</div>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-3">원활한 소통</h3>
+                            <p className="text-gray-600 leading-relaxed">
                                 한국어 또는 영어가 유창하여<br />
                                 여행 중 의사소통 걱정 NO
                             </p>
-                        </div>
-                        <div className="p-6 bg-gray-50 rounded-2xl">
-                            <div className="text-4xl mb-4">💡</div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">깊이 있는 경험</h3>
-                            <p className="text-gray-600">
-                                단순 지식 전달이 아닌, 수년간의 현장 경험에서<br />
+                        </motion.div>
+                        <motion.div variants={fadeInUp} className="p-8 bg-gray-50 rounded-[2rem] border border-gray-100 hover:shadow-xl transition-shadow group">
+                            <div className="text-5xl mb-6 group-hover:scale-110 transition-transform transform origin-bottom">💡</div>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-3">깊이 있는 경험</h3>
+                            <p className="text-gray-600 leading-relaxed">
+                                단순 지식 전달이 아닌, 수년간의 현장 경험에서
                                 우러나오는 생생한 노하우를 전달합니다.
                             </p>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </div>
 
 
             {/* Guides Grid */}
-            <div className="bg-gray-50 py-24 sm:py-32">
-                <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="bg-gray-50 py-24 sm:py-32 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-tripsoda-main/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
+                <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
                     <div className="mx-auto max-w-2xl lg:max-w-4xl">
-                        <div className="space-y-16">
+                        <motion.div 
+                            variants={staggerContainer}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="space-y-16"
+                        >
                             {guides.map((guide) => (
-                                <div key={guide.id} className="flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                                    {/* Image Section */}
-                                    <div className="w-full md:w-1/3 relative h-96 md:h-auto bg-gray-200 overflow-hidden group">
-                                        {/* If duplicate image/placeholder issues arise, ensuring correct sizing here */}
+                                <motion.div 
+                                    key={guide.id} 
+                                    variants={fadeInUp}
+                                    className="flex flex-col md:flex-row bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 group"
+                                >
+                                    {/* Image Section - Business Card Hover Style */}
+                                    <div className="w-full md:w-[40%] relative h-96 md:h-auto bg-gray-900 overflow-hidden">
                                         <img
                                             src={guide.image}
                                             alt={guide.name}
-                                            className={`w-full h-full object-cover transition-transform duration-700 hover:scale-105 ${guide.isPlaceholder ? 'opacity-90' : ''}`}
+                                            className={`w-full h-full object-cover transition-all duration-700 ease-in-out md:grayscale group-hover:grayscale-0 group-hover:scale-105 ${guide.isPlaceholder ? 'opacity-90' : 'opacity-90 group-hover:opacity-100'}`}
                                             style={{ objectPosition: 'top center' }}
                                         />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-500"></div>
+                                        
                                         {/* "Coming Soon" overlay for placeholders */}
                                         {guide.isPlaceholder && (
-                                            <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                                                <span className="px-5 py-2.5 bg-white/90 backdrop-blur-md rounded-full text-sm font-bold text-gray-700 shadow-lg ring-1 ring-gray-900/5">
+                                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                                                <span className="px-6 py-3 bg-white text-gray-900 rounded-full text-sm font-bold shadow-xl">
                                                     프로필 사진 준비중
                                                 </span>
                                             </div>
@@ -147,62 +205,72 @@ export default function GuidePage() {
                                     </div>
 
                                     {/* Content Section */}
-                                    <div className="w-full md:w-2/3 p-8 flex flex-col justify-center">
-                                        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                                            <h3 className="text-2xl font-bold text-gray-900">{guide.name}</h3>
-                                            <div className="flex flex-wrap gap-2 mt-2 md:mt-0">
-                                                <span className="inline-flex items-center rounded-full bg-tripsoda-50 px-3 py-1 text-sm font-medium text-tripsoda-main ring-1 ring-inset ring-tripsoda-main/20">
+                                    <div className="w-full md:w-[60%] p-10 md:p-12 flex flex-col justify-center relative">
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-tripsoda-main/5 rounded-bl-full transition-transform duration-500 group-hover:scale-110 origin-top-right"></div>
+                                        
+                                        <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 relative z-10">
+                                            <h3 className="text-3xl font-extrabold text-gray-900 tracking-tight group-hover:text-tripsoda-main transition-colors duration-300">{guide.name}</h3>
+                                            <div className="flex flex-wrap gap-2 mt-3 md:mt-0">
+                                                <span className="inline-flex items-center rounded-full bg-tripsoda-main/10 px-4 py-1.5 text-sm font-bold text-tripsoda-main border border-tripsoda-main/20">
                                                     {guide.role}
                                                 </span>
                                                 {guide.location && (
-                                                    <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-600">
+                                                    <span className="inline-flex items-center rounded-full bg-gray-100 px-4 py-1.5 text-sm font-bold text-gray-600 border border-gray-200">
                                                         📍 {guide.location}
                                                     </span>
                                                 )}
                                             </div>
                                         </div>
 
-                                        <div className="mb-6 space-y-2">
-                                            <p className="text-gray-500 text-sm">
-                                                <span className="font-semibold text-gray-700 mr-2">언어:</span>
-                                                {guide.languages.join(', ')}
-                                            </p>
-                                            <p className="text-gray-500 text-sm">
-                                                <span className="font-semibold text-gray-700 mr-2">경력:</span>
-                                                {guide.experience}
-                                            </p>
-                                            <p className="text-gray-500 text-sm">
-                                                <span className="font-semibold text-gray-700 mr-2">전문 분야:</span>
-                                                {guide.specialties.join(', ')}
-                                            </p>
+                                        <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 relative z-10 bg-gray-50 p-6 rounded-2xl">
+                                            <div>
+                                                <div className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Languages</div>
+                                                <div className="text-gray-900 font-medium">{guide.languages.join(', ')}</div>
+                                            </div>
+                                            <div>
+                                                <div className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Experience</div>
+                                                <div className="text-gray-900 font-medium">{guide.experience}</div>
+                                            </div>
+                                            <div className="sm:col-span-2">
+                                                <div className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Specialties</div>
+                                                <div className="flex flex-wrap gap-2 mt-1">
+                                                    {guide.specialties.map((spec, i) => (
+                                                        <span key={i} className="text-sm bg-white px-3 py-1 rounded-full border border-gray-200 text-gray-600 shadow-sm">{spec}</span>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div className="relative">
-                                            <div className="absolute top-0 left-0 -translate-x-2 -translate-y-2 text-4xl text-gray-200 font-serif">"</div>
-                                            <p className="text-gray-600 leading-relaxed italic relative z-10 pl-6 border-l-4 border-gray-100 py-1">
+                                        <div className="relative z-10 mt-auto">
+                                            <div className="absolute top-0 left-0 -translate-x-3 -translate-y-4 text-6xl text-tripsoda-main/20 font-serif leading-none">"</div>
+                                            <p className="text-gray-700 leading-loose italic relative z-10 pl-6 text-lg font-medium">
                                                 {guide.bio}
                                             </p>
                                         </div>
-
-
                                     </div>
-                                </div>
+                                </motion.div>
                             ))}
-                        </div>
+                        </motion.div>
 
-                        <div className="mt-16 text-center p-8 bg-gray-100 rounded-2xl">
-                            <h3 className="text-lg font-bold text-gray-900 mb-3">
-                                이 외에도 다수의 전문 가이드가 함께하고 있습니다.
+                        <motion.div 
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={fadeInUp}
+                            className="mt-20 text-center p-10 bg-white border border-gray-200 rounded-[2rem] shadow-sm"
+                        >
+                            <h3 className="text-xl font-bold text-gray-900 mb-4 flex justify-center items-center gap-3">
+                                <span className="text-2xl text-tripsoda-main">🏅</span> 이 외에도 다수의 전문 가이드가 함께하고 있습니다.
                             </h3>
-                            <p className="text-gray-600">
-                                트립소다는 엄격한 기준을 통과하고 <span className="font-semibold text-tripsoda-main">가이드 자격증을 소지한 전문가</span>만이<br className="hidden sm:block" />
+                            <p className="text-gray-600 text-lg">
+                                트립소다는 엄격한 기준을 통과하고 <span className="font-bold text-tripsoda-main px-1 bg-tripsoda-main/10 rounded">가이드 자격증을 소지한 전문가</span>만이<br className="hidden sm:block" />
                                 투어의 메인 가이드로 배정되어 여행을 이끌어 나갑니다.
                             </p>
-                        </div>
+                        </motion.div>
 
                     </div>
                 </div>
             </div>
-        </>
+        </motion.div>
     )
 }

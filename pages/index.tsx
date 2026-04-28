@@ -70,11 +70,6 @@ export default function Home() {
                     className="relative z-10 px-4 max-w-6xl mx-auto text-center flex flex-col items-center"
                     style={{ transform: `translate(${mousePos.x * 10}px, ${mousePos.y * 10}px)` }}
                 >
-                    {/* Big Floating Logo Watermark */}
-                    <div className="mb-8 opacity-90 drop-shadow-2xl">
-                        <img src="/images/logo.png" alt="Tripsoda" className="h-16 md:h-24 mx-auto brightness-0 invert" />
-                    </div>
-
                     <div className="reveal word-reveal mb-6">
                         <span className="inline-block py-1.5 px-4 rounded-full bg-tripsoda-main/90 backdrop-blur-md text-white text-sm font-bold tracking-widest mb-6 shadow-lg">
                             🇰🇷 한국인 매니저 상주 · 100% 현지 법인 직영
