@@ -1,27 +1,35 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { Users, Languages, Wallet, FileText, ArrowRight } from 'lucide-react'
+import { Users, Languages, Wallet, FileText, ArrowRight, Search, Map, Star, ChevronDown } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useTransform, Variants } from 'framer-motion'
 
 export default function Home() {
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-    const heroRef = useRef<HTMLElement>(null);
-    const textRef = useRef<HTMLHeadingElement>(null);
+    const { scrollY } = useScroll();
+    const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
+    const heroY = useTransform(scrollY, [0, 500], [0, 150]);
+    const heroScale = useTransform(scrollY, [0, 500], [1, 1.1]);
 
-    // Advanced Mouse Parallax
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            if (!heroRef.current) return;
-            const { innerWidth, innerHeight } = window;
-            const x = (e.clientX / innerWidth - 0.5) * 2; 
-            const y = (e.clientY / innerHeight - 0.5) * 2; 
-            setMousePos({ x, y });
-        };
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, []);
+    // Animation Variants
+    const staggerContainer: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+        }
+    };
 
-    // Advanced Scroll Reveal & Kinetic Typography
+    const fadeInUp: Variants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    };
+
+    const revealText: Variants = {
+        hidden: { opacity: 0, y: "100%" },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    };
+
+    // Advanced Scroll Reveal
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -33,78 +41,140 @@ export default function Home() {
 
         const reveals = document.querySelectorAll('.reveal');
         reveals.forEach(el => observer.observe(el));
-
-        // Wrap words for kinetic typography
-        if (textRef.current) {
-            const text = textRef.current.innerText;
-            textRef.current.innerHTML = text.split(' ').map((word, i) => 
-                `<span style="transition-delay: ${i * 0.1}s">${word}&nbsp;</span>`
-            ).join('');
-        }
-
         return () => reveals.forEach(el => observer.unobserve(el));
     }, []);
 
     return (
         <>
             <Head>
-                <title>중앙아시아 여행의 시작 | 트립소다 카자흐스탄</title>
-                <meta name="description" content="카자흐스탄 현지 법인 여행사. 알마티 최고의 투어를 만나보세요." />
+                <title>트립소다 카자흐스탄 - 진정한 여정의 시작</title>
+                <meta name="description" content="카자흐스탄 현지 법인 직영 프리미엄 여행사. 비교할 수 없는 디테일과 장인정신이 담긴 투어를 경험하세요." />
             </Head>
 
-            {/* Vibrant Tripsoda Hero Section */}
-            <section ref={heroRef} className="relative h-screen flex items-center justify-center bg-gray-900 overflow-hidden perspective-1000">
-                {/* Base Background Image with subtle parallax */}
-                <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-75 ease-out scale-110 z-0 opacity-70"
-                    style={{
-                        backgroundImage: "url('/images/tour_charyn_1765783988719.png')",
-                        transform: `translate(${-mousePos.x * 30}px, ${-mousePos.y * 30}px) scale(1.1)`
-                    }}
-                ></div>
-
-                <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 z-0"></div>
-
-                {/* Content Layer */}
-                <div
-                    className="relative z-10 px-4 max-w-6xl mx-auto text-center flex flex-col items-center"
-                    style={{ transform: `translate(${mousePos.x * 10}px, ${mousePos.y * 10}px)` }}
+            {/* Premium Cinematic Hero Section */}
+            <motion.section 
+                className="relative h-screen flex flex-col justify-center bg-black overflow-hidden perspective-1000"
+                style={{ opacity: heroOpacity }}
+            >
+                {/* Parallax Background Image */}
+                <motion.div
+                    className="absolute inset-0 z-0 origin-bottom"
+                    style={{ y: heroY, scale: heroScale }}
                 >
-                    <div className="reveal word-reveal mb-6">
-                        <span className="inline-block py-1.5 px-4 rounded-full bg-tripsoda-main/90 backdrop-blur-md text-white text-sm font-bold tracking-widest mb-6 shadow-lg">
-                            🇰🇷 한국인 매니저 상주 · 100% 현지 법인 직영
-                        </span>
-                        <h1 ref={textRef} className="text-5xl md:text-7xl font-extrabold font-sans leading-tight text-white tracking-tight drop-shadow-xl">
-                            카자흐스탄 투어,<br/>더 이상 고민하지 마세요
-                        </h1>
-                    </div>
+                    <div 
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{ backgroundImage: "url('/images/tour_charyn_1765783988719.png')" }}
+                    />
+                    {/* Multi-stop cinematic gradient for maximum text readability and mood */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/90 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60 z-10" />
+                </motion.div>
 
-                    <p className="reveal text-lg md:text-2xl font-medium text-gray-100 max-w-3xl mx-auto leading-relaxed mt-6 drop-shadow-md" style={{transitionDelay: '0.4s'}}>
-                        자유여행객을 위한 <span className="text-tripsoda-main font-bold">바가지 없는 투명한 정찰제 투어</span>부터<br className="hidden md:block" />
-                        여행사를 위한 <span className="text-blue-400 font-bold">안전하고 확실한 B2B 현지 행사 진행</span>까지.<br className="hidden md:block" />
-                        트립소다 현지 법인이 카자흐스탄 여행의 기준을 만듭니다.
-                    </p>
+                {/* Main Content Layer */}
+                <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 mt-20 md:mt-32">
+                    <motion.div 
+                        variants={staggerContainer}
+                        initial="hidden"
+                        animate="visible"
+                        className="max-w-4xl"
+                    >
+                        <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-4">
+                            <span className="flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold tracking-widest shadow-2xl">
+                                <span className="w-2 h-2 rounded-full bg-tripsoda-main animate-pulse"></span>
+                                ALMATY, KAZAKHSTAN
+                            </span>
+                            <span className="hidden sm:inline-flex py-1.5 px-4 rounded-full bg-black/30 backdrop-blur-md border border-white/10 text-gray-300 text-sm font-medium tracking-wide">
+                                100% 현지 법인 직영
+                            </span>
+                        </motion.div>
 
-                    <div className="reveal flex flex-col sm:flex-row justify-center gap-4 mt-12" style={{transitionDelay: '0.6s'}}>
-                        <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="magnetic-wrap group">
-                            <div className="relative px-8 py-4 bg-tripsoda-main text-white rounded-full font-bold overflow-hidden transition-all duration-500 hover:scale-105 shadow-xl hover:shadow-tripsoda-main/50 flex items-center justify-center gap-2">
-                                <span className="relative z-10">🙋‍♂️ 자유 여행자 맞춤 투어 상담</span>
-                                <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                        <div className="overflow-hidden mb-2">
+                            <motion.h1 variants={revealText} className="text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-white tracking-tighter leading-[1.1] drop-shadow-2xl">
+                                Discover the
+                            </motion.h1>
+                        </div>
+                        <div className="overflow-hidden mb-8">
+                            <motion.h1 variants={revealText} className="text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 tracking-tighter leading-[1.1] drop-shadow-2xl italic">
+                                Untouched.
+                            </motion.h1>
+                        </div>
+
+                        <motion.p variants={fadeInUp} className="text-xl md:text-2xl font-light text-gray-300 max-w-2xl leading-relaxed mb-12 drop-shadow-md">
+                            당신의 발길이 닿는 곳이 곧 예술이 되도록.<br className="hidden sm:block" />
+                            트립소다가 카자흐스탄 여행의 <span className="text-white font-semibold border-b border-white/30 pb-1">새로운 기준</span>을 제시합니다.
+                        </motion.p>
+
+                        <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center gap-6">
+                            <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="group w-full sm:w-auto">
+                                <div className="relative px-8 py-5 bg-tripsoda-main text-white rounded-full font-bold overflow-hidden transition-all duration-500 hover:scale-105 hover:bg-tripsoda-dark shadow-[0_0_40px_rgba(255,107,0,0.4)] flex items-center justify-center gap-3">
+                                    <span className="relative z-10 text-lg tracking-wide">여정 시작하기</span>
+                                    <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1.5 transition-transform" />
+                                </div>
+                            </a>
+                            <div className="flex items-center gap-4 text-white/80">
+                                <div className="flex -space-x-3">
+                                    <img className="w-10 h-10 rounded-full border-2 border-gray-900 object-cover" src="/images/guides/nora.jpg" alt="Guide 1"/>
+                                    <img className="w-10 h-10 rounded-full border-2 border-gray-900 object-cover" src="/images/guides/chingis_jump.jpg" alt="Guide 2"/>
+                                    <div className="w-10 h-10 rounded-full border-2 border-gray-900 bg-gray-800 flex items-center justify-center text-xs font-bold">+5</div>
+                                </div>
+                                <div className="text-sm">
+                                    <div className="flex items-center text-yellow-400 text-xs mb-0.5">
+                                        <Star size={12} fill="currentColor" />
+                                        <Star size={12} fill="currentColor" />
+                                        <Star size={12} fill="currentColor" />
+                                        <Star size={12} fill="currentColor" />
+                                        <Star size={12} fill="currentColor" />
+                                    </div>
+                                    <span className="font-semibold text-white">4.9/5.0</span> 리뷰 평점
+                                </div>
                             </div>
-                        </a>
-                        <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="magnetic-wrap group">
-                            <div className="relative px-8 py-4 bg-white/20 backdrop-blur-md border border-white/40 text-white rounded-full font-bold overflow-hidden transition-all duration-500 hover:scale-105 hover:bg-white/30 flex items-center justify-center gap-2">
-                                <span className="relative z-10">🤝 여행사 B2B 제휴 및 행사 문의</span>
-                            </div>
-                        </a>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
 
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70 z-10">
-                    <div className="w-[2px] h-12 bg-white/50 rounded-full"></div>
-                </div>
-            </section>
+                {/* Glassmorphism Quick Info Bar (Bottom) */}
+                <motion.div 
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1, duration: 0.8 }}
+                    className="absolute bottom-10 left-0 w-full px-6 z-30 hidden lg:block"
+                >
+                    <div className="max-w-7xl mx-auto flex justify-between items-end">
+                        <div className="flex gap-4">
+                            <div className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white">
+                                <p className="text-xs text-white/60 font-bold uppercase tracking-widest mb-1">Location</p>
+                                <p className="font-medium">알마티, 카자흐스탄</p>
+                            </div>
+                            <div className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white">
+                                <p className="text-xs text-white/60 font-bold uppercase tracking-widest mb-1">Expertise</p>
+                                <p className="font-medium">프리미엄 비스포크 투어</p>
+                            </div>
+                        </div>
+
+                        {/* Scroll Indicator */}
+                        <div className="flex flex-col items-center gap-3 mr-10 cursor-pointer group" onClick={() => window.scrollTo({top: window.innerHeight, behavior: 'smooth'})}>
+                            <p className="text-xs text-white/50 font-bold tracking-widest uppercase group-hover:text-white transition-colors">Scroll</p>
+                            <div className="w-8 h-14 border-2 border-white/30 rounded-full flex justify-center p-1 group-hover:border-white/60 transition-colors">
+                                <motion.div 
+                                    animate={{ y: [0, 24, 0] }}
+                                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                                    className="w-1.5 h-3 bg-white rounded-full"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* Mobile Scroll Indicator */}
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 lg:hidden flex flex-col items-center gap-2"
+                >
+                    <ChevronDown size={24} className="text-white/50 animate-bounce" />
+                </motion.div>
+            </motion.section>
 
             {/* Bright Bento Box Section */}
             <section className="py-32 bg-gray-50 relative overflow-hidden">

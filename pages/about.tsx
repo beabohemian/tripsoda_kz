@@ -200,23 +200,23 @@ export default function About() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.4 }}
-                            className="flex flex-col items-center justify-center text-tripsoda-main"
+                            className="flex flex-col items-center justify-center text-tripsoda-main shrink-0 w-full md:w-auto my-8 md:my-0"
                         >
                             <motion.div 
                                 animate={{ x: [0, 10, 0] }} 
                                 transition={{ repeat: Infinity, duration: 2 }}
-                                className="hidden md:block bg-tripsoda-main/10 p-4 rounded-full"
+                                className="hidden md:flex items-center justify-center bg-tripsoda-main/10 w-20 h-20 rounded-full"
                             >
-                                <ArrowRight size={48} strokeWidth={2.5} />
+                                <ArrowRight size={40} strokeWidth={2.5} />
                             </motion.div>
                             <motion.div 
                                 animate={{ y: [0, 10, 0] }} 
                                 transition={{ repeat: Infinity, duration: 2 }}
-                                className="md:hidden bg-tripsoda-main/10 p-4 rounded-full"
+                                className="md:hidden flex items-center justify-center bg-tripsoda-main/10 w-16 h-16 rounded-full"
                             >
-                                <ArrowDown size={48} strokeWidth={2.5} />
+                                <ArrowDown size={32} strokeWidth={2.5} />
                             </motion.div>
-                            <span className="font-extrabold text-sm mt-4 tracking-widest text-tripsoda-main/70">DIRECT SYNERGY</span>
+                            <span className="font-extrabold text-sm mt-4 tracking-widest text-tripsoda-main/70 whitespace-nowrap">DIRECT SYNERGY</span>
                         </motion.div>
 
                         {/* Tripsoda Kazakhstan */}
