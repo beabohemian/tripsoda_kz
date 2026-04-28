@@ -47,7 +47,9 @@ export default function Footer() {
                         <ul className="space-y-3 text-tripsoda-textSub">
                             <li className="flex items-start space-x-2">
                                 <MapPin size={18} className="mt-1 flex-shrink-0" />
-                                <span>카자흐스탄 공화국, 알마티시, 알말리구, 나자르바예프 대로 65, 사무실 405/1, 우편번호 050004</span>
+                                <a href="https://maps.google.com/?q=Nazarbayev+Ave+65,+Almaty" target="_blank" rel="noreferrer" className="hover:text-tripsoda-main transition-colors">
+                                    카자흐스탄 공화국, 알마티시, 알말리구, 나자르바예프 대로 65, 사무실 405/1, 우편번호 050004
+                                </a>
                             </li>
                             <li className="flex items-center space-x-2">
                                 <Mail size={18} />
@@ -58,11 +60,29 @@ export default function Footer() {
                                 <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="hover:text-tripsoda-main transition-colors">+7 778 986 1833 (WhatsApp)</a>
                             </li>
                             <li className="flex space-x-4 mt-4 pt-2">
-                                <a href="https://instagram.com/tripsoda_kz" target="_blank" rel="noreferrer" className="hover:text-tripsoda-main transition-colors"><Instagram size={24} /></a>
-                                <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="hover:text-tripsoda-main transition-colors"><MessageCircle size={24} /></a>
+                                <a href="https://instagram.com/tripsoda_kz" target="_blank" rel="noreferrer" className="hover:text-tripsoda-main transition-colors" aria-label="Instagram"><Instagram size={24} /></a>
+                                <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="hover:text-tripsoda-main transition-colors" aria-label="WhatsApp"><MessageCircle size={24} /></a>
+                                <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="hover:text-tripsoda-main transition-colors text-[#FEE500] hover:text-[#F4DC00]" aria-label="KakaoTalk">
+                                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                                        <path d="M12 3c-5.523 0-10 3.582-10 8 0 2.825 1.83 5.304 4.606 6.78l-1.196 4.39c-.11.405.346.732.68.513L11.332 19c.22.02.443.03.668.03 5.523 0 10-3.582 10-8s-4.477-8-10-8z" />
+                                    </svg>
+                                </a>
                             </li>
                         </ul>
                     </div>
+                </div>
+
+                <div className="mt-12 w-full h-64 rounded-lg overflow-hidden shadow-sm">
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        frameBorder="0" 
+                        scrolling="no" 
+                        marginHeight={0} 
+                        marginWidth={0} 
+                        src="https://maps.google.com/maps?q=Nazarbayev+Ave+65,+Almaty&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        title="Google Map Location"
+                    ></iframe>
                 </div>
 
                 <div className="border-t border-gray-100 mt-12 pt-8 text-center text-sm text-tripsoda-textSub">

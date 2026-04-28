@@ -1,0 +1,32 @@
+
+> tripsoda-kazakhstan@0.1.0 lint /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지
+> next lint
+
+info  - Loaded env from /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/.env.local
+Cannot read config file: /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/eslint-config-next/index.js
+Error: Cannot find module 'node:path'
+Require stack:
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/@rushstack/eslint-patch/lib/_patch-base.js
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/@rushstack/eslint-patch/lib/modern-module-resolution.js
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/@rushstack/eslint-patch/modern-module-resolution.js
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/eslint-config-next/index.js
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/@eslint/eslintrc/dist/eslintrc.cjs
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/eslint/lib/cli-engine/cli-engine.js
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/eslint/lib/eslint/eslint.js
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/eslint/lib/eslint/index.js
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/eslint/lib/api.js
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/next/dist/lib/eslint/runLintCheck.js
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/next/dist/cli/next-lint.js
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/next/dist/lib/commands.js
+- /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/next/dist/bin/next
+Referenced from: /Users/jinki/Desktop/트립소다/이진기/3. 트립소다 카자흐스탄/7. 홈페이지/node_modules/eslint-config-next/core-web-vitals.js
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! tripsoda-kazakhstan@0.1.0 lint: `next lint`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the tripsoda-kazakhstan@0.1.0 lint script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/jinki/.npm/_logs/2026-04-28T06_21_19_100Z-debug.log
