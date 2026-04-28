@@ -20,15 +20,13 @@ const staggerContainer: Variants = {
 
 export default function Tours() {
     const tours = [
-        { id: 1, title: '알마티 근교 아씨 고원 & 천문대 낭만 트레킹', duration: '1일', image: '/images/tour_assy.png' },
-        { id: 2, title: '3대 명소 정복! 차른 캐년 & 콜사이 & 카인디 호수', duration: '1일', image: '/images/tour_charyn_1765783988719.png' },
-        { id: 3, title: '빅 알마티 호수(BAO) & 만년설 파노라마 투어', duration: '1일', image: '/images/tour_bao.png' },
-        { id: 4, title: '아씨 고원 별밤 & 3대 명소(차른/콜사이/카인디) 1박 2일', duration: '1박 2일', image: '/images/tour_kaindy.png' },
-        { id: 5, title: '대자연 하이라이트: 아씨+3대명소+빅알마티 2박 3일', duration: '2박 3일', image: '/images/tour_kolsai_1765784008248.png' },
-        { id: 6, title: '알마티 남부 골든링: 싱잉듄 & 3대 명소 & 아씨 고원 3박 4일', duration: '3박 4일', image: '/images/tour_singing_dune.png' },
-        { id: 7, title: '알마티 시티 핵심 명소 & 콕토베 야경 워킹 투어', duration: '반나절', image: '/images/tour_city_1765784027581.png' },
-        { id: 8, title: '침블락 스키 리조트 & 메데우 빙상장 케이블카 투어', duration: '1일', image: '/images/tour_shymbulak.png' },
-        { id: 9, title: '유목민 전통 문화 체험: 훈스 에스노 빌리지 & 승마', duration: '1일', image: '/images/tour_ethno_village.png' },
+        { id: 1, title: '투르겐 폭포 + 아씨 고원 투어', duration: '1일', image: '/images/tour_assy.png' },
+        { id: 2, title: '콜사이 + 차른 캐니언 + 카인디 1일 투어', duration: '1일', image: '/images/tour_charyn_1765783988719.png' },
+        { id: 3, title: '알틴 에멜 국립공원 투어', duration: '1일 (또는 1박 2일)', image: '/images/tour_singing_dune.png' },
+        { id: 4, title: '빅 알마티 호수 (BAO) 투어', duration: '반나절', image: '/images/tour_bao.png' },
+        { id: 5, title: '노마드 에스닉 마을 투어', duration: '1일', image: '/images/tour_ethno_village.png' },
+        { id: 6, title: '알마티 시티 투어', duration: '반나절', image: '/images/tour_city_1765784027581.png' },
+        { id: 7, title: '카자흐 에스닉 스타일 스냅 촬영', duration: '약 1시간', image: '/images/tour_kazakh_snap.png' },
     ]
 
     return (
@@ -38,7 +36,7 @@ export default function Tours() {
             exit={{ opacity: 0 }}
         >
             <Head>
-                <title>투어 상품 | 트립소다 카자흐스탄</title>
+                <title>투명한 현지 투어 | 트립소다 카자흐스탄</title>
             </Head>
 
             {/* Hero Section */}
@@ -56,7 +54,7 @@ export default function Tours() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg"
                     >
-                        투어 안내
+                        거품 없는 현지 투어
                     </motion.h1>
                     <motion.p 
                         initial={{ opacity: 0, y: 30 }}
@@ -64,7 +62,8 @@ export default function Tours() {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-light leading-relaxed drop-shadow-md"
                     >
-                        카자흐스탄 어디든, 어떤 경험이든 OK!<br />최고의 전문가가 설계한 일정입니다.
+                        중간 유통 마진 없이 카자흐스탄 현지 법인이 직접 기획하고 운영합니다.<br />
+                        자유여행자를 위한 가장 합리적이고 투명한 여정을 만나보세요.
                     </motion.p>
                 </div>
             </div>
@@ -83,7 +82,7 @@ export default function Tours() {
                             variants={fadeInUp}
                             className="bg-white rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-500 group overflow-hidden border border-gray-100 flex flex-col"
                         >
-                            <div className="h-72 overflow-hidden relative flex-shrink-0">
+                            <div className="h-72 overflow-hidden relative flex-shrink-0 bg-gray-100">
                                 <img
                                     src={tour.image}
                                     alt={tour.title}
@@ -105,7 +104,7 @@ export default function Tours() {
                                         </a>
                                     </Link>
                                     <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="block w-full text-center bg-[#FEE500] border-2 border-[#FEE500] text-black font-bold py-3.5 rounded-2xl hover:bg-[#f4dc00] hover:border-[#f4dc00] transition-all shadow-sm">
-                                        카톡 문의
+                                        최저가 카톡 문의
                                     </a>
                                 </div>
                             </div>
@@ -113,7 +112,7 @@ export default function Tours() {
                     ))}
                 </motion.div>
 
-                {/* Custom Inquiry CTA */}
+                {/* Custom Inquiry CTA (Backpacker Style) */}
                 <motion.div 
                     initial="hidden"
                     whileInView="visible"
@@ -123,16 +122,18 @@ export default function Tours() {
                 >
                     <div className="absolute inset-0 bg-tripsoda-main opacity-0 group-hover:opacity-5 transition-opacity duration-1000"></div>
                     <div className="text-4xl mb-6 animate-bounce">🤔</div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-6">찾으시는 여행이 없으신가요?</h2>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-4">원하는 일정이 없으신가요?</h2>
                     <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                        트립소다 카자흐스탄은 목록에 없는 여행지나 특별한 맞춤 일정도 전문으로 기획합니다. <br className="hidden md:block" />
-                        가시고 싶은 곳, 하고 싶은 경험이 있다면 무엇이든 자유롭게 문의해주세요.
+                        배낭여행객의 가벼운 주머니 사정부터 알찬 일정까지!<br className="hidden md:block" />
+                        트립소다 현지 법인이 중간 마진 없이 <strong>가장 합리적인 맞춤 견적</strong>을 설계해 드립니다.<br/>
+                        언제든 카카오톡으로 편하게 찔러봐 주세요!
                     </p>
-                    <Link href="/contact">
-                        <a className="inline-block bg-gray-900 text-white text-lg font-bold px-12 py-5 rounded-2xl hover:bg-black transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                            기타 여행 및 맞춤 견적 문의하기
+                    <div className="relative inline-block group/btn">
+                        <div className="absolute -inset-1 bg-gradient-to-r from-yellow-300 to-[#FEE500] rounded-2xl blur opacity-25 group-hover/btn:opacity-100 transition duration-1000 group-hover/btn:duration-200"></div>
+                        <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="relative inline-block bg-[#FEE500] text-black text-lg font-bold px-12 py-5 rounded-2xl hover:bg-[#f4dc00] transition-all shadow-md transform hover:-translate-y-1">
+                            ⚡ 1분 만에 내 맞춤 일정 견적받기
                         </a>
-                    </Link>
+                    </div>
                 </motion.div>
             </div>
         </motion.div>

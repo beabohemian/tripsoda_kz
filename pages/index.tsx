@@ -250,9 +250,9 @@ export default function Home() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
-                            { id: 1, title: '알마티 근교 아씨 고원 & 천문대 낭만 트레킹', img: '/images/tour_assy.png', duration: '1일' },
-                            { id: 2, title: '3대 명소 정복! 차른 캐년 & 콜사이 & 카인디 호수', img: '/images/tour_charyn_1765783988719.png', duration: '1일' },
-                            { id: 3, title: '빅 알마티 호수(BAO) & 만년설 파노라마 투어', img: '/images/tour_bao.png', duration: '1일' },
+                            { id: 1, title: '투르겐 폭포 + 아씨 고원 투어', img: '/images/tour_assy.png', duration: '1일' },
+                            { id: 2, title: '콜사이 + 차른 캐니언 + 카인디 1일 투어', img: '/images/tour_charyn_1765783988719.png', duration: '1일' },
+                            { id: 3, title: '알틴 에멜 국립공원 투어', img: '/images/tour_singing_dune.png', duration: '1일 (또는 1박 2일)' },
                         ].map((tour, idx) => (
                             <div key={tour.id} className="reveal group block overflow-hidden rounded-3xl shadow-lg relative h-[450px]">
                                 <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: `url('${tour.img}')` }}></div>
