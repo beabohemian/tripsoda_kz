@@ -1,27 +1,27 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { Users, Languages, Wallet, FileText } from 'lucide-react'
+import { Users, Languages, Wallet, FileText, ArrowRight } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
-// Removed Instagram import
 export default function Home() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const heroRef = useRef<HTMLElement>(null);
+    const textRef = useRef<HTMLHeadingElement>(null);
 
-    // Mouse Parallax Logic
+    // Advanced Mouse Parallax & Custom Cursor Hover Interaction
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             if (!heroRef.current) return;
             const { innerWidth, innerHeight } = window;
-            const x = (e.clientX / innerWidth - 0.5) * 2; // -1 to 1
-            const y = (e.clientY / innerHeight - 0.5) * 2; // -1 to 1
+            const x = (e.clientX / innerWidth - 0.5) * 2; 
+            const y = (e.clientY / innerHeight - 0.5) * 2; 
             setMousePos({ x, y });
         };
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
 
-    // Scroll Reveal Logic
+    // Advanced Scroll Reveal & Kinetic Typography
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -34,6 +34,14 @@ export default function Home() {
         const reveals = document.querySelectorAll('.reveal');
         reveals.forEach(el => observer.observe(el));
 
+        // Wrap words for kinetic typography
+        if (textRef.current) {
+            const text = textRef.current.innerText;
+            textRef.current.innerHTML = text.split(' ').map((word, i) => 
+                `<span style="transition-delay: ${i * 0.1}s">${word}&nbsp;</span>`
+            ).join('');
+        }
+
         return () => reveals.forEach(el => observer.unobserve(el));
     }, []);
 
@@ -44,89 +52,121 @@ export default function Home() {
                 <meta name="description" content="카자흐스탄 현지 법인 여행사. 알마티 최고의 투어를 만나보세요." />
             </Head>
 
-            {/* Hero Section (Parallax) */}
+            {/* Cinematic Hero Section */}
             <section ref={heroRef} className="relative h-screen flex items-center justify-center bg-black overflow-hidden perspective-1000">
-                {/* Background Layer - Moves opposite to mouse */}
+                {/* Dynamic Mesh Aurora Background */}
+                <div className="absolute inset-0 z-0 opacity-40 mix-blend-screen animate-aurora pointer-events-none" style={{
+                    backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(0,208,148,0.4) 0%, rgba(0,0,0,0) 50%), radial-gradient(circle at 80% 20%, rgba(96,165,250,0.3) 0%, rgba(0,0,0,0) 40%)',
+                    backgroundSize: '200% 200%'
+                }}></div>
+
+                {/* Base Background Image with extreme parallax */}
                 <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-100 ease-out scale-110"
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-75 ease-out scale-110 z-0 opacity-50"
                     style={{
                         backgroundImage: "url('/images/hero_bg_1765783966744.png')",
-                        transform: `translate(${-mousePos.x * 20}px, ${-mousePos.y * 20}px) scale(1.1)`
+                        transform: `translate(${-mousePos.x * 40}px, ${-mousePos.y * 40}px) scale(1.15)`
                     }}
                 ></div>
 
-                {/* Overlay with Grain/Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-[#0a0a0a] z-0"></div>
 
-                {/* Content Layer - Moves with mouse slightly */}
+                {/* Content Layer */}
                 <div
-                    className="relative z-10 px-4 max-w-5xl mx-auto space-y-6 md:space-y-8 text-center"
-                    style={{ transform: `translate(${mousePos.x * 10}px, ${mousePos.y * 10}px)` }}
+                    className="relative z-10 px-4 max-w-6xl mx-auto text-center"
+                    style={{ transform: `translate(${mousePos.x * 15}px, ${mousePos.y * 15}px)` }}
                 >
-                    <div>
-                        <span className="inline-block py-1 px-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-tripsoda-light text-xs md:text-sm font-bold mb-4 tracking-wider uppercase">
+                    <div className="reveal word-reveal mb-6">
+                        <span className="inline-block py-1.5 px-4 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-tripsoda-light text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-8 shadow-2xl">
                             Unveiling the Unknown
                         </span>
-                        <h1 className="text-4xl md:text-7xl font-extrabold font-sans leading-tight text-white drop-shadow-2xl tracking-tight">
-                            압도적 대자연, <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-tripsoda-light to-white">그 숨겨진 걸작을 만나다</span>
+                        <h1 ref={textRef} className="text-5xl md:text-8xl font-black font-sans leading-tight text-white tracking-tighter drop-shadow-2xl mix-blend-plus-lighter">
+                            압도적 대자연, 그 숨겨진 걸작
                         </h1>
                     </div>
 
-                    <p className="text-lg md:text-2xl font-light text-gray-100 opacity-95 max-w-2xl mx-auto leading-relaxed shadow-black drop-shadow-md tracking-tight">
-                        당신의 심장을 뛰게 할 <strong>카자흐스탄</strong>의 대자연. <br className="hidden md:block" />
-                        트립소다 현지 법인이 가장 감각적인 여행을 선사합니다.
+                    <p className="reveal text-xl md:text-3xl font-light text-gray-300 opacity-90 max-w-3xl mx-auto leading-relaxed tracking-tight mt-6" style={{transitionDelay: '0.4s'}}>
+                        당신의 심장을 뛰게 할 <strong>카자흐스탄</strong>.<br className="hidden md:block" />
+                        현지 법인이 설계하는 가장 완벽하고 감각적인 여정.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
-                        <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="group relative px-8 py-4 bg-white text-tripsoda-main rounded-full font-bold overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                            <span className="relative z-10 flex items-center gap-2">여행사 제휴 문의 (B2B)</span>
-                            <div className="absolute inset-0 bg-tripsoda-light transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 opacity-20"></div>
+                    <div className="reveal flex flex-col sm:flex-row justify-center gap-6 mt-16" style={{transitionDelay: '0.6s'}}>
+                        <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="magnetic-wrap group">
+                            <div className="relative px-10 py-5 bg-white text-black rounded-full font-bold overflow-hidden transition-all duration-500 hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.15)] flex items-center gap-3">
+                                <span className="relative z-10">B2B 제휴 문의</span>
+                                <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                                <div className="absolute inset-0 bg-tripsoda-light transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 opacity-30"></div>
+                            </div>
                         </a>
-                        <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="group relative px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-bold overflow-hidden transition-all hover:scale-105 hover:border-tripsoda-light">
-                            <span className="relative z-10 flex items-center gap-2">자유 여행자 문의</span>
-                            <div className="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                            <span className="absolute inset-0 z-10 flex items-center justify-center text-tripsoda-main font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">지금 상담하기</span>
+                        <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="magnetic-wrap group">
+                            <div className="relative px-10 py-5 bg-transparent border border-white/30 backdrop-blur-md text-white rounded-full font-bold overflow-hidden transition-all duration-500 hover:scale-105 hover:bg-white/10 flex items-center gap-3">
+                                <span className="relative z-10">자유 여행자 상담</span>
+                            </div>
                         </a>
                     </div>
                 </div>
 
                 {/* Scroll Indicator */}
-                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/30 z-10 mix-blend-screen">
+                    <div className="w-[1px] h-16 bg-gradient-to-b from-white/50 to-transparent"></div>
                 </div>
             </section>
 
-            {/* Intro Section - Glassmorphism Cards */}
-            <section className="py-32 bg-gray-50 text-center relative overflow-hidden">
-                {/* Decorative Background Blobs */}
-                <div className="absolute top-0 left-0 w-96 h-96 bg-tripsoda-light/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-300/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+            {/* Premium Bento Box Section */}
+            <section className="py-40 bg-[#0a0a0a] relative overflow-hidden">
+                {/* Decorative Deep Glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-tripsoda-main/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-                <div className="max-w-6xl mx-auto px-4 relative z-10">
-                    <div className="reveal mb-20">
-                        <h2 className="text-4xl md:text-5xl font-bold text-tripsoda-textMain mb-6">Why TripSoda Kazakhstan?</h2>
-                        <p className="text-xl text-tripsoda-textSub max-w-2xl mx-auto">
-                            비교할 수 없는 퀄리티, 압도적인 현지 전문성. <br />
-                            우리는 단순한 여행이 아닌, <strong>평생 잊지 못할 경험</strong>을 기획합니다.
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+                    <div className="reveal text-center mb-24">
+                        <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter mb-6">Masterpiece<br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-tripsoda-main to-blue-400">of Travel.</span></h2>
+                        <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light tracking-tight">
+                            비교를 불허하는 하이엔드 퀄리티. 우리는 단순한 관광이 아닌,<br/>
+                            당신의 영혼에 각인될 궁극의 마스터피스를 기획합니다.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        {[
-                            { icon: Users, title: '현지 법인 직영', desc: '하청 없는 100% 직영 운영으로\n최상의 퀄리티를 보장합니다.' },
-                            { icon: Languages, title: '완벽한 소통', desc: '한국인 매니저와 가이드가\n언어 장벽 없는 여행을 만듭니다.' },
-                            { icon: Wallet, title: '투명한 정찰제', desc: '현지 직거래를 통해 \n거품 없는 합리적인 \n가격을 제안합니다.' },
-                            { icon: FileText, title: '1:1 맞춤 케어', desc: '항공부터 투어까지,\n당신만의 여행을 처음부터 \n끝까지 설계합니다.' }
-                        ].map((feature, idx) => (
-                            <div key={idx} className="reveal glass-card p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300 group">
-                                <div className="w-20 h-20 mx-auto bg-gradient-to-br from-tripsoda-light to-tripsoda-main rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-tripsoda-main/50 transition-shadow">
-                                    <feature.icon size={36} className="text-white" />
-                                </div>
-                                <h3 className="text-xl font-bold text-tripsoda-textMain mb-3">{feature.title}</h3>
-                                <p className="text-gray-600 text-sm whitespace-pre-line leading-relaxed">{feature.desc}</p>
+                    {/* Bento Grid */}
+                    <div className="bento-grid">
+                        {/* Box 1: Large Span */}
+                        <div className="reveal bento-item col-span-12 md:col-span-8 p-10 md:p-14 bg-white/5 border-white/10 hover:bg-white/10 group">
+                            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <Users size={120} className="text-tripsoda-main" />
                             </div>
-                        ))}
+                            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 relative z-10">100% 현지 법인 직영</h3>
+                            <p className="text-lg text-gray-400 max-w-md relative z-10 leading-relaxed">
+                                하청의 하청으로 이어지는 저품질 투어는 잊으세요.<br/>
+                                트립소다는 카자흐스탄 현지 법인이 A부터 Z까지 모든 일정을 직접 통제하고 보증합니다.
+                            </p>
+                        </div>
+
+                        {/* Box 2: Square */}
+                        <div className="reveal bento-item col-span-12 md:col-span-4 p-10 bg-gradient-to-br from-tripsoda-dark/20 to-transparent border-tripsoda-main/20 group" style={{transitionDelay: '0.1s'}}>
+                            <Languages size={48} className="text-tripsoda-main mb-6 group-hover:scale-110 transition-transform duration-500" />
+                            <h3 className="text-2xl font-bold text-white mb-3">완벽한 언어 소통</h3>
+                            <p className="text-gray-400 leading-relaxed">
+                                한국인 전담 매니저와 한국어가 유창한 현지 엘리트 가이드가 언어의 장벽을 완전히 허물어 드립니다.
+                            </p>
+                        </div>
+
+                        {/* Box 3: Square */}
+                        <div className="reveal bento-item col-span-12 md:col-span-4 p-10 bg-white/5 border-white/10 hover:bg-white/10 group" style={{transitionDelay: '0.2s'}}>
+                            <Wallet size={48} className="text-white mb-6 group-hover:rotate-12 transition-transform duration-500" />
+                            <h3 className="text-2xl font-bold text-white mb-3">투명한 하이엔드</h3>
+                            <p className="text-gray-400 leading-relaxed">
+                                옵션 강요, 숨겨진 팁은 없습니다. 오직 프리미엄 여행 본질에만 집중할 수 있는 깔끔한 정찰제를 약속합니다.
+                            </p>
+                        </div>
+
+                        {/* Box 4: Large Span */}
+                        <div className="reveal bento-item col-span-12 md:col-span-8 p-10 md:p-14 bg-gradient-to-tr from-blue-900/20 to-transparent border-white/10 group overflow-hidden" style={{transitionDelay: '0.3s'}}>
+                            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-blue-500/20 blur-3xl rounded-full group-hover:bg-blue-400/30 transition-colors duration-700"></div>
+                            <FileText size={48} className="text-blue-400 mb-6 group-hover:-translate-y-2 transition-transform duration-500 relative z-10" />
+                            <h3 className="text-3xl font-bold text-white mb-4 relative z-10">당신만의 1:1 비스포크 설계</h3>
+                            <p className="text-lg text-gray-400 max-w-lg relative z-10 leading-relaxed">
+                                VIP 의전부터 익스트림 오프로드까지. 정해진 패키지에 당신을 맞추지 마세요. 당신의 취향과 예산에 맞춘 단 하나의 여행을 디자인합니다.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>

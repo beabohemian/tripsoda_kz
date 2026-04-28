@@ -1,10 +1,19 @@
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import Portal from '../ui/Portal'
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50)
+        }
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     const navLinks = [
         { name: '홈', href: '/' },
@@ -15,43 +24,51 @@ export default function Navbar() {
     ]
 
     return (
-        <header className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm border-b border-gray-100">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-16">
-                    {/* Logo */}
-                    <div className="flex-shrink-0 flex items-center">
-                        <Link href="/">
-                            <a className="flex items-center">
-                                <img
-                                    src="/images/logo.png"
-                                    alt="Tripsoda Kazakhstan"
-                                    className="h-8 md:h-10 w-auto" // Responsive height
-                                />
+        <header 
+            className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out flex justify-center ${
+                scrolled ? 'pt-4 px-4' : 'pt-0 px-0'
+            }`}
+        >
+            <div 
+                className={`transition-all duration-500 ease-in-out flex items-center justify-between ${
+                    scrolled 
+                        ? 'w-full max-w-4xl bg-white/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-full h-14 px-6 border border-white/40' 
+                        : 'w-full bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100 h-16 px-4 sm:px-6 lg:px-8'
+                }`}
+            >
+                {/* Logo */}
+                <div className="flex-shrink-0 flex items-center">
+                    <Link href="/">
+                        <a className="flex items-center">
+                            <img
+                                src="/images/logo.png"
+                                alt="Tripsoda Kazakhstan"
+                                className={`transition-all duration-500 ${scrolled ? 'h-6' : 'h-8 md:h-10'} w-auto`}
+                            />
+                        </a>
+                    </Link>
+                </div>
+
+                {/* Desktop Menu */}
+                <nav className="hidden md:flex space-x-8">
+                    {navLinks.map((link) => (
+                        <Link key={link.name} href={link.href}>
+                            <a className={`transition-colors font-medium hover:text-tripsoda-main ${scrolled ? 'text-sm text-gray-800' : 'text-tripsoda-textMain'}`}>
+                                {link.name}
                             </a>
                         </Link>
-                    </div>
+                    ))}
+                </nav>
 
-                    {/* Desktop Menu */}
-                    <nav className="hidden md:flex space-x-8">
-                        {navLinks.map((link) => (
-                            <Link key={link.name} href={link.href}>
-                                <a className="text-tripsoda-textMain hover:text-tripsoda-main transition-colors font-medium">
-                                    {link.name}
-                                </a>
-                            </Link>
-                        ))}
-                    </nav>
-
-                    {/* Mobile Menu Button */}
-                    <div className="flex items-center md:hidden">
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="text-tripsoda-textMain hover:text-tripsoda-main p-2 focus:outline-none"
-                        >
-                            <span className="sr-only">Open main menu</span>
-                            {isOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
-                    </div>
+                {/* Mobile Menu Button */}
+                <div className="flex items-center md:hidden">
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="text-tripsoda-textMain hover:text-tripsoda-main p-2 focus:outline-none"
+                    >
+                        <span className="sr-only">Open main menu</span>
+                        {isOpen ? <X size={20} /> : <Menu size={20} />}
+                    </button>
                 </div>
             </div>
 

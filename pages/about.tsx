@@ -48,11 +48,9 @@ export default function About() {
                                 트립소다 카자흐스탄은 온라인에만 존재하는 여행사가 아닙니다.
                             </p>
                             <div className="flex flex-wrap gap-4">
-                                <Link href="/contact">
-                                    <a className="bg-white text-gray-900 font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors">
-                                        라운지 위치 보기
-                                    </a>
-                                </Link>
+                                <a href="https://maps.app.goo.gl/4txAKpYxMunKXBQ39" target="_blank" rel="noreferrer" className="bg-white text-gray-900 font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors">
+                                    라운지 위치 보기
+                                </a>
                             </div>
                         </div>
                     </div>
