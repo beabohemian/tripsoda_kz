@@ -288,9 +288,9 @@ export default function TourDetail() {
                         </Link>
 
                         <div className="relative group">
-                            <div className="absolute -inset-1 bg-gradient-to-r from-green-400 to-green-600 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                            <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="relative flex items-center justify-center w-full bg-white border-2 border-green-500 text-green-600 text-center font-bold py-4 rounded-xl hover:bg-green-50 transition-all">
-                                <span className="mr-2">📱</span> 왓츠앱 바로 상담
+                            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-300 to-[#FEE500] rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                            <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="relative flex items-center justify-center w-full bg-[#FEE500] border-2 border-[#FEE500] text-black text-center font-bold py-4 rounded-xl hover:bg-yellow-300 hover:border-yellow-300 transition-all">
+                                <span className="mr-2">💬</span> 카카오톡 바로 상담
                             </a>
                         </div>
                         <p className="text-xs text-gray-400 text-center mt-3">

@@ -86,13 +86,13 @@ export default function Home() {
                     </p>
 
                     <div className="reveal flex flex-col sm:flex-row justify-center gap-4 mt-12" style={{transitionDelay: '0.6s'}}>
-                        <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="magnetic-wrap group">
+                        <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="magnetic-wrap group">
                             <div className="relative px-8 py-4 bg-tripsoda-main text-white rounded-full font-bold overflow-hidden transition-all duration-500 hover:scale-105 shadow-xl hover:shadow-tripsoda-main/50 flex items-center justify-center gap-2">
                                 <span className="relative z-10">🙋‍♂️ 자유 여행자 맞춤 투어 상담</span>
                                 <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
                             </div>
                         </a>
-                        <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="magnetic-wrap group">
+                        <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="magnetic-wrap group">
                             <div className="relative px-8 py-4 bg-white/20 backdrop-blur-md border border-white/40 text-white rounded-full font-bold overflow-hidden transition-all duration-500 hover:scale-105 hover:bg-white/30 flex items-center justify-center gap-2">
                                 <span className="relative z-10">🤝 여행사 B2B 제휴 및 행사 문의</span>
                             </div>
@@ -154,13 +154,13 @@ export default function Home() {
                         </div>
 
                         {/* Box 4: Large Span */}
-                        <div className="reveal bento-item col-span-12 md:col-span-8 p-10 md:p-12 bg-gray-900 border border-gray-800 group overflow-hidden" style={{transitionDelay: '0.3s'}}>
-                            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-tripsoda-main/20 blur-[80px] rounded-full group-hover:bg-tripsoda-main/40 transition-colors duration-700 pointer-events-none"></div>
-                            <div className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6 border border-white/20">
-                                <FileText size={28} className="text-white" />
+                        <div className="reveal bento-item col-span-12 md:col-span-8 p-10 md:p-12 bg-gradient-to-tr from-tripsoda-light to-white border border-gray-100 group overflow-hidden" style={{transitionDelay: '0.3s'}}>
+                            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-blue-100 blur-[80px] rounded-full group-hover:bg-blue-200/50 transition-colors duration-700 pointer-events-none"></div>
+                            <div className="w-14 h-14 bg-white shadow-sm rounded-2xl flex items-center justify-center mb-6 border border-gray-50 group-hover:-translate-y-2 transition-transform duration-500">
+                                <FileText size={28} className="text-blue-500" />
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 relative z-10">나에게 딱 맞춘 비스포크 설계</h3>
-                            <p className="text-gray-300 max-w-lg relative z-10 leading-relaxed">
+                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 relative z-10">나에게 딱 맞춘 비스포크 설계</h3>
+                            <p className="text-gray-600 max-w-lg relative z-10 leading-relaxed">
                                 꽉 막힌 패키지는 싫고 자유여행은 막막하다면? 당신의 취향과 일정에 맞춰 단 하나뿐인 완벽한 여행 코스를 디자인해 드립니다.
                             </p>
                         </div>
