@@ -33,7 +33,7 @@ export default function Navbar() {
                 className={`transition-all duration-500 ease-in-out flex items-center justify-between ${
                     scrolled 
                         ? 'w-full max-w-4xl bg-white/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-full h-14 px-6 border border-white/40' 
-                        : 'w-full bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100 h-16 px-4 sm:px-6 lg:px-8'
+                        : 'w-full bg-transparent h-20 px-4 sm:px-6 lg:px-8'
                 }`}
             >
                 {/* Logo */}
@@ -43,7 +43,7 @@ export default function Navbar() {
                             <img
                                 src="/images/logo.png"
                                 alt="Tripsoda Kazakhstan"
-                                className={`transition-all duration-500 ${scrolled ? 'h-6' : 'h-8 md:h-10'} w-auto`}
+                                className={`transition-all duration-500 ${scrolled ? 'h-6' : 'h-8 md:h-10 brightness-0 invert drop-shadow-md'} w-auto`}
                             />
                         </a>
                     </Link>
@@ -53,7 +53,7 @@ export default function Navbar() {
                 <nav className="hidden md:flex space-x-8">
                     {navLinks.map((link) => (
                         <Link key={link.name} href={link.href}>
-                            <a className={`transition-colors font-medium hover:text-tripsoda-main ${scrolled ? 'text-sm text-gray-800' : 'text-tripsoda-textMain'}`}>
+                            <a className={`transition-colors font-bold hover:text-tripsoda-main ${scrolled ? 'text-sm text-gray-800' : 'text-white drop-shadow-md'}`}>
                                 {link.name}
                             </a>
                         </Link>
@@ -64,10 +64,10 @@ export default function Navbar() {
                 <div className="flex items-center md:hidden">
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="text-tripsoda-textMain hover:text-tripsoda-main p-2 focus:outline-none"
+                        className={`p-2 focus:outline-none transition-colors ${scrolled ? 'text-tripsoda-textMain hover:text-tripsoda-main' : 'text-white hover:text-tripsoda-light'}`}
                     >
                         <span className="sr-only">Open main menu</span>
-                        {isOpen ? <X size={20} /> : <Menu size={20} />}
+                        {isOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
             </div>
