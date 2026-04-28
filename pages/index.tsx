@@ -147,7 +147,7 @@ export default function Home() {
                             </div>
                             <div className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white">
                                 <p className="text-xs text-white/60 font-bold uppercase tracking-widest mb-1">Expertise</p>
-                                <p className="font-medium">프리미엄 비스포크 투어</p>
+                                <p className="font-medium">안전하고 투명한 정찰제 투어</p>
                             </div>
                         </div>
 
