@@ -6,9 +6,9 @@ import { motion, useScroll, useTransform, Variants } from 'framer-motion'
 
 export default function Home() {
     const { scrollY } = useScroll();
-    const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
-    const heroY = useTransform(scrollY, [0, 500], [0, 150]);
-    const heroScale = useTransform(scrollY, [0, 500], [1, 1.1]);
+    const heroOpacity = useTransform(scrollY, [0, 900], [1, 0]);
+    const heroY = useTransform(scrollY, [0, 900], [0, 150]);
+    const heroScale = useTransform(scrollY, [0, 900], [1, 1.1]);
 
     // Animation Variants
     const staggerContainer: Variants = {
