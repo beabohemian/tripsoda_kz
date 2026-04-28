@@ -30,13 +30,12 @@ const guides: Guide[] = [
         id: 'g3',
         name: '칭그스 (Chingis)',
         role: '전문 관광 가이드 / 아웃도어 & 산악',
-        image: '/images/guides/chingis_young.png',
+        image: '/images/guides/chingis_jump.jpg',
         languages: ['한국어', '러시아어', '카자흐어'],
         bio: '한국에서 10년 이상 거주하여 한국 문화에 대한 이해도가 매우 높습니다. 알마티의 숨겨진 대자연과 산악 지형을 누구보다 잘 아는 전문가로, 안전하고 짜릿한 아웃도어 경험을 선사합니다.',
         specialties: ['알마티 외곽 투어', '산악 트레킹', '방송 촬영 지원'],
         experience: '4년',
         location: '카자흐스탄',
-        isPlaceholder: true
     },
     {
         id: 'g4',
