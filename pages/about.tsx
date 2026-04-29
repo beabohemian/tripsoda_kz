@@ -120,31 +120,39 @@ export default function About() {
                     <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#050505]" />
                 </motion.div>
 
-                <div className="relative z-10 text-center px-6 mt-[-20vh]">
-                    <div className="mb-12 overflow-hidden">
+                <div className="relative z-10 text-center px-6 mt-[-10vh]">
+                    <div className="mb-8">
                         <motion.span 
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 1, delay: 0.5 }}
-                            className="text-tripsoda-main font-black tracking-[1em] uppercase text-[10px] md:text-xs block"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1 }}
+                            className="text-tripsoda-main font-black tracking-[0.8em] uppercase text-[10px] md:text-xs block"
                         >
-                            The Direct Authority
+                            The Local Travel Authority
                         </motion.span>
                     </div>
                     
-                    <h1 className="text-5xl md:text-[10rem] font-black leading-[0.85] tracking-tighter mb-12">
-                        <RevealText delay={0.2}>THE LOCAL</RevealText>
-                        <RevealText delay={0.4} className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">EXPERTS.</RevealText>
-                    </h1>
+                    <motion.div 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                        className="flex flex-col items-center"
+                    >
+                        <h1 className="text-5xl md:text-[8vw] font-black leading-tight tracking-tighter mb-12">
+                            <span className="block text-white">THE LOCAL</span>
+                            <span className="block text-white/90">EXPERTS.</span>
+                        </h1>
+                    </motion.div>
                     
                     <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.2, duration: 1 }}
-                        className="max-w-xl mx-auto"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1, duration: 1 }}
+                        className="max-w-2xl mx-auto"
                     >
-                        <p className="text-sm md:text-base text-white/50 font-medium tracking-[0.2em] leading-relaxed uppercase">
-                            카자흐스탄 현지 법인 직영으로 <br /> 여행의 전 과정을 직접 책임집니다.
+                        <p className="text-sm md:text-xl text-white/40 font-medium tracking-tight leading-relaxed">
+                            우리는 카자흐스탄 현지 법인 직영으로 <br className="hidden md:block" /> 
+                            여행의 모든 과정을 직접 설계하고 책임지는 진짜 전문가 팀입니다.
                         </p>
                     </motion.div>
                 </div>
