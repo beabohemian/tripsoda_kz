@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { MapPin, ArrowRight, ShieldCheck, Zap, Globe, Building2, ChevronDown } from 'lucide-react'
-import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 
 // --- Components ---
@@ -17,17 +17,29 @@ const NoiseOverlay = () => (
   </div>
 );
 
-const SpotlightCard = ({ children, className = "" }) => {
+interface SpotlightCardProps {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}
+
+const SpotlightCard = ({ children, className = "", delay = 0 }: SpotlightCardProps) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
   
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
   return (
-    <div 
+    <motion.div 
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 1, delay, ease: [0.16, 1, 0.3, 1] }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -43,12 +55,18 @@ const SpotlightCard = ({ children, className = "" }) => {
         transition={{ type: "tween", ease: "backOut", duration: 0.5 }}
       />
       <div className="relative z-10 h-full">{children}</div>
-    </div>
+    </motion.div>
   );
 };
 
-const RevealText = ({ children, className = "", delay = 0 }) => {
-    const ref = useRef(null);
+interface RevealTextProps {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}
+
+const RevealText = ({ children, className = "", delay = 0 }: RevealTextProps) => {
+    const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true, margin: "-50px" });
     
     return (
@@ -160,9 +178,9 @@ export default function About() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
                         {/* Innovation 1 */}
-                        <SpotlightCard className="p-16 h-[550px] flex flex-col justify-between">
+                        <SpotlightCard className="p-16 h-[550px] flex flex-col justify-between" delay={0.1}>
                             <div className="space-y-8">
                                 <ShieldCheck size={40} className="text-tripsoda-main" />
                                 <h3 className="text-4xl font-black tracking-tighter">직영의 <br /> 압도적 품질</h3>
@@ -172,7 +190,7 @@ export default function About() {
                         </SpotlightCard>
 
                         {/* Innovation 2 */}
-                        <SpotlightCard className="p-16 h-[550px] flex flex-col justify-between md:translate-y-20">
+                        <SpotlightCard className="p-16 h-[550px] flex flex-col justify-between md:mt-20" delay={0.2}>
                             <div className="space-y-8">
                                 <Zap size={40} className="text-tripsoda-main" />
                                 <h3 className="text-4xl font-black tracking-tighter">데이터 기반 <br /> 신뢰 구축</h3>
@@ -181,36 +199,29 @@ export default function About() {
                             <div className="text-8xl font-black text-white/[0.02] tracking-tighter select-none">TECH</div>
                         </SpotlightCard>
 
-                        {/* Innovation 3: Basecamp with Image */}
-                        <SpotlightCard className="h-[550px] md:translate-y-40 relative group">
-                            {/* Background Image with optimized alignment */}
-                            <motion.div 
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 1 }}
-                                className="absolute inset-0 z-0"
-                            >
+                        {/* Innovation 3: Basecamp with Image FIX */}
+                        <SpotlightCard className="h-[550px] md:mt-40 relative group overflow-hidden" delay={0.3}>
+                            <div className="absolute inset-0 z-0">
                                 <img 
                                     src="/images/office_lounge.jpg" 
-                                    className="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-[2s] ease-out" 
+                                    className="w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-[3s] ease-out" 
                                     alt="Almaty Basecamp" 
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent" />
-                            </motion.div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
+                            </div>
 
                             <div className="relative z-10 p-16 h-full flex flex-col justify-between">
                                 <div className="space-y-8">
                                     <MapPin size={40} className="text-tripsoda-main" />
                                     <h3 className="text-4xl font-black tracking-tighter">물리적 <br /> 거점의 가치</h3>
-                                    <p className="text-gray-300 leading-relaxed text-lg font-light">알마티 나자르바예프 65번지. 온라인을 넘어 오프라인에서 당신을 보호합니다.</p>
+                                    <p className="text-white/80 leading-relaxed text-lg font-light">알마티 나자르바예프 65번지. 온라인을 넘어 오프라인에서 당신을 보호합니다.</p>
                                 </div>
-                                <div className="text-8xl font-black text-white/[0.03] tracking-tighter select-none">BASE</div>
+                                <div className="text-8xl font-black text-white/[0.05] tracking-tighter select-none">BASE</div>
                             </div>
                         </SpotlightCard>
                     </div>
                 </div>
             </section>
-
 
             {/* 3. SYNERGY: The Pulse */}
             <section className="py-80 relative">
@@ -229,7 +240,7 @@ export default function About() {
                             </p>
                         </div>
 
-                        <div className="lg:w-1/2 relative aspect-square bg-[#080808] rounded-full border border-white/5 flex items-center justify-center p-20 group">
+                        <div className="lg:w-1/2 relative aspect-square bg-[#080808] rounded-full border border-white/5 flex items-center justify-center p-20 group overflow-hidden">
                             <div className="absolute inset-0 bg-tripsoda-main/5 rounded-full blur-[100px] animate-pulse" />
                             <svg className="w-full h-full relative z-10" viewBox="0 0 100 100">
                                 <motion.circle 
@@ -259,7 +270,6 @@ export default function About() {
                 </div>
             </section>
 
-
             {/* 4. PHILOSOPHY: The Immersive Message */}
             <section className="min-h-screen flex items-center justify-center bg-white text-black py-40">
                 <div className="max-w-5xl mx-auto px-6">
@@ -272,7 +282,7 @@ export default function About() {
                         <span className="text-tripsoda-main font-bold tracking-[0.4em] uppercase text-sm">Founder's Vision</span>
                         <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[1.1]">
                             "우리는 상품이 아니라, <br />
-                            <span className="text-gray-300">신뢰를 직접 발명</span>하기 위해 <br />
+                            <span className="text-gray-200">신뢰를 직접 발명</span>하기 위해 <br />
                             현지로 떠났습니다."
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pt-20 border-t border-gray-100">
@@ -302,7 +312,7 @@ export default function About() {
                     viewport={{ once: true }}
                     className="relative z-10 px-6"
                 >
-                    <h2 className="text-5xl md:text-[8rem] font-black tracking-tighter leading-none mb-20">
+                    <h2 className="text-5xl md:text-[10rem] font-black tracking-tighter leading-none mb-20">
                         THE NEXT <br />
                         <span className="text-tripsoda-main italic">ADVENTURE.</span>
                     </h2>
@@ -323,5 +333,3 @@ export default function About() {
         </div>
     )
 }
-
-
