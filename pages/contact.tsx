@@ -181,9 +181,22 @@ export default function Contact() {
                 <div className="bg-tripsoda-main/10 p-4 rounded-2xl text-tripsoda-main group-hover:scale-110 transition-transform">
                     <Mail size={24} />
                 </div>
-                <div>
+                <div className="space-y-3">
                     <h3 className="font-bold text-gray-900 text-sm tracking-wider uppercase mb-1">Email</h3>
-                    <p className="text-gray-700 text-lg font-medium">jinki@tripsoda.com</p>
+                    <div className="space-y-2">
+                        <div>
+                            <p className="text-xs text-gray-400 font-bold uppercase tracking-tight">CEO</p>
+                            <a href="mailto:jinki@tripsoda.com" className="text-gray-700 text-lg font-medium hover:text-tripsoda-main transition-colors">jinki@tripsoda.com</a>
+                        </div>
+                        <div>
+                            <p className="text-xs text-gray-400 font-bold uppercase tracking-tight">Head Manager (Alua)</p>
+                            <a href="mailto:alua@tripsoda.com" className="text-gray-700 text-lg font-medium hover:text-tripsoda-main transition-colors">alua@tripsoda.com</a>
+                        </div>
+                        <div>
+                            <p className="text-xs text-gray-400 font-bold uppercase tracking-tight">Manager (Zhibek)</p>
+                            <a href="mailto:zhibek@tripsoda.com" className="text-gray-700 text-lg font-medium hover:text-tripsoda-main transition-colors">zhibek@tripsoda.com</a>
+                        </div>
+                    </div>
                 </div>
                 </div>
 

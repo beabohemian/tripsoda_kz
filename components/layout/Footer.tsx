@@ -51,9 +51,16 @@ export default function Footer() {
                                     카자흐스탄 공화국, 알마티시, 알말리구, 나자르바예프 대로 65, 사무실 405/1, 우편번호 050004
                                 </a>
                             </li>
-                            <li className="flex items-center space-x-2">
-                                <Mail size={18} />
-                                <a href="mailto:jinki@tripsoda.com" className="hover:text-tripsoda-main transition-colors">jinki@tripsoda.com</a>
+                            <li className="space-y-1">
+                                <div className="flex items-center space-x-2">
+                                    <Mail size={16} />
+                                    <p className="text-xs font-bold text-gray-400 uppercase tracking-tight">Official Support</p>
+                                </div>
+                                <div className="flex flex-col space-y-1 pl-6">
+                                    <a href="mailto:jinki@tripsoda.com" className="hover:text-tripsoda-main transition-colors text-sm">CEO: jinki@tripsoda.com</a>
+                                    <a href="mailto:alua@tripsoda.com" className="hover:text-tripsoda-main transition-colors text-sm">Head Mgr: alua@tripsoda.com</a>
+                                    <a href="mailto:zhibek@tripsoda.com" className="hover:text-tripsoda-main transition-colors text-sm">Mgr: zhibek@tripsoda.com</a>
+                                </div>
                             </li>
                             <li className="flex items-center space-x-2">
                                 <Phone size={18} />
