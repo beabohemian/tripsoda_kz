@@ -145,6 +145,39 @@ export default function TourDetail() {
         >
             <Head>
                 <title>{tour.title} | 트립소다 카자흐스탄</title>
+                <meta name="description" content={tour.description} />
+                <meta property="og:title" content={`${tour.title} | 트립소다 카자흐스탄`} />
+                <meta property="og:description" content={tour.description} />
+                <meta property="og:image" content={`https://kz.tripsoda.com${tour.image}`} />
+                <link rel="canonical" href={`https://kz.tripsoda.com/tours/${tour.id}`} />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "TouristTrip",
+                            "name": tour.title,
+                            "description": tour.description,
+                            "image": `https://kz.tripsoda.com${tour.image}`,
+                            "touristType": "Backpackers, Independent Travelers",
+                            "itinerary": tour.schedule?.map(item => ({
+                                "@type": "ListItem",
+                                "name": item.title,
+                                "description": item.desc
+                            })),
+                            "offers": {
+                                "@type": "Offer",
+                                "url": `https://kz.tripsoda.com/tours/${tour.id}`,
+                                "priceCurrency": "KRW",
+                                "offeredBy": {
+                                    "@type": "Organization",
+                                    "name": "트립소다 카자흐스탄",
+                                    "url": "https://kz.tripsoda.com"
+                                }
+                            }
+                        })
+                    }}
+                />
             </Head>
 
             {/* Parallax Hero Image */}

@@ -47,8 +47,10 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>트립소다 카자흐스탄 - 진정한 여정의 시작</title>
-                <meta name="description" content="카자흐스탄 현지 법인 직영 여행사. 중간 마진 없는 가장 합리적이고 투명한 배낭여행·자유여행 투어를 경험하세요." />
+                <title>트립소다 카자흐스탄 | 알마티 현지 직영 투어 및 자유여행</title>
+                <meta name="description" content="카자흐스탄 현지 법인 직영 여행사. 알마티 차른캐년, 콜사이, 아씨고원 투어를 중간 마진 없이 합리적인 가격으로 제공합니다." />
+                <meta name="keywords" content="카자흐스탄 여행, 알마티 투어, 차른캐년 투어, 콜사이호수, 아씨고원, 중앙아시아 배낭여행, 알마티 가이드" />
+                <link rel="canonical" href="https://kz.tripsoda.com" />
             </Head>
 
             {/* Cinematic Hero Section */}
