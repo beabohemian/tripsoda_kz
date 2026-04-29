@@ -15,6 +15,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       <CustomCursor />
       <Layout>
         <Head>
+          <title>트립소다 카자흐스탄 | TripSoda Kazakhstan</title>
+          <meta name="description" content="카자흐스탄 현지 법인 직영 투어 플랫폼. 알마티 라운지를 거점으로 가이드, 차량, 숙박을 직접 운영하여 최고의 여행 경험을 선사합니다." />
+          <meta property="og:title" content="트립소다 카자흐스탄 | TripSoda Kazakhstan" />
+          <meta property="og:description" content="카자흐스탄 현지 법인 직영 투어 플랫폼. 알마티 라운지를 거점으로 가이드, 차량, 숙박을 직접 운영하여 최고의 여행 경험을 선사합니다." />
+          <meta property="og:image" content="https://kz.tripsoda.com/images/tour_charyn_1765783988719.png" />
+          <meta property="og:url" content="https://kz.tripsoda.com" />
+          <meta property="og:type" content="website" />
           <meta name="naver-site-verification" content="256ca89c5688a71c3727c601a16615cd493f5e17" />
           <link
             rel='stylesheet'
