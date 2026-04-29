@@ -181,18 +181,36 @@ export default function About() {
                             <div className="text-8xl font-black text-white/[0.02] tracking-tighter select-none">TECH</div>
                         </SpotlightCard>
 
-                        {/* Innovation 3 */}
-                        <SpotlightCard className="p-16 h-[550px] flex flex-col justify-between md:translate-y-40">
-                            <div className="space-y-8">
-                                <MapPin size={40} className="text-tripsoda-main" />
-                                <h3 className="text-4xl font-black tracking-tighter">물리적 <br /> 거점의 가치</h3>
-                                <p className="text-gray-400 leading-relaxed text-lg font-light">알마티 나자르바예프 65번지. 온라인을 넘어 오프라인에서 당신을 보호합니다.</p>
+                        {/* Innovation 3: Basecamp with Image */}
+                        <SpotlightCard className="h-[550px] md:translate-y-40 relative group">
+                            {/* Background Image with optimized alignment */}
+                            <motion.div 
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 1 }}
+                                className="absolute inset-0 z-0"
+                            >
+                                <img 
+                                    src="/images/office_lounge.jpg" 
+                                    className="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-[2s] ease-out" 
+                                    alt="Almaty Basecamp" 
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent" />
+                            </motion.div>
+
+                            <div className="relative z-10 p-16 h-full flex flex-col justify-between">
+                                <div className="space-y-8">
+                                    <MapPin size={40} className="text-tripsoda-main" />
+                                    <h3 className="text-4xl font-black tracking-tighter">물리적 <br /> 거점의 가치</h3>
+                                    <p className="text-gray-300 leading-relaxed text-lg font-light">알마티 나자르바예프 65번지. 온라인을 넘어 오프라인에서 당신을 보호합니다.</p>
+                                </div>
+                                <div className="text-8xl font-black text-white/[0.03] tracking-tighter select-none">BASE</div>
                             </div>
-                            <div className="text-8xl font-black text-white/[0.02] tracking-tighter select-none">BASE</div>
                         </SpotlightCard>
                     </div>
                 </div>
             </section>
+
 
             {/* 3. SYNERGY: The Pulse */}
             <section className="py-80 relative">
