@@ -179,14 +179,14 @@ export default function About() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-                        {/* Innovation 1 */}
+                        {/* Innovation 1: Direct Operation */}
                         <SpotlightCard className="p-16 h-[550px] flex flex-col justify-between" delay={0.1}>
                             <div className="space-y-8">
                                 <ShieldCheck size={40} className="text-tripsoda-main" />
                                 <h3 className="text-4xl font-black tracking-tighter">직영의 <br /> 압도적 품질</h3>
                                 <p className="text-gray-400 leading-relaxed text-lg font-light">하청 없는 100% 직영. 차량의 청결도부터 가이드의 눈빛까지 우리가 직접 책임집니다.</p>
                             </div>
-                            <div className="text-8xl font-black text-white/[0.02] tracking-tighter select-none">CRAFT</div>
+                            <div className="text-8xl font-black text-white/[0.02] tracking-tight select-none">CRAFT</div>
                         </SpotlightCard>
 
                         {/* Innovation 2: Local Experts */}
@@ -196,7 +196,7 @@ export default function About() {
                                 <h3 className="text-4xl font-black tracking-tighter">최정예 <br /> 현지인 전문가 팀</h3>
                                 <p className="text-gray-400 leading-relaxed text-lg font-light">한국어에 능통한 카자흐스탄 현지 전문가들이 한 팀으로 움직입니다. 단순한 가이드를 넘어 현지의 문화와 안전을 완벽하게 조율합니다.</p>
                             </div>
-                            <div className="text-8xl font-black text-white/[0.02] tracking-tighter select-none">TEAM</div>
+                            <div className="text-8xl font-black text-white/[0.02] tracking-tight select-none">TEAM</div>
                         </SpotlightCard>
 
                         {/* Innovation 3: Almaty Lounge */}
@@ -216,7 +216,7 @@ export default function About() {
                                     <h3 className="text-4xl font-black tracking-tighter">알마티 <br /> 여행자 라운지</h3>
                                     <p className="text-white/80 leading-relaxed text-lg font-light">알마티 나자르바예프 65번지. 온라인을 넘어 오프라인에서 당신을 보호하는 우리의 물리적 거점이자 전초기지입니다.</p>
                                 </div>
-                                <div className="text-8xl font-black text-white/[0.05] tracking-tighter select-none">LOUNGE</div>
+                                <div className="text-8xl font-black text-white/[0.05] tracking-tight select-none">LOUNGE</div>
                             </div>
                         </SpotlightCard>
                     </div>
