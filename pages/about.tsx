@@ -132,7 +132,7 @@ export default function About() {
                         </motion.span>
                     </div>
                     
-                    <h1 className="text-7xl md:text-[15rem] font-black leading-[0.8] tracking-tighter mb-12">
+                    <h1 className="text-5xl md:text-[10rem] font-black leading-[0.85] tracking-tighter mb-12">
                         <RevealText delay={0.2}>THE LOCAL</RevealText>
                         <RevealText delay={0.4} className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">EXPERTS.</RevealText>
                     </h1>
@@ -169,12 +169,12 @@ export default function About() {
                                 <span className="text-tripsoda-main font-bold text-xs uppercase tracking-[0.4em]">Hybrid Innovation</span>
                             </RevealText>
                             <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9]">
-                                미쳐버린 <br /> 디테일의 차이.
+                                현지 직영의 차이.
                             </h2>
                         </div>
                         <p className="text-lg md:text-2xl text-gray-500 font-light leading-relaxed">
                             트립소다 카자흐스탄은 단순한 여행사를 넘어 <br className="hidden md:block" /> 
-                            카자흐스탄 여행의 모든 픽셀을 직접 집도하는 브랜드입니다.
+                            카자흐스탄 여행의 모든 순간을 직접 집도하는 브랜드입니다.
                         </p>
                     </div>
 
@@ -183,20 +183,20 @@ export default function About() {
                         <SpotlightCard className="p-16 h-[550px] flex flex-col justify-between" delay={0.1}>
                             <div className="space-y-8">
                                 <ShieldCheck size={40} className="text-tripsoda-main" />
-                                <h3 className="text-4xl font-black tracking-tighter">직영의 <br /> 압도적 품질</h3>
-                                <p className="text-gray-400 leading-relaxed text-lg font-light">하청 없는 100% 직영. 차량의 청결도부터 가이드의 눈빛까지 우리가 직접 책임집니다.</p>
+                                <h3 className="text-3xl md:text-4xl font-black tracking-tighter">압도적인 직영 품질</h3>
+                                <p className="text-gray-400 leading-relaxed text-lg font-light">하청 없는 100% 직영 시스템. 차량의 청결도부터 가이드의 눈빛까지 우리가 직접 책임집니다.</p>
                             </div>
-                            <div className="text-8xl font-black text-white/[0.02] tracking-tighter select-none">CRAFT</div>
+                            <div className="text-6xl font-black text-white/[0.02] tracking-tight whitespace-nowrap select-none">CRAFT</div>
                         </SpotlightCard>
 
                         {/* Innovation 2: Local Experts */}
                         <SpotlightCard className="p-16 h-[550px] flex flex-col justify-between md:mt-20" delay={0.2}>
                             <div className="space-y-8">
                                 <Users size={40} className="text-tripsoda-main" />
-                                <h3 className="text-4xl font-black tracking-tighter">최정예 <br /> 현지인 전문가 팀</h3>
-                                <p className="text-gray-400 leading-relaxed text-lg font-light">한국어에 능통한 카자흐스탄 현지 전문가들이 한 팀으로 움직입니다. 단순한 가이드를 넘어 현지의 문화와 안전을 완벽하게 조율합니다.</p>
+                                <h3 className="text-3xl md:text-4xl font-black tracking-tighter">현지 전문가 팀</h3>
+                                <p className="text-gray-400 leading-relaxed text-lg font-light">한국어에 능통한 카자흐스탄 현지 전문가들이 한 팀으로 움직입니다. 현지의 문화와 안전을 완벽하게 조율합니다.</p>
                             </div>
-                            <div className="text-8xl font-black text-white/[0.02] tracking-tighter select-none">TEAM</div>
+                            <div className="text-6xl font-black text-white/[0.02] tracking-tight whitespace-nowrap select-none">TEAM</div>
                         </SpotlightCard>
 
                         {/* Innovation 3: Almaty Lounge */}
@@ -213,10 +213,10 @@ export default function About() {
                             <div className="relative z-10 p-16 h-full flex flex-col justify-between">
                                 <div className="space-y-8">
                                     <MapPin size={40} className="text-tripsoda-main" />
-                                    <h3 className="text-4xl font-black tracking-tighter">알마티 <br /> 여행자 라운지</h3>
-                                    <p className="text-white/80 leading-relaxed text-lg font-light">알마티 나자르바예프 65번지. 온라인을 넘어 오프라인에서 당신을 보호하는 우리의 물리적 거점이자 전초기지입니다.</p>
+                                    <h3 className="text-3xl md:text-4xl font-black tracking-tighter">여행자 라운지</h3>
+                                    <p className="text-white/80 leading-relaxed text-lg font-light">알마티 나자르바예프 65번지. 온라인을 넘어 오프라인에서 당신을 보호하는 우리의 물리적 거점입니다.</p>
                                 </div>
-                                <div className="text-8xl font-black text-white/[0.05] tracking-tighter select-none">LOUNGE</div>
+                                <div className="text-6xl font-black text-white/[0.05] tracking-tight whitespace-nowrap select-none">LOUNGE</div>
                             </div>
                         </SpotlightCard>
                     </div>
