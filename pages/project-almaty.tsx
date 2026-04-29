@@ -66,7 +66,7 @@ export default function ProjectAlmatyDetailed() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/85 to-black/90 z-0" />
 
           <div className="z-10 w-full max-w-4xl px-6 flex flex-col items-center text-center gap-16">
-            <SectionTitle title="트립소다 카자흐스탄 설립 공유의 건" subtitle="The Next Step" />
+            <SectionTitle title="트립소다 카자흐스탄 설립 공유의 건" subtitle="온라인 플랫폼에서 온오프라인 플랫폼으로" />
 
             <FadeText>
               트립소다는 지속적으로 성장하며 새로운 가능성을 증명해 왔습니다.
