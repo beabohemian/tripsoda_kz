@@ -48,7 +48,7 @@ export default function Footer() {
                             <li className="flex items-start space-x-2">
                                 <MapPin size={18} className="mt-1 flex-shrink-0" />
                                 <a href="https://maps.app.goo.gl/4txAKpYxMunKXBQ39" target="_blank" rel="noreferrer" className="hover:text-tripsoda-main transition-colors">
-                                    카자흐스탄 공화국, 알마티시, 알말리구, 나자르바예프 대로 65, 비즈니스 센터 4층 401/5호, 우편번호 050004
+                                    카자흐스탄 공화국, 알마티시, 알말리구, 나자르바예프 대로 65, 비즈니스 센터 건물 4층 401/5호, 우편번호 050004
                                 </a>
                             </li>
                             <li className="space-y-1">
