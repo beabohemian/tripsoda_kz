@@ -44,6 +44,7 @@ export default function ProjectAlmatyDetailed() {
     <div className="bg-[#050505] min-h-screen text-white font-sans overflow-x-hidden">
       <Head>
         <title>트립소다 카자흐스탄 설립 공유의 건</title>
+        <meta name="robots" content="noindex, nofollow" />
         <style>{`
           body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; word-break: keep-all; }
           .highlight { color: #fff; font-weight: 800; text-decoration: underline; text-decoration-color: #14b8a6; text-underline-offset: 8px; }
