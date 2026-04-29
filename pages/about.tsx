@@ -1,337 +1,319 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { MapPin, ArrowDown, ArrowRight } from 'lucide-react'
-import { motion, Variants } from 'framer-motion'
+import { MapPin, ArrowDown, ArrowRight, ShieldCheck, Zap, Users, Globe, Building2 } from 'lucide-react'
+import { motion, Variants, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
 
 // Animation Variants
 const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    hidden: { opacity: 0, y: 60 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
 }
 
 const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
-        transition: {
-            staggerChildren: 0.2
-        }
+        transition: { staggerChildren: 0.2, delayChildren: 0.1 }
     }
 }
 
 export default function About() {
+    const targetRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+        offset: ["start start", "end end"]
+    });
+
+    const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.2], [1, 1.1]);
+
     return (
-        <motion.div 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
-            exit={{ opacity: 0 }}
-        >
+        <div className="bg-[#050505] text-white selection:bg-tripsoda-main selection:text-white">
             <Head>
-                <title>회사 소개 | 트립소다 카자흐스탄</title>
+                <title>Brand Story | 트립소다 카자흐스탄</title>
+                <meta name="description" content="카자흐스탄 최초의 현지 직영 온라인 플랫폼, 트립소다의 브랜드 스토리를 들려드립니다." />
             </Head>
 
-            {/* 1. Hero Section */}
-            <div className="relative py-32 bg-gray-900 overflow-hidden">
+            {/* 1. Cinematic Hero Section */}
+            <section className="relative h-screen flex items-center justify-center overflow-hidden">
                 <motion.div 
-                    initial={{ scale: 1.1, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 0.4 }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="absolute inset-0 bg-[url('/images/hero_bg_1765783966744.png')] bg-cover bg-center"
-                />
-                <div className="relative max-w-7xl mx-auto px-4 text-center z-10">
-                    <motion.h1 
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg"
+                    style={{ opacity, scale }}
+                    className="absolute inset-0 z-0"
+                >
+                    <div 
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{ backgroundImage: "url('/images/hero_bg_1765783966744.png')" }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#050505]" />
+                </motion.div>
+
+                <div className="relative z-10 text-center px-6 max-w-5xl">
+                    <motion.span 
+                        initial={{ opacity: 0, tracking: "0.2em" }}
+                        animate={{ opacity: 1, tracking: "0.5em" }}
+                        transition={{ duration: 1.5 }}
+                        className="text-tripsoda-main font-bold text-sm md:text-base uppercase mb-8 block"
                     >
-                        트립소다 <span className="text-tripsoda-main">카자흐스탄</span>
+                        Re-defining Kazakhstan Travel
+                    </motion.span>
+                    <motion.h1 
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.3 }}
+                        className="text-5xl md:text-8xl font-black mb-8 leading-[1.1] tracking-tighter"
+                    >
+                        온라인을 넘어 <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">현지의 숨결까지.</span>
                     </motion.h1>
                     <motion.p 
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-light leading-relaxed drop-shadow-md"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.8 }}
+                        className="text-lg md:text-2xl text-gray-400 font-light max-w-3xl mx-auto leading-relaxed"
                     >
-                        우리는 <span className="font-bold text-white">카자흐스탄 현지</span>에서 직접 발로 뛰며<br className="md:hidden" />
-                        가장 완벽한 여행을 만듭니다.
+                        트립소다 카자흐스탄은 플랫폼의 편리함과 <br className="hidden md:block" />
+                        현지 직영의 전문성을 결합한 중앙아시아 최초의 하이브리드 트래블 브랜드입니다.
                     </motion.p>
                 </div>
-            </div>
 
-            {/* 2. Traveler's Lounge */}
-            <section className="py-24 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4">
-                    <motion.div 
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                        variants={fadeInUp}
-                        className="bg-white rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgb(0,0,0,0.1)] relative min-h-[500px] flex items-center transform md:-translate-y-24 border border-gray-100 group"
-                    >
-                        {/* Background Image */}
-                        <div className="absolute inset-0 overflow-hidden">
-                            <img src="/images/office_lounge.jpg" alt="Lounge Background" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-                            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-transparent"></div>
-                        </div>
-
-                        {/* Content */}
-                        <div className="relative z-10 p-10 md:p-20 max-w-3xl text-white">
-                            <motion.div variants={fadeInUp} className="inline-flex items-center bg-tripsoda-main px-4 py-2 rounded-full text-sm font-bold mb-6">
-                                <MapPin size={16} className="mr-2" /> 알마티 시내 중심 (나자르바예프 대로)
-                            </motion.div>
-                            <motion.h2 variants={fadeInUp} className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                                여행자들의 아지트,<br />
-                                <span className="text-tripsoda-main">트립소다 라운지</span>
-                            </motion.h2>
-                            <motion.p variants={fadeInUp} className="text-lg text-gray-300 mb-10 leading-relaxed font-light">
-                                카자흐스탄에 도착하면 언제든 들러주세요.<br />
-                                짐 보관, 와이파이, 현지 정보, 시원한 물까지 모두 무료입니다.<br />
-                                트립소다 카자흐스탄은 온라인에만 존재하는 여행사가 아닙니다.
-                            </motion.p>
-                            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
-                                <a href="https://maps.app.goo.gl/4txAKpYxMunKXBQ39" target="_blank" rel="noreferrer" className="bg-white text-gray-900 font-bold px-8 py-4 rounded-2xl hover:bg-tripsoda-main hover:text-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
-                                    라운지 위치 보기
-                                </a>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                </div>
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5, duration: 1 }}
+                    className="absolute bottom-10 flex flex-col items-center gap-4"
+                >
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/40">Scroll to Explore</span>
+                    <div className="w-px h-16 bg-gradient-to-b from-tripsoda-main to-transparent animate-pulse" />
+                </motion.div>
             </section>
 
-            {/* 3. CEO Message */}
-            <section className="py-24 bg-white relative overflow-hidden">
-                <div className="absolute -left-40 top-40 w-96 h-96 bg-tripsoda-main/5 rounded-full blur-3xl"></div>
-                <div className="absolute -right-40 bottom-40 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-                
-                <div className="max-w-4xl mx-auto px-4 relative z-10">
-                    <motion.div 
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeInUp}
-                        className="text-center mb-16"
-                    >
-                        <span className="text-tripsoda-main font-bold tracking-widest uppercase text-sm mb-4 inline-block px-4 py-1.5 bg-tripsoda-main/10 rounded-full">CEO Message</span>
-                        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mt-4 leading-tight">
-                            "진짜 중앙아시아를<br />보여드리고 싶었습니다."
-                        </h2>
-                    </motion.div>
-
-                    <motion.div 
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                        variants={fadeInUp}
-                        className="bg-white p-10 md:p-16 rounded-[3rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 relative"
-                    >
-                        <div className="absolute -top-8 left-10 md:left-16 w-16 h-16 bg-tripsoda-main rounded-2xl flex items-center justify-center text-4xl text-white shadow-xl rotate-12">
-                            ❝
-                        </div>
-                        <div className="mt-6 space-y-8 text-gray-600 leading-loose text-lg text-left">
-                            <p className="font-medium text-gray-900 text-xl">
-                                안녕하세요, <strong>트립소다 카자흐스탄 대표 이진기</strong>입니다.
-                            </p>
-                            <p>
-                                중앙아시아의 압도적인 대자연을 처음 마주했을 때의 전율을 잊을 수 없습니다.
-                                하지만 동시에 언어의 장벽, 부족한 정보, 낙후된 인프라 때문에
-                                많은 분들이 선뜻 여행을 떠나지 못하는 현실이 안타까웠습니다.
-                            </p>
-                            <div className="p-6 bg-gray-50 rounded-2xl border-l-4 border-tripsoda-main">
-                                <p className="font-bold text-gray-900 italic">
-                                    "한국인이 가장 마음 편히, 깊이 있게 즐길 수 있는 여행을 직접 만들자."
-                                </p>
-                            </div>
-                            <p>
-                                트립소다 카자흐스탄은 현지에서 직접 운영하는 여행사입니다.
-                                저희는 현지에 상주하며 모든 투어 코스를 직접 개발하고 운영합니다.
-                                여러분의 설레는 여행이 가장 안전하고 빛나는 추억이 되도록,
-                                현지에서 제가 직접 챙기겠습니다.
-                            </p>
-                        </div>
-                        <div className="mt-12 flex items-center justify-end border-t border-gray-100 pt-8">
-                            <div className="text-right">
-                                <div className="font-bold text-2xl text-gray-900 mb-1">이 진 기</div>
-                                <div className="text-sm font-medium text-tripsoda-main">트립소다 카자흐스탄 CEO</div>
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* 4. Relationship Diagram */}
-            <section className="py-32 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4">
-                    <motion.div 
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeInUp}
-                        className="text-center mb-20"
-                    >
-                        <h2 className="text-4xl font-bold text-gray-900 mb-6">트립소다 & 트립소다 카자흐스탄</h2>
-                        <p className="text-xl text-gray-600 font-light">한국 최고의 여행 커뮤니티와 현지 전문 법인의 만남으로<br />가장 완벽한 시너지를 만듭니다.</p>
-                    </motion.div>
-
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
-
-                        {/* Tripsoda HQ */}
-                        <motion.div 
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="w-full md:w-[40%] bg-white p-10 rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-500 text-center relative group"
-                        >
-                            <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">Headquarters</div>
-                            <h3 className="text-3xl font-bold text-gray-900 mb-2 mt-4">트립소다 (본사)</h3>
-                            <p className="text-gray-400 text-sm mb-8 font-medium">대한민국 서울</p>
-                            <ul className="text-left space-y-4 text-gray-600 bg-gray-50 p-8 rounded-3xl min-h-[220px]">
-                                <li className="flex items-center text-lg"><span className="w-2.5 h-2.5 bg-blue-500 rounded-full mr-4 shadow-sm"></span>IT 플랫폼 개발 및 운영</li>
-                                <li className="flex items-center text-lg"><span className="w-2.5 h-2.5 bg-blue-500 rounded-full mr-4 shadow-sm"></span>여행자 커뮤니티 관리</li>
-                                <li className="flex items-center text-lg"><span className="w-2.5 h-2.5 bg-blue-500 rounded-full mr-4 shadow-sm"></span>글로벌 파트너십 구축</li>
-                                <li className="flex items-center text-lg"><span className="w-2.5 h-2.5 bg-blue-500 rounded-full mr-4 shadow-sm"></span>브랜드 신뢰도 보증</li>
-                            </ul>
-                        </motion.div>
-
-                        {/* Connection Icon */}
-                        <motion.div 
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.4 }}
-                            className="flex flex-col items-center justify-center text-tripsoda-main shrink-0 w-full md:w-auto my-8 md:my-0"
-                        >
-                            <motion.div 
-                                animate={{ x: [0, 10, 0] }} 
-                                transition={{ repeat: Infinity, duration: 2 }}
-                                className="hidden md:flex items-center justify-center bg-tripsoda-main/10 w-20 h-20 rounded-full"
-                            >
-                                <ArrowRight size={40} strokeWidth={2.5} />
-                            </motion.div>
-                            <motion.div 
-                                animate={{ y: [0, 10, 0] }} 
-                                transition={{ repeat: Infinity, duration: 2 }}
-                                className="md:hidden flex items-center justify-center bg-tripsoda-main/10 w-16 h-16 rounded-full"
-                            >
-                                <ArrowDown size={32} strokeWidth={2.5} />
-                            </motion.div>
-                            <span className="font-extrabold text-sm mt-4 tracking-widest text-tripsoda-main/70 whitespace-nowrap">DIRECT SYNERGY</span>
-                        </motion.div>
-
-                        {/* Tripsoda Kazakhstan */}
-                        <motion.div 
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="w-full md:w-[40%] bg-white p-10 rounded-[2.5rem] shadow-sm border border-tripsoda-main/30 hover:shadow-2xl hover:border-tripsoda-main transition-all duration-500 text-center relative"
-                        >
-                            <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-tripsoda-main text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">Local Entity</div>
-                            <h3 className="text-3xl font-bold text-gray-900 mb-2 mt-4">트립소다 카자흐스탄</h3>
-                            <p className="text-gray-400 text-sm mb-8 font-medium">카자흐스탄 알마티</p>
-                            <ul className="text-left space-y-4 text-gray-700 bg-tripsoda-main/5 p-8 rounded-3xl min-h-[220px]">
-                                <li className="flex items-center text-lg font-medium"><span className="w-2.5 h-2.5 bg-tripsoda-main rounded-full mr-4 shadow-sm"></span>현지 투어 직접 기획/운영</li>
-                                <li className="flex items-center text-lg font-medium"><span className="w-2.5 h-2.5 bg-tripsoda-main rounded-full mr-4 shadow-sm"></span>한국인 가이드/매니저 상주</li>
-                                <li className="flex items-center text-lg font-medium"><span className="w-2.5 h-2.5 bg-tripsoda-main rounded-full mr-4 shadow-sm"></span>전용 차량 및 베이스캠프 관리</li>
-                                <li className="flex items-center text-lg font-medium"><span className="w-2.5 h-2.5 bg-tripsoda-main rounded-full mr-4 shadow-sm"></span>24시간 현지 케어 서비스</li>
-                            </ul>
-                        </motion.div>
-
-                    </div>
-                </div>
-            </section>
-
-            {/* 5. Tripsoda (HQ) Credibility */}
-            <section className="py-32 bg-gray-900 text-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/images/hero_bg_1765783966744.png')] bg-cover bg-center opacity-5"></div>
-                <div className="max-w-7xl mx-auto px-4 relative z-10">
-                    <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16">
+            {/* 2. Core Vision Section (Dark Bento) */}
+            <section className="py-32 px-6">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        {/* Big Card 1: Direct Operation */}
                         <motion.div 
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
                             variants={fadeInUp}
-                            className="lg:w-1/3 text-center lg:text-left"
+                            className="lg:col-span-8 group relative aspect-[16/9] lg:aspect-auto lg:h-[600px] rounded-[2.5rem] overflow-hidden border border-white/10"
                         >
-                            <h2 className="text-4xl md:text-5xl font-bold mb-8">About <span className="text-tripsoda-main">Tripsoda</span></h2>
-                            <p className="text-gray-400 text-xl leading-relaxed mb-10 font-light">
-                                트립소다는 여행의 설렘을 나누는 한국 1등 모험 여행 커뮤니티 플랫폼입니다. <br />
-                                신뢰할 수 있는 기술력과 탄탄한 자본력을 바탕으로 글로벌 여행 시장을 혁신하고 있습니다.
-                            </p>
-                            <a href="https://tripsoda.com" target="_blank" rel="noreferrer" className="inline-flex items-center font-bold text-white bg-white/10 px-6 py-3 rounded-xl hover:bg-tripsoda-main transition-colors">
-                                본사 홈페이지 방문 <ArrowRight className="ml-2" size={20} />
-                            </a>
+                            <img src="/images/tour_charyn_1765783988719.png" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-1000" alt="Direct Operation" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
+                            <div className="absolute bottom-0 p-10 md:p-16">
+                                <ShieldCheck size={48} className="text-tripsoda-main mb-6" />
+                                <h2 className="text-3xl md:text-5xl font-bold mb-6">100% 현지 법인 직영 운영</h2>
+                                <p className="text-gray-400 text-lg md:text-xl max-w-xl leading-relaxed">
+                                    중간 대행사(Local Agency)를 거치지 않습니다. <br />
+                                    알마티 현지 법인이 차량, 가이드, 일정을 직접 통제하여 <br className="hidden md:block" />
+                                    가격 거품은 걷어내고 품질은 극대화했습니다.
+                                </p>
+                            </div>
                         </motion.div>
 
+                        {/* Card 2: Innovation */}
                         <motion.div 
-                            variants={staggerContainer}
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
-                            className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full"
+                            variants={fadeInUp}
+                            className="lg:col-span-4 bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-10 border border-white/10 flex flex-col justify-between"
                         >
-                            {/* Card 1 */}
-                            <motion.div variants={fadeInUp} className="bg-white/5 backdrop-blur-md p-10 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-colors group overflow-hidden">
-                                <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-500 transform origin-left">🏆</div>
-                                <h3 className="font-bold text-2xl mb-4">2024 문체부 장관상</h3>
-                                <p className="text-gray-400 text-base leading-relaxed">
-                                    대한민국 관광벤처기업 선정 및 우수 기업 수상.
-                                    국가가 인정한 믿을 수 있는 기업입니다.
+                            <Zap size={40} className="text-tripsoda-main" />
+                            <div>
+                                <h3 className="text-2xl font-bold mb-4">플랫폼의 혁신</h3>
+                                <p className="text-gray-400 leading-relaxed text-sm md:text-base">
+                                    한국 본사의 IT 기술력을 바탕으로, 복잡했던 카자흐스탄 여행 예약을 투명하고 간편하게 혁신합니다. 실시간 상담과 견적 시스템으로 여행의 허들을 낮춥니다.
                                 </p>
-                            </motion.div>
+                            </div>
+                        </motion.div>
 
-                            {/* Card 2 */}
-                            <motion.div variants={fadeInUp} className="bg-white/5 backdrop-blur-md p-10 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-colors group overflow-hidden">
-                                <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-500 transform origin-left">💰</div>
-                                <h3 className="font-bold text-2xl mb-4">글로벌 투자 유치</h3>
-                                <p className="text-gray-400 text-base leading-relaxed">
-                                    국내외 유수 벤처 캐피탈(VC)로부터
-                                    성공적으로 투자를 유치한 탄탄한 기업입니다.
+                        {/* Card 3: Global HQ */}
+                        <motion.div 
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={fadeInUp}
+                            className="lg:col-span-4 bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-10 border border-white/10 flex flex-col justify-between"
+                        >
+                            <Globe size={40} className="text-blue-500" />
+                            <div>
+                                <h3 className="text-2xl font-bold mb-4">트립소다 본사 (Seoul)</h3>
+                                <p className="text-gray-400 leading-relaxed text-sm md:text-base">
+                                    문체부 장관상 수상, 국내 최대 모험 여행 커뮤니티 트립소다 본사의 전폭적인 지원과 브랜드 신뢰도를 바탕으로 운영됩니다.
                                 </p>
-                            </motion.div>
+                            </div>
+                        </motion.div>
 
-                            {/* Card 3 */}
-                            <motion.div variants={fadeInUp} className="bg-tripsoda-main/10 backdrop-blur-md p-10 rounded-[2rem] border border-tripsoda-main/20 hover:bg-tripsoda-main/20 transition-colors group sm:col-span-2 overflow-hidden">
-                                <div className="flex items-center mb-6">
-                                    <div className="text-5xl group-hover:scale-110 transition-transform duration-500 transform origin-left">🤝</div>
-                                    <h3 className="font-bold text-2xl ml-4">국내 최대 모험 커뮤니티</h3>
-                                </div>
-                                <p className="text-gray-300 text-lg leading-relaxed">
-                                    단순한 상품 판매를 넘어, 수십만 명의 여행자들이 실시간으로 정보를 나누고 동행을 구하는 
-                                    가장 활발하고 건강한 여행 생태계를 만들어가고 있습니다.
+                        {/* Big Card 4: The Basecamp */}
+                        <motion.div 
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={fadeInUp}
+                            className="lg:col-span-8 group relative aspect-[16/9] lg:aspect-auto lg:h-[400px] rounded-[2.5rem] overflow-hidden border border-white/10"
+                        >
+                            <img src="/images/office_lounge.jpg" className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-1000" alt="Almaty Basecamp" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/60 to-transparent" />
+                            <div className="absolute inset-y-0 left-0 p-10 md:p-16 flex flex-col justify-center">
+                                <MapPin size={40} className="text-tripsoda-main mb-6" />
+                                <h2 className="text-3xl font-bold mb-4">오프라인 컨트롤 타워</h2>
+                                <p className="text-gray-400 max-w-lg leading-relaxed">
+                                    알마티 나자르바예프 대로 65번지. <br />
+                                    온라인 상담을 넘어 오프라인에서 직접 고객을 맞이하는 전초기지, '트립소다 라운지'를 운영합니다.
                                 </p>
-                            </motion.div>
+                            </div>
                         </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* 6. Contact CTA */}
-            <section className="py-32 bg-tripsoda-main text-white text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10 mix-blend-overlay"></div>
+            {/* 3. CEO & Philosophy Section */}
+            <section className="py-32 bg-white text-black rounded-t-[3rem] md:rounded-t-[5rem]">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="flex flex-col lg:flex-row items-center gap-16 md:gap-24">
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            className="lg:w-1/2 relative"
+                        >
+                            <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl relative z-10">
+                                <img src="/images/office_meeting_1765784054170.png" alt="CEO Lee Jinki" className="w-full h-full object-cover" />
+                            </div>
+                            <div className="absolute -bottom-10 -right-10 bg-tripsoda-main p-10 rounded-[3rem] text-white shadow-2xl z-20 hidden md:block">
+                                <p className="text-sm font-bold tracking-widest uppercase mb-2">CEO Philisophy</p>
+                                <p className="text-2xl font-black italic">"가장 안전하고,<br />가장 투명하게."</p>
+                            </div>
+                        </motion.div>
+
+                        <motion.div 
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={fadeInUp}
+                            className="lg:w-1/2 space-y-8"
+                        >
+                            <span className="text-tripsoda-main font-bold tracking-[0.3em] uppercase text-sm block">Founder's Message</span>
+                            <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-tight text-gray-900">
+                                중앙아시아 여행의 <br />
+                                <span className="text-gray-300">새로운 표준</span>을 세웁니다.
+                            </h2>
+                            <div className="space-y-6 text-gray-600 text-lg leading-relaxed font-light">
+                                <p>
+                                    알마티의 압도적인 대자연을 처음 마주했을 때의 경이로움을 기억합니다. 동시에 언어와 인프라의 장벽으로 인해 이 아름다움을 온전히 즐기지 못하는 여행자들의 안타까움도 보았습니다.
+                                </p>
+                                <p className="font-medium text-gray-900">
+                                    트립소다 카자흐스탄은 "한국인이 가장 마음 편히 즐길 수 있는 현지 환경을 직접 구축하자"는 일념으로 설립되었습니다.
+                                </p>
+                                <p>
+                                    우리는 단순히 투어 상품을 파는 곳이 아닙니다. 현지에 상주하며 차량 한 대, 가이드 한 명까지 직접 검증하고 책임지는 '현지 직영 시스템'을 통해, 중앙아시아 여행의 고질적인 불투명함을 해결해 나갑니다.
+                                </p>
+                            </div>
+                            <div className="pt-8 border-t border-gray-100 flex items-center justify-between">
+                                <div>
+                                    <p className="text-2xl font-black text-gray-900">이 진 기</p>
+                                    <p className="text-sm text-tripsoda-main font-bold uppercase tracking-widest">CEO, Tripsoda Kazakhstan</p>
+                                </div>
+                                <img src="/images/logo.png" alt="Logo" className="h-6 opacity-30" />
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 4. Relationship Synegery (Modern Visual) */}
+            <section className="py-32 bg-gray-50 text-black">
+                <div className="max-w-7xl mx-auto px-6 text-center">
+                    <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                        <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-20">Global Synegery</h2>
+                    </motion.div>
+
+                    <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-6">
+                        {/* Seoul Card */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="flex-1 bg-white p-12 rounded-[3rem] shadow-xl border border-gray-100 text-left flex flex-col justify-between"
+                        >
+                            <div>
+                                <div className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center text-white mb-8 shadow-lg">
+                                    <Building2 size={24} />
+                                </div>
+                                <h3 className="text-2xl font-black mb-4">Tripsoda HQ (Seoul)</h3>
+                                <p className="text-gray-500 mb-10 leading-relaxed">한국 최고의 모험 여행 커뮤니티 플랫폼. IT 기술력과 브랜드 신뢰도를 통해 글로벌 여행 시장을 선도합니다.</p>
+                            </div>
+                            <ul className="space-y-4">
+                                {["IT 플랫폼 고도화", "브랜드 마케팅", "커뮤니티 거버넌스", "글로벌 확장 전략"].map((item, i) => (
+                                    <li key={i} className="flex items-center text-sm font-bold text-gray-800">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3" /> {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+
+                        {/* Almaty Card */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="flex-1 bg-gray-900 p-12 rounded-[3rem] shadow-2xl text-left flex flex-col justify-between text-white relative overflow-hidden"
+                        >
+                            <div className="absolute top-0 right-0 p-8 opacity-5">
+                                <Users size={160} />
+                            </div>
+                            <div className="relative z-10">
+                                <div className="w-12 h-12 bg-tripsoda-main rounded-2xl flex items-center justify-center text-white mb-8 shadow-lg shadow-tripsoda-main/20">
+                                    <MapPin size={24} />
+                                </div>
+                                <h3 className="text-2xl font-black mb-4 text-tripsoda-main">Tripsoda Almaty</h3>
+                                <p className="text-gray-400 mb-10 leading-relaxed">카자흐스탄 현지 실무 본부. 100% 직영 오퍼레이션 시스템을 통해 현장에서 완벽한 여정을 집도합니다.</p>
+                            </div>
+                            <ul className="space-y-4 relative z-10">
+                                {["현지 투어 직접 운영", "가이드/차량 실무 관리", "라운지 거점 서비스", "24시간 로컬 케어"].map((item, i) => (
+                                    <li key={i} className="flex items-center text-sm font-bold text-gray-100">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-tripsoda-main mr-3" /> {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 5. CTA Section */}
+            <section className="py-40 bg-[#050505] text-white text-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-transparent opacity-5" />
                 <motion.div 
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={fadeInUp}
-                    className="relative z-10"
+                    className="relative z-10 px-6"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-10 leading-tight">가장 완벽한 중앙아시아 여행,<br />트립소다 카자흐스탄과 함께하세요.</h2>
-                    <div className="flex flex-col sm:flex-row justify-center gap-4 px-4">
+                    <span className="text-tripsoda-main font-bold tracking-[0.5em] uppercase text-xs mb-8 block">Ready to Explore?</span>
+                    <h2 className="text-4xl md:text-7xl font-black mb-16 leading-tight tracking-tighter">
+                        당신의 첫 번째 카자흐스탄,<br />
+                        <span className="text-gray-500">트립소다가 완성합니다.</span>
+                    </h2>
+                    <div className="flex flex-col sm:flex-row justify-center gap-6">
                         <Link href="/tours">
-                            <a className="bg-white text-tripsoda-main px-10 py-5 rounded-2xl font-bold text-lg hover:bg-gray-100 hover:scale-105 transition-all shadow-xl">
-                                추천 투어 둘러보기
+                            <a className="group bg-white text-black px-12 py-6 rounded-2xl font-black text-xl hover:bg-tripsoda-main hover:text-white transition-all duration-500 shadow-2xl flex items-center justify-center gap-3">
+                                투어 둘러보기 <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                             </a>
                         </Link>
                         <Link href="/contact">
-                            <a className="border-2 border-white text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white hover:text-tripsoda-main hover:scale-105 transition-all shadow-xl">
-                                1:1 맞춤 상담하기
+                            <a className="bg-white/5 backdrop-blur-md text-white border border-white/20 px-12 py-6 rounded-2xl font-black text-xl hover:bg-white/10 transition-all shadow-xl">
+                                1:1 맞춤 견적 상담
                             </a>
                         </Link>
                     </div>
                 </motion.div>
             </section>
-        </motion.div>
+        </div>
     )
 }
+
