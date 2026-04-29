@@ -242,13 +242,20 @@ export default function About() {
                                 ALMATY.
                             </h2>
                             <div className="h-px w-full bg-gradient-to-r from-tripsoda-main to-transparent opacity-30" />
-                            <p className="text-xl text-gray-500 font-light leading-relaxed max-w-md">
-                                서울의 플랫폼 기술력과 알마티의 로컬 실행력이 <br /> 
-                                실시간으로 공명하며 최고의 시너지를 만듭니다.
-                            </p>
+                            <div className="space-y-6">
+                                <p className="text-2xl text-white font-bold tracking-tight">
+                                    플랫폼의 신뢰와 현장의 전문성이 만나는 곳.
+                                </p>
+                                <p className="text-lg text-gray-500 font-light leading-relaxed max-w-xl">
+                                    서울 본사(Tripsoda HQ)의 혁신적인 플랫폼 기술력과 한국 고객을 위한 정교한 서비스 설계, 그리고 알마티 현지 법인의 직접적인 실행력이 실시간으로 결합됩니다. 
+                                </p>
+                                <p className="text-lg text-gray-500 font-light leading-relaxed max-w-xl">
+                                    우리는 단순히 여행 상품을 중개하지 않습니다. 한국에서 약속한 품질이 카자흐스탄 광활한 대자연 위에서도 변함없이 유지되도록, 두 거점의 전문가들이 하나의 팀으로 당신의 여정을 집도합니다.
+                                </p>
+                            </div>
                         </div>
 
-                        <div className="lg:w-1/2 relative aspect-square bg-[#080808] rounded-full border border-white/5 flex items-center justify-center p-20 group overflow-hidden">
+                        <div className="lg:w-1/2 relative aspect-square bg-[#080808] rounded-full border border-white/5 flex items-center justify-center p-12 md:p-20 group overflow-hidden">
                             <div className="absolute inset-0 bg-tripsoda-main/5 rounded-full blur-[100px] animate-pulse" />
                             <svg className="w-full h-full relative z-10" viewBox="0 0 100 100">
                                 <motion.circle 
