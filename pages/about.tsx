@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { MapPin, ArrowRight, ShieldCheck, Zap, Globe, Building2, ChevronDown } from 'lucide-react'
+import { MapPin, ArrowRight, ShieldCheck, Zap, Globe, Building2, ChevronDown, Users } from 'lucide-react'
 import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 
