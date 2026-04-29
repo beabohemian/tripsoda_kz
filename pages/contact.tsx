@@ -207,7 +207,7 @@ export default function Contact() {
                 <div>
                     <h3 className="font-bold text-gray-900 text-sm tracking-wider uppercase mb-1">Location</h3>
                     <p className="text-gray-700 text-lg font-medium leading-snug">
-                    카자흐스탄 알마티<br/>나자르바예프 대로 65
+                    카자흐스탄 알마티 나자르바예프 대로 65<br/>비즈니스 센터 4층 401/5호
                     </p>
                 </div>
                 </div>

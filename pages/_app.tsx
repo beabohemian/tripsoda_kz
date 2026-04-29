@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 ],
                 "address": {
                   "@type": "PostalAddress",
-                  "streetAddress": "Nazarbayev Ave 65",
+                  "streetAddress": "Nazarbayev Ave 65, Business Center 4F #401/5",
                   "addressLocality": "Almaty",
                   "addressCountry": "KZ"
                 }
