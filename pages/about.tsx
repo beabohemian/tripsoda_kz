@@ -133,8 +133,8 @@ export default function About() {
                     </div>
                     
                     <h1 className="text-7xl md:text-[15rem] font-black leading-[0.8] tracking-tighter mb-12">
-                        <RevealText delay={0.2}>VIRTUAL</RevealText>
-                        <RevealText delay={0.4} className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/50 to-white/10">REALITY.</RevealText>
+                        <RevealText delay={0.2}>BEYOND</RevealText>
+                        <RevealText delay={0.4} className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/50 to-white/10">PLATFORM.</RevealText>
                     </h1>
                     
                     <motion.div 
@@ -144,7 +144,7 @@ export default function About() {
                         className="max-w-xl mx-auto"
                     >
                         <p className="text-sm md:text-base text-white/40 font-medium tracking-[0.2em] leading-relaxed uppercase">
-                            우리는 온라인 플랫폼에서 <br /> 오프라인 전초기지로 진화합니다.
+                            온라인의 편리함을 넘어 <br /> 현장의 압도적 신뢰를 구축합니다.
                         </p>
                     </motion.div>
                 </div>
