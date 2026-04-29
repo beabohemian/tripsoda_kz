@@ -128,13 +128,13 @@ export default function About() {
                             transition={{ duration: 1, delay: 0.5 }}
                             className="text-tripsoda-main font-black tracking-[1em] uppercase text-[10px] md:text-xs block"
                         >
-                            Establishment Share
+                            The Direct Authority
                         </motion.span>
                     </div>
                     
                     <h1 className="text-7xl md:text-[15rem] font-black leading-[0.8] tracking-tighter mb-12">
-                        <RevealText delay={0.2}>BEYOND</RevealText>
-                        <RevealText delay={0.4} className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/50 to-white/10">PLATFORM.</RevealText>
+                        <RevealText delay={0.2}>THE LOCAL</RevealText>
+                        <RevealText delay={0.4} className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">EXPERTS.</RevealText>
                     </h1>
                     
                     <motion.div 
@@ -143,8 +143,8 @@ export default function About() {
                         transition={{ delay: 1.2, duration: 1 }}
                         className="max-w-xl mx-auto"
                     >
-                        <p className="text-sm md:text-base text-white/40 font-medium tracking-[0.2em] leading-relaxed uppercase">
-                            온라인의 편리함을 넘어 <br /> 현장의 압도적 신뢰를 구축합니다.
+                        <p className="text-sm md:text-base text-white/50 font-medium tracking-[0.2em] leading-relaxed uppercase">
+                            카자흐스탄 현지 법인 직영으로 <br /> 여행의 전 과정을 직접 책임집니다.
                         </p>
                     </motion.div>
                 </div>
