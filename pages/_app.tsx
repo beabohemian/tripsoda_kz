@@ -15,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <CustomCursor />
       <Layout>
         <Head>
+          <meta name="naver-site-verification" content="256ca89c5688a71c3727c601a16615cd493f5e17" />
           <link
             rel='stylesheet'
             as='style'
