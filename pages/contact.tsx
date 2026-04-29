@@ -171,18 +171,10 @@ export default function Contact() {
                 <div className="bg-tripsoda-main/10 p-4 rounded-2xl text-tripsoda-main group-hover:scale-110 transition-transform">
                     <Phone size={24} />
                 </div>
-                <div className="flex-1">
-                    <div className="flex justify-between items-start">
-                        <div className="space-y-1">
-                            <h3 className="font-bold text-gray-900 text-sm tracking-wider uppercase mb-1">WhatsApp / Kakao</h3>
-                            <p className="text-gray-700 text-lg font-medium">+7 778 986 1833</p>
-                            <p className="text-tripsoda-main text-sm font-bold">Kakao ID: tripsoda_kz</p>
-                        </div>
-                        <div className="bg-white p-2 rounded-xl shadow-sm border border-gray-100 group-hover:shadow-md transition-all">
-                            <img src="/images/kakao_qr.jpeg" alt="Kakao QR Code" className="w-16 h-16 object-cover rounded-lg" />
-                            <p className="text-[10px] text-center text-gray-400 mt-1 font-bold">Scan QR</p>
-                        </div>
-                    </div>
+                <div className="space-y-1">
+                    <h3 className="font-bold text-gray-900 text-sm tracking-wider uppercase mb-1">WhatsApp / Kakao</h3>
+                    <p className="text-gray-700 text-lg font-medium">+7 778 986 1833</p>
+                    <p className="text-tripsoda-main text-sm font-bold">Kakao ID: tripsoda_kz</p>
                 </div>
                 </div>
 
