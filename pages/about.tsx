@@ -189,17 +189,17 @@ export default function About() {
                             <div className="text-8xl font-black text-white/[0.02] tracking-tighter select-none">CRAFT</div>
                         </SpotlightCard>
 
-                        {/* Innovation 2 */}
+                        {/* Innovation 2: Local Experts */}
                         <SpotlightCard className="p-16 h-[550px] flex flex-col justify-between md:mt-20" delay={0.2}>
                             <div className="space-y-8">
-                                <Zap size={40} className="text-tripsoda-main" />
-                                <h3 className="text-4xl font-black tracking-tighter">데이터 기반 <br /> 신뢰 구축</h3>
-                                <p className="text-gray-400 leading-relaxed text-lg font-light">불투명한 현지 시장을 IT 기술로 혁신했습니다. 모든 여정은 투명하게 공개됩니다.</p>
+                                <Users size={40} className="text-tripsoda-main" />
+                                <h3 className="text-4xl font-black tracking-tighter">최정예 <br /> 현지인 전문가 팀</h3>
+                                <p className="text-gray-400 leading-relaxed text-lg font-light">한국어에 능통한 카자흐스탄 현지 전문가들이 한 팀으로 움직입니다. 단순한 가이드를 넘어 현지의 문화와 안전을 완벽하게 조율합니다.</p>
                             </div>
-                            <div className="text-8xl font-black text-white/[0.02] tracking-tighter select-none">TECH</div>
+                            <div className="text-8xl font-black text-white/[0.02] tracking-tighter select-none">TEAM</div>
                         </SpotlightCard>
 
-                        {/* Innovation 3: Basecamp with Image FIX */}
+                        {/* Innovation 3: Almaty Lounge */}
                         <SpotlightCard className="h-[550px] md:mt-40 relative group overflow-hidden" delay={0.3}>
                             <div className="absolute inset-0 z-0">
                                 <img 
@@ -213,10 +213,10 @@ export default function About() {
                             <div className="relative z-10 p-16 h-full flex flex-col justify-between">
                                 <div className="space-y-8">
                                     <MapPin size={40} className="text-tripsoda-main" />
-                                    <h3 className="text-4xl font-black tracking-tighter">물리적 <br /> 거점의 가치</h3>
-                                    <p className="text-white/80 leading-relaxed text-lg font-light">알마티 나자르바예프 65번지. 온라인을 넘어 오프라인에서 당신을 보호합니다.</p>
+                                    <h3 className="text-4xl font-black tracking-tighter">알마티 <br /> 여행자 라운지</h3>
+                                    <p className="text-white/80 leading-relaxed text-lg font-light">알마티 나자르바예프 65번지. 온라인을 넘어 오프라인에서 당신을 보호하는 우리의 물리적 거점이자 전초기지입니다.</p>
                                 </div>
-                                <div className="text-8xl font-black text-white/[0.05] tracking-tighter select-none">BASE</div>
+                                <div className="text-8xl font-black text-white/[0.05] tracking-tighter select-none">LOUNGE</div>
                             </div>
                         </SpotlightCard>
                     </div>
