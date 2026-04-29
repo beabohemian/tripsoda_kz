@@ -90,8 +90,9 @@ export default function Footer() {
                         scrolling="no" 
                         marginHeight={0} 
                         marginWidth={0} 
-                        src="https://maps.google.com/maps?q=Nazarbayev+Ave+65,+Almaty&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.417958474898!2d76.9452575!3d43.2636189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836fed6c0b42b5%3A0xab006b31d87515e4!2zVFJJUFNPREEgS0FaQUtIU1RBTiAo7Yq466a97IaM64ukIOy5tOyekO2dkOyKpO2DhCk!5e0!3m2!1sko!2skr!4v1777447858292!5m2!1sko!2skr"
                         title="Google Map Location"
+                        loading="lazy"
                     ></iframe>
                 </div>
 
