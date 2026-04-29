@@ -60,7 +60,7 @@ export default function Home() {
                     className="absolute inset-0 z-0 origin-bottom"
                     style={{ y: heroY, scale: heroScale, opacity: heroOpacity }}
                 >
-                    <div 
+                    <div
                         className="absolute inset-0 bg-cover bg-center"
                         style={{ backgroundImage: "url('/images/tour_charyn_1765783988719.png')" }}
                     />
@@ -70,11 +70,11 @@ export default function Home() {
                 </motion.div>
 
                 {/* Main Content Layer */}
-                <motion.div 
+                <motion.div
                     className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 mt-20 md:mt-32"
                     style={{ opacity: heroOpacity }}
                 >
-                    <motion.div 
+                    <motion.div
                         variants={staggerContainer}
                         initial="hidden"
                         animate="visible"
@@ -115,8 +115,8 @@ export default function Home() {
                             </a>
                             <div className="flex items-center gap-4 text-white/80">
                                 <div className="flex -space-x-3">
-                                    <img className="w-10 h-10 rounded-full border-2 border-gray-900 object-cover" src="/images/guides/nora.jpg" alt="Guide 1"/>
-                                    <img className="w-10 h-10 rounded-full border-2 border-gray-900 object-cover" src="/images/guides/chingis_jump.jpg" alt="Guide 2"/>
+                                    <img className="w-10 h-10 rounded-full border-2 border-gray-900 object-cover" src="/images/guides/nora.jpg" alt="Guide 1" />
+                                    <img className="w-10 h-10 rounded-full border-2 border-gray-900 object-cover" src="/images/guides/chingis_jump.jpg" alt="Guide 2" />
                                     <div className="w-10 h-10 rounded-full border-2 border-gray-900 bg-gray-800 flex items-center justify-center text-xs font-bold">+5</div>
                                 </div>
                                 <div className="text-sm">
@@ -136,7 +136,7 @@ export default function Home() {
 
                 {/* Glassmorphism Quick Info Bar (Bottom) */}
                 <motion.div style={{ opacity: heroOpacity }}>
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1, duration: 0.8 }}
@@ -155,10 +155,10 @@ export default function Home() {
                             </div>
 
                             {/* Scroll Indicator */}
-                            <div className="flex flex-col items-center gap-3 mr-10 cursor-pointer group" onClick={() => window.scrollTo({top: window.innerHeight, behavior: 'smooth'})}>
+                            <div className="flex flex-col items-center gap-3 mr-10 cursor-pointer group" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
                                 <p className="text-xs text-white/50 font-bold tracking-widest uppercase group-hover:text-white transition-colors">Scroll</p>
                                 <div className="w-8 h-14 border-2 border-white/30 rounded-full flex justify-center p-1 group-hover:border-white/60 transition-colors">
-                                    <motion.div 
+                                    <motion.div
                                         animate={{ y: [0, 24, 0] }}
                                         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                                         className="w-1.5 h-3 bg-white rounded-full"
@@ -169,7 +169,7 @@ export default function Home() {
                     </motion.div>
 
                     {/* Mobile Scroll Indicator */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.5 }}
@@ -184,8 +184,8 @@ export default function Home() {
             <section className="py-32 bg-gray-50 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                     <div className="reveal text-center mb-20">
-                        <span className="text-tripsoda-main font-bold tracking-widest uppercase text-sm mb-3 block">Why Tripsoda</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">트립소다와 함께해야 하는 이유</h2>
+                        <span className="text-tripsoda-main font-bold tracking-widest uppercase text-sm mb-3 block">Why Tripsoda Kazkhstan</span>
+                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">트립소다 카자흐스탄과 함께해야 하는 이유</h2>
                         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                             완벽한 현지 케어와 거품 없는 가격으로 잊지 못할 추억을 선사합니다.
                         </p>
@@ -200,13 +200,13 @@ export default function Home() {
                             </div>
                             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 relative z-10">100% 현지 법인 직영</h3>
                             <p className="text-gray-600 max-w-md relative z-10 leading-relaxed">
-                                중간 마진과 하청으로 인한 퀄리티 저하는 없습니다.<br/>
+                                중간 마진과 하청으로 인한 퀄리티 저하는 없습니다.<br />
                                 트립소다 카자흐스탄 현지 법인이 일정을 직접 운영하고 책임집니다.
                             </p>
                         </div>
 
                         {/* Box 2: Square */}
-                        <div className="reveal bento-item col-span-12 md:col-span-4 p-8 bg-tripsoda-light border border-tripsoda-main/20 group" style={{transitionDelay: '0.1s'}}>
+                        <div className="reveal bento-item col-span-12 md:col-span-4 p-8 bg-tripsoda-light border border-tripsoda-main/20 group" style={{ transitionDelay: '0.1s' }}>
                             <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:-translate-y-2 transition-transform duration-500">
                                 <Languages size={28} className="text-tripsoda-main" />
                             </div>
@@ -217,7 +217,7 @@ export default function Home() {
                         </div>
 
                         {/* Box 3: Square */}
-                        <div className="reveal bento-item col-span-12 md:col-span-4 p-8 bg-white border border-gray-100 hover:shadow-xl group" style={{transitionDelay: '0.2s'}}>
+                        <div className="reveal bento-item col-span-12 md:col-span-4 p-8 bg-white border border-gray-100 hover:shadow-xl group" style={{ transitionDelay: '0.2s' }}>
                             <div className="w-14 h-14 bg-tripsoda-main/10 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-500">
                                 <Wallet size={28} className="text-tripsoda-main" />
                             </div>
@@ -228,7 +228,7 @@ export default function Home() {
                         </div>
 
                         {/* Box 4: Large Span */}
-                        <div className="reveal bento-item col-span-12 md:col-span-8 p-10 md:p-12 bg-gradient-to-tr from-tripsoda-light to-white border border-gray-100 group overflow-hidden" style={{transitionDelay: '0.3s'}}>
+                        <div className="reveal bento-item col-span-12 md:col-span-8 p-10 md:p-12 bg-gradient-to-tr from-tripsoda-light to-white border border-gray-100 group overflow-hidden" style={{ transitionDelay: '0.3s' }}>
                             <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-blue-100 blur-[80px] rounded-full group-hover:bg-blue-200/50 transition-colors duration-700 pointer-events-none"></div>
                             <div className="w-14 h-14 bg-white shadow-sm rounded-2xl flex items-center justify-center mb-6 border border-gray-50 group-hover:-translate-y-2 transition-transform duration-500">
                                 <FileText size={28} className="text-blue-500" />
