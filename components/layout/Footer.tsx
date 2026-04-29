@@ -64,7 +64,10 @@ export default function Footer() {
                             </li>
                             <li className="flex items-center space-x-2">
                                 <Phone size={18} />
-                                <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="hover:text-tripsoda-main transition-colors">+7 778 986 1833 (WhatsApp)</a>
+                                <div className="flex flex-col">
+                                    <a href="https://wa.me/77789861833" target="_blank" rel="noreferrer" className="hover:text-tripsoda-main transition-colors">+7 778 986 1833 (WhatsApp)</a>
+                                    <p className="text-xs text-tripsoda-textSub">Kakao ID: tripsoda_kz</p>
+                                </div>
                             </li>
                             <li className="flex space-x-4 mt-4 pt-2">
                                 <a href="https://instagram.com/tripsoda_kz" target="_blank" rel="noreferrer" className="hover:text-tripsoda-main transition-colors" aria-label="Instagram"><Instagram size={24} /></a>

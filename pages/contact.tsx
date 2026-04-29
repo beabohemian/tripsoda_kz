@@ -171,9 +171,10 @@ export default function Contact() {
                 <div className="bg-tripsoda-main/10 p-4 rounded-2xl text-tripsoda-main group-hover:scale-110 transition-transform">
                     <Phone size={24} />
                 </div>
-                <div>
-                    <h3 className="font-bold text-gray-900 text-sm tracking-wider uppercase mb-1">WhatsApp / Call</h3>
+                <div className="space-y-1">
+                    <h3 className="font-bold text-gray-900 text-sm tracking-wider uppercase mb-1">WhatsApp / Kakao</h3>
                     <p className="text-gray-700 text-lg font-medium">+7 778 986 1833</p>
+                    <p className="text-tripsoda-main text-sm font-bold">Kakao ID: tripsoda_kz</p>
                 </div>
                 </div>
 
