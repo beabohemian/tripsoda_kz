@@ -19,33 +19,68 @@ const staggerContainer: Variants = {
     }
 }
 
-// Custom Input Component with Floating Label
-const FloatingInput = ({ 
-    label, name, type = "text", required = false, value, onChange, placeholder = "" 
+// Standardized Form Field Component
+const FormField = ({ 
+    label, name, type = "text", required = false, value, onChange, placeholder = "", options = [] 
 }: any) => {
     const [isFocused, setIsFocused] = useState(false);
-    const isActive = isFocused || value.length > 0;
+    const isActive = isFocused || value.length > 0 || type === "date" || (type === "select" && value);
+
+    const inputClasses = "block w-full px-5 pt-7 pb-2 text-gray-900 bg-white border-2 border-gray-100 rounded-2xl appearance-none focus:outline-none focus:border-tripsoda-main focus:bg-white transition-all duration-300 peer shadow-sm hover:border-gray-200";
+    
+    const labelClasses = `absolute left-5 transition-all duration-300 pointer-events-none ${
+        isActive 
+        ? "top-2 text-[10px] text-tripsoda-main font-bold uppercase tracking-wider" 
+        : "top-5 text-gray-400 text-base"
+    }`;
 
     return (
-        <div className="relative mb-6">
-            <input
-                type={type}
-                name={name}
-                required={required}
-                value={value}
-                onChange={onChange}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                className="block w-full px-4 pt-6 pb-2 text-gray-900 bg-gray-50 border border-gray-200 rounded-xl appearance-none focus:outline-none focus:ring-0 focus:border-tripsoda-main focus:bg-white transition-all duration-300 peer"
-                placeholder={isFocused ? placeholder : ""}
-            />
-            <label
-                className={`absolute left-4 transition-all duration-300 pointer-events-none ${
-                    isActive 
-                    ? "top-1.5 text-xs text-tripsoda-main font-bold" 
-                    : "top-4 text-gray-500 text-base"
-                }`}
-            >
+        <div className="relative mb-4 group">
+            {type === "select" ? (
+                <div className="relative">
+                    <select
+                        name={name}
+                        required={required}
+                        value={value}
+                        onChange={onChange}
+                        onFocus={() => setIsFocused(true)}
+                        onBlur={() => setIsFocused(false)}
+                        className={`${inputClasses} cursor-pointer`}
+                    >
+                        {options.map((opt: any) => (
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        ))}
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-gray-400">
+                        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                </div>
+            ) : type === "textarea" ? (
+                <textarea
+                    name={name}
+                    required={required}
+                    value={value}
+                    onChange={onChange}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    rows={4}
+                    className={`${inputClasses} resize-none min-h-[120px]`}
+                    placeholder={isFocused ? placeholder : ""}
+                />
+            ) : (
+                <input
+                    type={type}
+                    name={name}
+                    required={required}
+                    value={value}
+                    onChange={onChange}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    className={inputClasses}
+                    placeholder={isFocused ? placeholder : ""}
+                />
+            )}
+            <label className={labelClasses}>
                 {label} {required && <span className="text-red-500">*</span>}
             </label>
         </div>
@@ -82,11 +117,15 @@ export default function Contact() {
     setStatus("submitting");
 
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/kz/mail`, {
+      const response = await fetch("/api/mail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+
+      if (!response.ok) {
+        throw new Error("Failed to send mail");
+      }
 
       setStatus("success");
       setFormData({
@@ -258,7 +297,7 @@ export default function Contact() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-10">
+            <form onSubmit={handleSubmit} className="space-y-8">
               
               {/* Basic Info */}
               <div>
@@ -266,80 +305,60 @@ export default function Contact() {
                     <span className="w-8 h-8 rounded-full bg-tripsoda-main text-white flex items-center justify-center text-sm mr-3 shadow-md">1</span>
                     기본 정보
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
-                  <FloatingInput label="이름" name="name" required value={formData.name} onChange={handleChange} placeholder="홍길동" />
-                  <FloatingInput label="연락처" name="phone" type="tel" required value={formData.phone} onChange={handleChange} placeholder="010-1234-5678" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                  <FormField label="이름" name="name" required value={formData.name} onChange={handleChange} placeholder="홍길동" />
+                  <FormField label="연락처" name="phone" type="tel" required value={formData.phone} onChange={handleChange} placeholder="010-1234-5678" />
                   <div className="md:col-span-2">
-                    <FloatingInput label="이메일 (견적서 수령용)" name="email" type="email" required value={formData.email} onChange={handleChange} placeholder="example@email.com" />
+                    <FormField label="이메일 (견적서 수령용)" name="email" type="email" required value={formData.email} onChange={handleChange} placeholder="example@email.com" />
                   </div>
                 </div>
               </div>
 
               {/* Trip Details */}
-              <div className="pt-6 border-t border-gray-100">
+              <div className="pt-8 border-t border-gray-100">
                 <h3 className="text-xl font-extrabold text-gray-900 mb-6 flex items-center">
                     <span className="w-8 h-8 rounded-full bg-tripsoda-main text-white flex items-center justify-center text-sm mr-3 shadow-md">2</span>
                     여행 계획
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 mb-2 ml-1">예상 여행 시작일</label>
-                    <input
-                      type="date"
-                      name="date"
-                      className="w-full px-4 py-4 rounded-xl border border-gray-200 focus:border-tripsoda-main focus:ring-2 focus:ring-tripsoda-light outline-none transition-all bg-gray-50 focus:bg-white text-gray-900"
-                      value={formData.date}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  
-                  <FloatingInput label="여행 기간" name="duration" value={formData.duration} onChange={handleChange} placeholder="예: 4박 6일" />
-                  <FloatingInput label="인원 수" name="pax" value={formData.pax} onChange={handleChange} placeholder="성인 2명, 아동 1명" />
-
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 mb-2 ml-1">선호 숙소 형태</label>
-                    <div className="relative">
-                        <select
-                        name="accommodation"
-                        className="w-full px-4 py-4 rounded-xl border border-gray-200 focus:border-tripsoda-main focus:ring-2 focus:ring-tripsoda-light outline-none transition-all bg-gray-50 focus:bg-white text-gray-900 appearance-none"
-                        value={formData.accommodation}
-                        onChange={handleChange}
-                        >
-                        <option value="hotel">호텔 (3~4성급)</option>
-                        <option value="luxury">고급 호텔 (4~5성급)</option>
-                        <option value="yurt">유르트 (전통 체험)</option>
-                        <option value="guesthouse">게스트하우스 (가성비)</option>
-                        <option value="camping">캠핑/글램핑</option>
-                        <option value="mix">상담 후 결정 (믹스)</option>
-                        </select>
-                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
-                            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                        </div>
-                    </div>
-                  </div>
-
-                  <div className="md:col-span-2 mt-2">
-                    <FloatingInput label="희망 방문지 / 액티비티" name="destinations" value={formData.destinations} onChange={handleChange} placeholder="예: 차른캐년, 승마 체험, 스키 등" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                  <FormField label="예상 여행 시작일" name="date" type="date" value={formData.date} onChange={handleChange} />
+                  <FormField label="여행 기간" name="duration" value={formData.duration} onChange={handleChange} placeholder="예: 4박 6일" />
+                  <FormField label="인원 수" name="pax" value={formData.pax} onChange={handleChange} placeholder="성인 2명, 아동 1명" />
+                  <FormField 
+                    label="선호 숙소 형태" 
+                    name="accommodation" 
+                    type="select" 
+                    value={formData.accommodation} 
+                    onChange={handleChange} 
+                    options={[
+                        { value: "hotel", label: "호텔 (3~4성급)" },
+                        { value: "luxury", label: "고급 호텔 (4~5성급)" },
+                        { value: "yurt", label: "유르트 (전통 체험)" },
+                        { value: "guesthouse", label: "게스트하우스 (가성비)" },
+                        { value: "camping", label: "캠핑/글램핑" },
+                        { value: "mix", label: "상담 후 결정 (믹스)" }
+                    ]}
+                  />
+                  <div className="md:col-span-2">
+                    <FormField label="희망 방문지 / 액티비티" name="destinations" value={formData.destinations} onChange={handleChange} placeholder="예: 차른캐년, 승마 체험, 스키 등" />
                   </div>
                 </div>
               </div>
 
               {/* Additional Notes */}
-              <div className="pt-6 border-t border-gray-100">
+              <div className="pt-8 border-t border-gray-100">
                 <h3 className="text-xl font-extrabold text-gray-900 mb-6 flex items-center">
                     <span className="w-8 h-8 rounded-full bg-tripsoda-main text-white flex items-center justify-center text-sm mr-3 shadow-md">3</span>
                     기타 문의사항
                 </h3>
-                <div className="relative">
-                    <textarea
-                    name="message"
-                    rows={5}
-                    className="w-full px-5 py-4 bg-gray-50 rounded-2xl border border-gray-200 focus:border-tripsoda-main focus:ring-2 focus:ring-tripsoda-light focus:bg-white outline-none transition-all resize-none text-gray-900 placeholder-gray-400"
-                    placeholder="특별한 요청사항이나 궁금한 점이 있으시면 자유롭게 적어주세요. (알러지, 특별한 목적 등)"
-                    value={formData.message}
-                    onChange={handleChange}
-                    ></textarea>
-                </div>
+                <FormField 
+                    label="특별한 요청사항" 
+                    name="message" 
+                    type="textarea" 
+                    value={formData.message} 
+                    onChange={handleChange} 
+                    placeholder="특별한 요청사항이나 궁금한 점이 있으시면 자유롭게 적어주세요. (알러지, 특별한 목적 등)" 
+                />
               </div>
 
               <div className="pt-6">
