@@ -93,7 +93,7 @@ export default function Contact() {
                                     현지 운영팀과 실시간 소통이 가능합니다.
                                 </p>
                                 <a 
-                                    href="https://wa.me/77073167190" 
+                                    href="https://wa.me/77789861833" 
                                     target="_blank" 
                                     rel="noreferrer"
                                     className="w-full py-4 bg-[#25D366] text-white rounded-2xl font-bold hover:bg-[#128C7E] transition-colors flex items-center justify-center gap-2"
@@ -143,8 +143,8 @@ export default function Contact() {
                                         <div>
                                             <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Office Location</p>
                                             <p className="text-lg text-gray-700 font-medium leading-relaxed">
-                                                Abay Ave 52, Almaty 050000,<br/>
-                                                Kazakhstan (Baizak Business Center)
+                                                알마티 나자르바예프 대로 65,<br/>
+                                                비즈니스 센터 건물 4층 401/5호
                                             </p>
                                         </div>
                                     </div>
@@ -155,7 +155,7 @@ export default function Contact() {
                                         </div>
                                         <div>
                                             <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Local Number</p>
-                                            <p className="text-lg text-gray-700 font-medium">+7 (707) 316-7190</p>
+                                            <p className="text-lg text-gray-700 font-medium">+7 778 986 1833</p>
                                         </div>
                                     </div>
                                 </div>
