@@ -1,387 +1,188 @@
-import Head from "next/head";
-import { MapPin, Phone, Mail } from "lucide-react";
-import React, { useState } from "react";
-import { motion, Variants } from "framer-motion";
-
-// Animation Variants
-const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-}
-
-const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1
-        }
-    }
-}
-
-// Standardized Form Field Component
-const FormField = ({ 
-    label, name, type = "text", required = false, value, onChange, placeholder = "", options = [] 
-}: any) => {
-    const [isFocused, setIsFocused] = useState(false);
-    const isActive = isFocused || value.length > 0 || type === "date" || (type === "select" && value);
-
-    const inputClasses = "block w-full px-5 pt-7 pb-2 text-gray-900 bg-white border-2 border-gray-100 rounded-2xl appearance-none focus:outline-none focus:border-tripsoda-main focus:bg-white transition-all duration-300 peer shadow-sm hover:border-gray-200";
-    
-    const labelClasses = `absolute left-5 transition-all duration-300 pointer-events-none ${
-        isActive 
-        ? "top-2 text-[10px] text-tripsoda-main font-bold uppercase tracking-wider" 
-        : "top-5 text-gray-400 text-base"
-    }`;
-
-    return (
-        <div className="relative mb-4 group">
-            {type === "select" ? (
-                <div className="relative">
-                    <select
-                        name={name}
-                        required={required}
-                        value={value}
-                        onChange={onChange}
-                        onFocus={() => setIsFocused(true)}
-                        onBlur={() => setIsFocused(false)}
-                        className={`${inputClasses} cursor-pointer`}
-                    >
-                        {options.map((opt: any) => (
-                            <option key={opt.value} value={opt.value}>{opt.label}</option>
-                        ))}
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-gray-400">
-                        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                    </div>
-                </div>
-            ) : type === "textarea" ? (
-                <textarea
-                    name={name}
-                    required={required}
-                    value={value}
-                    onChange={onChange}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
-                    rows={4}
-                    className={`${inputClasses} resize-none min-h-[120px]`}
-                    placeholder={isFocused ? placeholder : ""}
-                />
-            ) : (
-                <input
-                    type={type}
-                    name={name}
-                    required={required}
-                    value={value}
-                    onChange={onChange}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
-                    className={inputClasses}
-                    placeholder={isFocused ? placeholder : ""}
-                />
-            )}
-            <label className={labelClasses}>
-                {label} {required && <span className="text-red-500">*</span>}
-            </label>
-        </div>
-    );
-};
+import Head from 'next/head'
+import { Mail, MessageCircle, MapPin, Phone, ExternalLink, MessageSquare, Send } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    date: "",
-    duration: "",
-    pax: "",
-    destinations: "",
-    accommodation: "hotel",
-    message: "",
-  });
-  const [status, setStatus] = useState<
-    "idle" | "submitting" | "success" | "error"
-  >("idle");
+    return (
+        <>
+            <Head>
+                <title>문의하기 | 트립소다 카자흐스탄</title>
+                <meta name="description" content="카자흐스탄 여행의 모든 것, 트립소다에 직접 문의하세요. 카카오톡, 와츠앱, 이메일로 가장 빠른 상담이 가능합니다." />
+            </Head>
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+            <div className="bg-white min-h-screen">
+                {/* Hero Section */}
+                <section className="relative pt-32 pb-20 bg-gray-900 overflow-hidden">
+                    <div className="absolute inset-0 opacity-30">
+                        <img 
+                            src="/images/tour_charyn_1765783988719.png" 
+                            alt="Background" 
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-transparent to-gray-900"></div>
+                    </div>
+                    
+                    <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+                        <motion.span 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-tripsoda-main font-bold tracking-[0.3em] uppercase text-sm mb-4 block"
+                        >
+                            Get in Touch
+                        </motion.span>
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6"
+                        >
+                            당신의 여정을 시작하세요
+                        </motion.h1>
+                        <motion.p 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed"
+                        >
+                            카자흐스탄 현지 전문가들이 가장 빠르고 정확하게 답변해 드립니다.<br/>
+                            선호하시는 메신저로 지금 바로 상담을 시작하세요.
+                        </motion.p>
+                    </div>
+                </section>
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("submitting");
+                {/* Contact Methods Grid */}
+                <section className="py-24 -mt-16 relative z-20">
+                    <div className="max-w-7xl mx-auto px-6">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            
+                            {/* KakaoTalk Card */}
+                            <motion.div 
+                                whileHover={{ y: -10 }}
+                                className="bg-white p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100 flex flex-col items-center text-center group"
+                            >
+                                <div className="w-20 h-20 bg-[#FEE500] rounded-3xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                                    <MessageSquare size={36} fill="#3C1E1E" className="text-[#3C1E1E]" />
+                                </div>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-4">카카오톡 상담</h3>
+                                <p className="text-gray-500 mb-8 leading-relaxed">
+                                    가장 친숙하고 빠른 상담 방법입니다.<br/>
+                                    한국인 매니저가 직접 답변해 드립니다.
+                                </p>
+                                <a 
+                                    href="http://pf.kakao.com/_nSKuX/chat" 
+                                    target="_blank" 
+                                    rel="noreferrer"
+                                    className="w-full py-4 bg-[#FEE500] text-[#3C1E1E] rounded-2xl font-bold hover:bg-[#EBD200] transition-colors flex items-center justify-center gap-2"
+                                >
+                                    카톡 채팅하기 <ExternalLink size={18} />
+                                </a>
+                            </motion.div>
 
-    try {
-      const response = await fetch("/api/mail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+                            {/* WhatsApp Card */}
+                            <motion.div 
+                                whileHover={{ y: -10 }}
+                                transition={{ delay: 0.1 }}
+                                className="bg-white p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100 flex flex-col items-center text-center group"
+                            >
+                                <div className="w-20 h-20 bg-[#25D366] rounded-3xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                                    <MessageCircle size={36} className="text-white" />
+                                </div>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-4">WhatsApp</h3>
+                                <p className="text-gray-500 mb-8 leading-relaxed">
+                                    글로벌 메신저 와츠앱을 통해<br/>
+                                    현지 운영팀과 실시간 소통이 가능합니다.
+                                </p>
+                                <a 
+                                    href="https://wa.me/77073167190" 
+                                    target="_blank" 
+                                    rel="noreferrer"
+                                    className="w-full py-4 bg-[#25D366] text-white rounded-2xl font-bold hover:bg-[#128C7E] transition-colors flex items-center justify-center gap-2"
+                                >
+                                    WhatsApp 메시지 <ExternalLink size={18} />
+                                </a>
+                            </motion.div>
 
-      if (!response.ok) {
-        throw new Error("Failed to send mail");
-      }
+                            {/* Email Card */}
+                            <motion.div 
+                                whileHover={{ y: -10 }}
+                                transition={{ delay: 0.2 }}
+                                className="bg-white p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100 flex flex-col items-center text-center group"
+                            >
+                                <div className="w-20 h-20 bg-gray-900 rounded-3xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                                    <Mail size={36} className="text-white" />
+                                </div>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-4">Email Inquiry</h3>
+                                <p className="text-gray-500 mb-8 leading-relaxed">
+                                    공식적인 견적 요청이나 협업 문의는<br/>
+                                    이메일을 통해 상세히 남겨주세요.
+                                </p>
+                                <a 
+                                    href="mailto:jinki@tripsoda.com" 
+                                    className="w-full py-4 bg-gray-900 text-white rounded-2xl font-bold hover:bg-black transition-colors flex items-center justify-center gap-2"
+                                >
+                                    이메일 보내기 <Send size={18} />
+                                </a>
+                            </motion.div>
 
-      setStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        date: "",
-        duration: "",
-        pax: "",
-        destinations: "",
-        accommodation: "hotel",
-        message: "",
-      });
-    } catch (error) {
-      console.error(error);
-      setStatus("error");
-    }
-  };
-
-  return (
-    <motion.div 
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
-        exit={{ opacity: 0 }}
-        className="bg-gray-50 min-h-screen"
-    >
-      <Head>
-        <title>문의하기 | 트립소다 카자흐스탄</title>
-      </Head>
-
-      {/* Hero Section */}
-      <div className="relative py-24 bg-gray-900 overflow-hidden">
-        <motion.div 
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.4 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            className="absolute inset-0 bg-[url('/images/hero_bg_1765783966744.png')] bg-cover bg-center"
-        />
-        <div className="relative max-w-7xl mx-auto px-4 text-center z-10">
-            <motion.h1 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight"
-            >
-                1:1 맞춤 상담
-            </motion.h1>
-            <motion.p 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg md:text-2xl text-gray-300 max-w-2xl mx-auto font-light"
-            >
-                가장 완벽한 중앙아시아 여행을 위해<br className="md:hidden" />현지 전문가가 상세히 답변해 드립니다.
-            </motion.p>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 relative z-20 -mt-10">
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-          
-          {/* Contact Info */}
-          <motion.div 
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="lg:col-span-2 space-y-10 lg:sticky lg:top-32 self-start"
-          >
-            <motion.div variants={fadeInUp}>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                무엇이든 물어보세요
-              </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                정해진 일정이 아니어도 괜찮습니다. <br />
-                원하시는 여행의 모습을 자유롭게 남겨주시면,<br />
-                현지 담당자가 최적의 일정을 제안해 드립니다.
-              </p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="space-y-8 bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
-                <div className="flex items-start space-x-5 group">
-                <div className="bg-tripsoda-main/10 p-4 rounded-2xl text-tripsoda-main group-hover:scale-110 transition-transform">
-                    <Phone size={24} />
-                </div>
-                <div className="space-y-1">
-                    <h3 className="font-bold text-gray-900 text-sm tracking-wider uppercase mb-1">WhatsApp / Kakao</h3>
-                    <p className="text-gray-700 text-lg font-medium">+7 778 986 1833</p>
-                    <p className="text-tripsoda-main text-sm font-bold">Kakao ID: tripsoda_kz</p>
-                </div>
-                </div>
-
-                <div className="flex items-start space-x-5 group">
-                <div className="bg-tripsoda-main/10 p-4 rounded-2xl text-tripsoda-main group-hover:scale-110 transition-transform">
-                    <Mail size={24} />
-                </div>
-                <div className="space-y-3">
-                    <h3 className="font-bold text-gray-900 text-sm tracking-wider uppercase mb-1">Email</h3>
-                    <div className="space-y-2">
-                        <div>
-                            <p className="text-xs text-gray-400 font-bold uppercase tracking-tight">CEO</p>
-                            <a href="mailto:jinki@tripsoda.com" className="text-gray-700 text-lg font-medium hover:text-tripsoda-main transition-colors">jinki@tripsoda.com</a>
-                        </div>
-                        <div>
-                            <p className="text-xs text-gray-400 font-bold uppercase tracking-tight">Head Manager (Alua)</p>
-                            <a href="mailto:alua@tripsoda.com" className="text-gray-700 text-lg font-medium hover:text-tripsoda-main transition-colors">alua@tripsoda.com</a>
-                        </div>
-                        <div>
-                            <p className="text-xs text-gray-400 font-bold uppercase tracking-tight">Manager (Zhibek)</p>
-                            <a href="mailto:zhibek@tripsoda.com" className="text-gray-700 text-lg font-medium hover:text-tripsoda-main transition-colors">zhibek@tripsoda.com</a>
                         </div>
                     </div>
-                </div>
-                </div>
+                </section>
 
-                <div className="flex items-start space-x-5 group">
-                <div className="bg-tripsoda-main/10 p-4 rounded-2xl text-tripsoda-main group-hover:scale-110 transition-transform">
-                    <MapPin size={24} />
-                </div>
-                <div>
-                    <h3 className="font-bold text-gray-900 text-sm tracking-wider uppercase mb-1">Location</h3>
-                    <p className="text-gray-700 text-lg font-medium leading-snug">
-                    알마티 나자르바예프 대로 65<br/>비즈니스 센터 건물 4층 401/5호
-                    </p>
-                </div>
-                </div>
-            </motion.div>
-          </motion.div>
+                {/* Company Details Section */}
+                <section className="py-24 bg-gray-50">
+                    <div className="max-w-7xl mx-auto px-6">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                            <div className="space-y-8">
+                                <h2 className="text-3xl font-bold text-gray-900">현지 법인 정보</h2>
+                                
+                                <div className="space-y-6">
+                                    <div className="flex items-start gap-5">
+                                        <div className="p-3 bg-white rounded-xl shadow-sm border border-gray-100 text-tripsoda-main">
+                                            <MapPin size={24} />
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Office Location</p>
+                                            <p className="text-lg text-gray-700 font-medium leading-relaxed">
+                                                Abay Ave 52, Almaty 050000,<br/>
+                                                Kazakhstan (Baizak Business Center)
+                                            </p>
+                                        </div>
+                                    </div>
 
-          {/* Contact Form */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="lg:col-span-3 bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-gray-100 relative overflow-hidden"
-          >
-            {status === "success" && (
-              <div className="absolute inset-0 z-20 bg-white/95 backdrop-blur-sm flex flex-col items-center justify-center animate-fade-in text-center p-8">
-                <motion.div 
-                    initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", bounce: 0.5 }}
-                    className="w-24 h-24 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-8 shadow-inner"
-                >
-                  <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </motion.div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                  성공적으로 접수되었습니다.
-                </h3>
-                <p className="text-gray-600 text-lg mb-10">
-                  담당자가 내용을 확인 후, 남겨주신 연락처로<br/>빠르게 회신 드리겠습니다. 감사합니다.
-                </p>
-                <button
-                  onClick={() => setStatus("idle")}
-                  className="bg-gray-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-black transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform"
-                >
-                  새로운 문의 남기기
-                </button>
-              </div>
-            )}
+                                    <div className="flex items-start gap-5">
+                                        <div className="p-3 bg-white rounded-xl shadow-sm border border-gray-100 text-tripsoda-main">
+                                            <Phone size={24} />
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Local Number</p>
+                                            <p className="text-lg text-gray-700 font-medium">+7 (707) 316-7190</p>
+                                        </div>
+                                    </div>
+                                </div>
 
-            {status === "error" && (
-              <div className="mb-8 p-6 bg-red-50 border border-red-200 rounded-2xl text-red-600 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span className="font-medium">
-                  전송에 실패했습니다. 일시적인 오류일 수 있으니 다시 시도해주시거나, 이메일로 직접 문의해주세요.
-                </span>
-                <button onClick={() => setStatus("idle")} className="bg-red-100 text-red-700 px-4 py-2 rounded-xl font-bold hover:bg-red-200 transition-colors whitespace-nowrap">
-                  다시 시도
-                </button>
-              </div>
-            )}
+                                <div className="p-8 bg-tripsoda-main/5 rounded-3xl border border-tripsoda-main/10">
+                                    <p className="text-tripsoda-main font-bold mb-2">운영 시간 (알마티 기준)</p>
+                                    <p className="text-gray-600">월~금: 09:00 - 18:00 | 토/일: 휴무 (투어 진행 시 상담 가능)</p>
+                                </div>
+                            </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
-              
-              {/* Basic Info */}
-              <div>
-                <h3 className="text-xl font-extrabold text-gray-900 mb-6 flex items-center">
-                    <span className="w-8 h-8 rounded-full bg-tripsoda-main text-white flex items-center justify-center text-sm mr-3 shadow-md">1</span>
-                    기본 정보
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-                  <FormField label="이름" name="name" required value={formData.name} onChange={handleChange} placeholder="홍길동" />
-                  <FormField label="연락처" name="phone" type="tel" required value={formData.phone} onChange={handleChange} placeholder="010-1234-5678" />
-                  <div className="md:col-span-2">
-                    <FormField label="이메일 (견적서 수령용)" name="email" type="email" required value={formData.email} onChange={handleChange} placeholder="example@email.com" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Trip Details */}
-              <div className="pt-8 border-t border-gray-100">
-                <h3 className="text-xl font-extrabold text-gray-900 mb-6 flex items-center">
-                    <span className="w-8 h-8 rounded-full bg-tripsoda-main text-white flex items-center justify-center text-sm mr-3 shadow-md">2</span>
-                    여행 계획
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-                  <FormField label="예상 여행 시작일" name="date" type="date" value={formData.date} onChange={handleChange} />
-                  <FormField label="여행 기간" name="duration" value={formData.duration} onChange={handleChange} placeholder="예: 4박 6일" />
-                  <FormField label="인원 수" name="pax" value={formData.pax} onChange={handleChange} placeholder="성인 2명, 아동 1명" />
-                  <FormField 
-                    label="선호 숙소 형태" 
-                    name="accommodation" 
-                    type="select" 
-                    value={formData.accommodation} 
-                    onChange={handleChange} 
-                    options={[
-                        { value: "hotel", label: "호텔 (3~4성급)" },
-                        { value: "luxury", label: "고급 호텔 (4~5성급)" },
-                        { value: "yurt", label: "유르트 (전통 체험)" },
-                        { value: "guesthouse", label: "게스트하우스 (가성비)" },
-                        { value: "camping", label: "캠핑/글램핑" },
-                        { value: "mix", label: "상담 후 결정 (믹스)" }
-                    ]}
-                  />
-                  <div className="md:col-span-2">
-                    <FormField label="희망 방문지 / 액티비티" name="destinations" value={formData.destinations} onChange={handleChange} placeholder="예: 차른캐년, 승마 체험, 스키 등" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Additional Notes */}
-              <div className="pt-8 border-t border-gray-100">
-                <h3 className="text-xl font-extrabold text-gray-900 mb-6 flex items-center">
-                    <span className="w-8 h-8 rounded-full bg-tripsoda-main text-white flex items-center justify-center text-sm mr-3 shadow-md">3</span>
-                    기타 문의사항
-                </h3>
-                <FormField 
-                    label="특별한 요청사항" 
-                    name="message" 
-                    type="textarea" 
-                    value={formData.message} 
-                    onChange={handleChange} 
-                    placeholder="특별한 요청사항이나 궁금한 점이 있으시면 자유롭게 적어주세요. (알러지, 특별한 목적 등)" 
-                />
-              </div>
-
-              <div className="pt-6">
-                <button
-                    type="submit"
-                    disabled={status === "submitting"}
-                    className="w-full bg-tripsoda-main text-white font-bold text-lg py-5 rounded-2xl hover:bg-tripsoda-dark transition-all transform hover:-translate-y-1 shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex justify-center items-center"
-                >
-                    {status === "submitting" ? (
-                        <>
-                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                            전송 중...
-                        </>
-                    ) : "견적 요청 완료하기"}
-                </button>
-                <p className="text-center text-sm text-gray-500 mt-4">
-                    제출 시 트립소다의 개인정보 처리방침에 동의하는 것으로 간주됩니다.
-                </p>
-              </div>
-            </form>
-          </motion.div>
-        </div>
-      </div>
-    </motion.div>
-  );
+                            <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[400px]">
+                                {/* Using a placeholder map image or just a nice local photo */}
+                                <img 
+                                    src="/images/tour_charyn_1765783988719.png" 
+                                    alt="Office" 
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-tripsoda-main/10 mix-blend-multiply"></div>
+                                <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/90 backdrop-blur-md rounded-2xl border border-white/20">
+                                    <p className="font-bold text-gray-900 mb-1 italic">"우리는 당신의 안전한 여행을 위해 알마티 현지에서 항상 대기하고 있습니다."</p>
+                                    <p className="text-sm text-gray-500">- Tripsoda Almaty Team</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </>
+    )
 }
