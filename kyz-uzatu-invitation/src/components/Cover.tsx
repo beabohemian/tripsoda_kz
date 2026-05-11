@@ -79,9 +79,15 @@ const Cover = () => {
       }}>
         <motion.p 
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 2, delay: 0.5 }}
-          style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', letterSpacing: '8px', color: 'var(--primary-light)', textTransform: 'uppercase', marginBottom: '1rem' }}
+          style={{ 
+            fontFamily: 'var(--font-script)', 
+            fontSize: '2.2rem', 
+            color: '#f3cfbe', 
+            marginBottom: '0.5rem',
+            textShadow: '0 2px 15px rgba(0,0,0,0.5)'
+          }}
         >
-          Қыз ұзату
+          Anar Qyz Uzatu
         </motion.p>
         
         <motion.h1 

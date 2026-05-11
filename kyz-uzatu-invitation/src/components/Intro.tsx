@@ -89,11 +89,17 @@ const Intro = ({ onComplete }: { onComplete: () => void }) => {
       </motion.h1>
       <motion.p
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.6 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 2, delay: 2.5 }}
-        style={{ color: 'var(--primary-light)', fontSize: '0.8rem', letterSpacing: '6px', textTransform: 'uppercase', marginTop: '1.5rem', fontWeight: 300 }}
+        style={{ 
+          color: '#f3cfbe', // Rose Gold / Peach
+          fontSize: '1.8rem', 
+          fontFamily: 'var(--font-script)', 
+          marginTop: '1rem',
+          textShadow: '0 2px 10px rgba(0,0,0,0.5)'
+        }}
       >
-        Қыз ұзату
+        Anar Qyz Uzatu
       </motion.p>
     </motion.div>
   );
