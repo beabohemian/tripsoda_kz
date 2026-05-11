@@ -18,36 +18,36 @@ const Greeting = () => {
           </svg>
         </div>
         
-        <h2 style={{ fontSize: '1rem', letterSpacing: '8px', color: 'var(--primary)', marginBottom: '4rem', textTransform: 'uppercase', fontWeight: 300 }}>
+        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', letterSpacing: '8px', color: 'var(--primary)', marginBottom: '4rem', textTransform: 'uppercase', fontWeight: 300 }}>
           Шақыру
         </h2>
 
-        <div style={{ lineHeight: '2.4', fontSize: '1.05rem', color: 'var(--text-main)', fontWeight: 300 }}>
+        <div style={{ fontFamily: 'var(--font-heading)', lineHeight: '2.2', fontSize: '1.2rem', color: 'var(--text-main)', fontWeight: 300 }}>
           <p>Құрметті ағайын-туыс,</p>
           <p>бауырлар, құда-жекжат,</p>
           <p>нағашы-жиен, бөлелер,</p>
           <p>құрбы-құрдас, дос жарандар,</p>
           <p>ұжымдастар, көршілер!</p>
           
-          <div style={{ margin: '4rem 0' }}>
-            <p style={{ fontFamily: 'var(--font-heading)', fontStyle: 'italic', color: 'var(--primary-light)', fontSize: '1.2rem', marginBottom: '1rem' }}>
+          <div style={{ margin: '4.5rem 0' }}>
+            <p style={{ fontStyle: 'italic', color: 'var(--primary-light)', fontSize: '1.3rem', marginBottom: '1.5rem' }}>
               Сіз(дер)ді аяулы қызымыз
             </p>
             
-            <h3 style={{ fontSize: '2.8rem', color: '#ffffff', margin: '2rem 0', fontFamily: 'var(--font-heading)', letterSpacing: '4px', fontWeight: 300 }}>
+            <h3 style={{ fontSize: '3.2rem', color: '#ffffff', margin: '2.5rem 0', letterSpacing: '6px', fontWeight: 300 }}>
               Анардың
             </h3>
 
-            <p>ұзату тойына арналған</p>
-            <p>ақ дастарханымыздың қадірлі</p>
-            <p>қонағы болуға шақырамыз!</p>
+            <p style={{ fontSize: '1.1rem', letterSpacing: '2px' }}>ұзату тойына арналған</p>
+            <p style={{ fontSize: '1.1rem', letterSpacing: '2px' }}>ақ дастарханымыздың қадірлі</p>
+            <p style={{ fontSize: '1.1rem', letterSpacing: '2px' }}>қонағы болуға шақырамыз!</p>
           </div>
 
-          <div style={{ marginTop: '5rem', paddingTop: '3rem', borderTop: '1px solid rgba(212, 175, 55, 0.2)' }}>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '1rem' }}>
+          <div style={{ marginTop: '6rem', paddingTop: '3rem', borderTop: '1px solid rgba(212, 175, 55, 0.15)' }}>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '5px', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
               Той иесі
             </p>
-            <p style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', color: 'var(--primary-light)', fontWeight: 300, letterSpacing: '2px' }}>
+            <p style={{ fontSize: '2.2rem', color: 'var(--primary-light)', fontWeight: 300, letterSpacing: '3px' }}>
               Шолпан
             </p>
           </div>

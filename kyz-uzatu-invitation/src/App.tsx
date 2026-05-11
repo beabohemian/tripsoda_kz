@@ -12,6 +12,7 @@ import Outro from './components/Outro';
 import FloatingOrnaments from './components/FloatingOrnaments';
 import AdminDashboard from './components/AdminDashboard';
 import MusicPlayer from './components/MusicPlayer';
+import Countdown from './components/Countdown';
 
 import './index.css';
 
@@ -44,6 +45,7 @@ function App() {
           >
             <Cover />
             <Greeting />
+            <Countdown />
             <ParallaxBreak />
             <Gallery />
             <Location />

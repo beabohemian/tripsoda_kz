@@ -97,27 +97,12 @@ const Cover = () => {
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2, delay: 1.5 }}
         style={{ zIndex: 10, width: '100%', textAlign: 'center', paddingBottom: '5rem' }}
       >
-        <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', color: 'var(--primary)', letterSpacing: '6px', textTransform: 'uppercase', marginBottom: '2rem' }}>
+        <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', color: 'var(--primary)', letterSpacing: '6px', textTransform: 'uppercase', marginBottom: '1rem' }}>
           15 Тамыз 2026
         </p>
-
-        <div style={{ 
-          display: 'flex', 
-          gap: '2.5rem', 
-          justifyContent: 'center',
-          color: 'var(--text-main)'
-        }}>
-          {Object.entries(timeLeft).map(([unit, value]) => (
-            <div key={unit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <span style={{ fontSize: '1.8rem', fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-                {value.toString().padStart(2, '0')}
-              </span>
-              <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
-                {unit === 'days' ? 'күн' : unit === 'hours' ? 'сағ' : unit === 'minutes' ? 'мин' : 'сек'}
-              </span>
-            </div>
-          ))}
-        </div>
+        <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', letterSpacing: '2px', textTransform: 'uppercase' }}>
+          Сағат: 17:00
+        </p>
       </motion.div>
 
     </section>

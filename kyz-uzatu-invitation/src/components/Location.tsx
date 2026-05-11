@@ -4,9 +4,6 @@ import { motion } from 'framer-motion';
 const Location = () => {
   return (
     <section className="luxury-section" style={{ overflow: 'hidden' }}>
-      
-
-      
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -23,16 +20,15 @@ const Location = () => {
           Мекен-жайы
         </p>
 
-        {/* Venue Name Placeholder added here */}
-        <h3 style={{ fontSize: '2rem', color: '#ffffff', marginBottom: '1.5rem', fontFamily: 'var(--font-heading)', fontWeight: 300, letterSpacing: '2px' }}>
-          [Мейрамхана аты]
+        <h3 style={{ fontSize: '2.5rem', color: '#ffffff', marginBottom: '2rem', fontFamily: 'var(--font-heading)', fontWeight: 300, letterSpacing: '3px' }}>
+          Алтын
         </h3>
 
-        <p style={{ fontSize: '1.2rem', color: 'var(--text-main)', marginBottom: '1.5rem', fontWeight: 300 }}>
-          Ашимова 241
+        <p style={{ fontSize: '1.2rem', color: 'var(--text-main)', marginBottom: '1.5rem', fontWeight: 300, fontFamily: 'var(--font-heading)', letterSpacing: '1px' }}>
+          Алматы қаласы, Ашимова 241
         </p>
 
-        <p style={{ fontSize: '1rem', color: 'var(--primary-light)', marginBottom: '4rem', fontWeight: 300, letterSpacing: '2px' }}>
+        <p style={{ fontSize: '1.1rem', color: 'var(--primary-light)', marginBottom: '4rem', fontWeight: 300, letterSpacing: '3px' }}>
           Сағат: 17:00
         </p>
 
