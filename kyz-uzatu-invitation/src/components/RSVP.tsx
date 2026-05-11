@@ -15,8 +15,8 @@ const RSVP = () => {
       timestamp: new Date().toLocaleString()
     };
 
-    // 데이터 전송 URL (Google Sheets Apps Script 주소 등을 넣으시면 됩니다)
-    const DB_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+    // 데이터 전송 URL (Google Sheets Apps Script 주소)
+    const DB_URL = "https://script.google.com/macros/s/AKfycbx_qi2UKO9Ernpaw1gtSAMoC0-pFnSXsjqI2u994-5-3g-ct6xsp1vRgehLNM98V3vNDw/exec";
 
     try {
       await fetch(DB_URL, {

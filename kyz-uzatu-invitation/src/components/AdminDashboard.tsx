@@ -13,14 +13,20 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const DB_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+      const DB_URL = "https://script.google.com/macros/s/AKfycbx_qi2UKO9Ernpaw1gtSAMoC0-pFnSXsjqI2u994-5-3g-ct6xsp1vRgehLNM98V3vNDw/exec";
       try {
         const response = await fetch(DB_URL);
         const data = await response.json();
-        if (data) {
-          // Firebase는 객체 형태로 데이터를 주므로 배열로 변환
-          const formattedData = Object.values(data) as RSVPRecord[];
-          // 최신순 정렬
+        if (data && Array.isArray(data)) {
+          // 구글 시트는 [[날짜, 이름, 참석여부], ...] 형태이므로 변환
+          const formattedData = data
+            .map((row: any) => ({
+              timestamp: new Date(row[0]).toLocaleString(),
+              name: row[1],
+              attendance: row[2] as 'yes' | 'no'
+            }))
+            .filter(r => r.name && r.name !== "이름"); // 헤더 및 빈 줄 제외
+          
           setRecords(formattedData.reverse());
         }
       } catch (error) {
