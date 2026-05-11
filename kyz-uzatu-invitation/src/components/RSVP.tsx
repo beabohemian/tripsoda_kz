@@ -15,8 +15,8 @@ const RSVP = () => {
       timestamp: new Date().toLocaleString()
     };
 
-    // Firebase REST API URL (임시 테스트용 주소입니다. 추후 본인의 주소로 교체 가능)
-    const DB_URL = "https://kyz-uzatu-invitation-default-rtdb.firebaseio.com/rsvp.json";
+    // 데이터 전송 URL (Google Sheets Apps Script 주소 등을 넣으시면 됩니다)
+    const DB_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
 
     try {
       await fetch(DB_URL, {

@@ -11,6 +11,7 @@ import RSVP from './components/RSVP';
 import Outro from './components/Outro';
 import FloatingOrnaments from './components/FloatingOrnaments';
 import AdminDashboard from './components/AdminDashboard';
+import MusicPlayer from './components/MusicPlayer';
 
 import './index.css';
 
@@ -31,6 +32,7 @@ function App() {
 
       {/* Global Golden Petals Background Effect */}
       {introDone && <GoldPetals />}
+      {introDone && <MusicPlayer />}
 
       {introDone && (
         <main style={{ position: 'relative', zIndex: 10 }}>

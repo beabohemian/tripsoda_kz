@@ -13,7 +13,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const DB_URL = "https://kyz-uzatu-invitation-default-rtdb.firebaseio.com/rsvp.json";
+      const DB_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
       try {
         const response = await fetch(DB_URL);
         const data = await response.json();
