@@ -22,7 +22,13 @@ const Greeting = () => {
           Шақыру
         </h2>
 
-        <div style={{ fontFamily: 'var(--font-heading)', lineHeight: '2.2', fontSize: '1.2rem', color: 'var(--text-main)', fontWeight: 300 }}>
+        <div style={{ 
+          fontFamily: "'Cormorant Garamond', serif", 
+          lineHeight: '2.2', 
+          fontSize: '1.3rem', 
+          color: 'var(--text-main)', 
+          fontWeight: 400 
+        }}>
           <p>Құрметті ағайын-туыс,</p>
           <p>бауырлар, құда-жекжат,</p>
           <p>нағашы-жиен, бөлелер,</p>
@@ -30,24 +36,24 @@ const Greeting = () => {
           <p>ұжымдастар, көршілер!</p>
           
           <div style={{ margin: '4.5rem 0' }}>
-            <p style={{ fontStyle: 'italic', color: 'var(--primary-light)', fontSize: '1.3rem', marginBottom: '1.5rem' }}>
+            <p style={{ fontStyle: 'italic', color: 'var(--primary-light)', fontSize: '1.4rem', marginBottom: '1.5rem' }}>
               Сіз(дер)ді аяулы қызымыз
             </p>
             
-            <h3 style={{ fontSize: '3.2rem', color: '#ffffff', margin: '2.5rem 0', letterSpacing: '6px', fontWeight: 300 }}>
+            <h3 style={{ fontSize: '3.5rem', color: '#ffffff', margin: '2.5rem 0', letterSpacing: '6px', fontWeight: 300 }}>
               Анардың
             </h3>
 
-            <p style={{ fontSize: '1.1rem', letterSpacing: '2px' }}>ұзату тойына арналған</p>
-            <p style={{ fontSize: '1.1rem', letterSpacing: '2px' }}>ақ дастарханымыздың қадірлі</p>
-            <p style={{ fontSize: '1.1rem', letterSpacing: '2px' }}>қонағы болуға шақырамыз!</p>
+            <p style={{ fontSize: '1.2rem', letterSpacing: '2px' }}>ұзату тойына арналған</p>
+            <p style={{ fontSize: '1.2rem', letterSpacing: '2px' }}>ақ дастарханымыздың қадірлі</p>
+            <p style={{ fontSize: '1.2rem', letterSpacing: '2px' }}>қонағы болуға шақырамыз!</p>
           </div>
 
           <div style={{ marginTop: '6rem', paddingTop: '3rem', borderTop: '1px solid rgba(212, 175, 55, 0.15)' }}>
             <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '5px', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
               Той иесі
             </p>
-            <p style={{ fontSize: '2.2rem', color: 'var(--primary-light)', fontWeight: 300, letterSpacing: '3px' }}>
+            <p style={{ fontSize: '2.5rem', color: 'var(--primary-light)', fontWeight: 300, letterSpacing: '3px' }}>
               Шолпан
             </p>
           </div>

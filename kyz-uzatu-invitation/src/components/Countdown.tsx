@@ -31,7 +31,7 @@ const Countdown = () => {
   }, []);
 
   return (
-    <section className="luxury-section" style={{ padding: '4rem 0 8rem' }}>
+    <section className="luxury-section" style={{ padding: '4rem 0 2rem' }}>
       <motion.div 
         initial={{ opacity: 0 }} 
         whileInView={{ opacity: 1 }} 

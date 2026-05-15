@@ -5,31 +5,36 @@ const RSVP = () => {
   const [name, setName] = useState('');
   const [attendance, setAttendance] = useState('yes');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showNameError, setShowNameError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    const newRecord = {
-      name,
-      attendance,
-      timestamp: new Date().toLocaleString()
-    };
+    setShowNameError(false);
 
-    // 데이터 전송 URL (Google Sheets Apps Script 주소)
+    if (!name.trim()) {
+      setShowNameError(true);
+      return;
+    }
+
+    // THE MOST RELIABLE GAS METHOD: GET parameter beacon
     const DB_URL = "https://script.google.com/macros/s/AKfycbx_qi2UKO9Ernpaw1gtSAMoC0-pFnSXsjqI2u994-5-3g-ct6xsp1vRgehLNM98V3vNDw/exec";
+    const params = new URLSearchParams();
+    params.append('name', name);
+    params.append('attendance', attendance);
+    params.append('timestamp', new Date().toLocaleString());
 
     try {
-      await fetch(DB_URL, {
-        method: 'POST',
-        body: JSON.stringify(newRecord),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+      // Send and forget (beacon)
+      fetch(`${DB_URL}?${params.toString()}`, {
+        method: 'GET',
+        mode: 'no-cors',
+        cache: 'no-cache'
       });
+      
       setIsSubmitted(true);
     } catch (error) {
-      console.error('Error saving RSVP:', error);
-      alert('서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      console.error('RSVP Error:', error);
+      setIsSubmitted(true);
     }
   };
 
@@ -64,7 +69,7 @@ const RSVP = () => {
         }}
       >
         <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', color: 'var(--primary)', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '1rem' }}>
-          Сауалнама
+          Сауална마
         </p>
 
         <p style={{ color: 'var(--text-main)', marginBottom: '3rem', textAlign: 'center', fontSize: '0.9rem', lineHeight: '1.6', fontWeight: 300 }}>
@@ -81,31 +86,37 @@ const RSVP = () => {
             <p style={{ color: 'var(--text-main)', fontWeight: 300 }}>Жауабыңыз қабылданды.</p>
           </motion.div>
         ) : (
-          <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+          <form onSubmit={handleSubmit} noValidate style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <label style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px' }}>
                 Аты-жөніңізді жазыңыз
               </label>
               <input 
                 type="text" 
-                required
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (e.target.value.trim()) setShowNameError(false);
+                }}
                 style={{
                   width: '100%',
                   padding: '1rem 0',
                   background: 'transparent',
                   border: 'none',
-                  borderBottom: '1px solid rgba(212, 175, 55, 0.6)',
+                  borderBottom: `1px solid ${showNameError ? '#ff4d4d' : 'rgba(212, 175, 55, 0.6)'}`,
                   color: 'white',
                   fontSize: '1rem',
                   outline: 'none',
                   fontFamily: 'var(--font-body)',
-                  fontWeight: 300,
-                  transition: 'border-color 0.3s'
+                  fontWeight: 300
                 }}
                 placeholder="Мысалы: Асан Үсенов"
               />
+              {showNameError && (
+                <span style={{ color: '#ff4d4d', fontSize: '0.75rem', marginTop: '0.5rem' }}>
+                  Атыңызды енгізіңіз
+                </span>
+              )}
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>

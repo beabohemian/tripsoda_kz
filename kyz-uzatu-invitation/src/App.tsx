@@ -31,29 +31,26 @@ function App() {
         {!introDone && <Intro onComplete={() => setIntroDone(true)} />}
       </AnimatePresence>
 
-      {/* Global Golden Petals Background Effect */}
-      {introDone && <GoldPetals />}
-      {introDone && <MusicPlayer />}
-
+      <MusicPlayer />
+      <GoldPetals />
+      
       {introDone && (
         <main style={{ position: 'relative', zIndex: 10 }}>
           <FloatingOrnaments />
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1.5 }}
           >
             <Cover />
             <Greeting />
             <Countdown />
+            <Location />
             <ParallaxBreak />
             <Gallery />
-            <Location />
+            <RSVP />
+            <Outro />
           </motion.div>
-          
-          <RSVP />
-          
-          <Outro />
           
           <footer style={{ padding: '4rem 2rem', textAlign: 'center', backgroundColor: 'var(--bg-darker)' }}>
             <div className="ornament" style={{ margin: '0 auto 2rem', width: '40px' }}>

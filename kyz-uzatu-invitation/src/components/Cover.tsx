@@ -64,7 +64,7 @@ const Cover = () => {
         <div style={{
           position: 'absolute',
           bottom: 0, left: 0, right: 0, height: '50%',
-          background: 'linear-gradient(to top, var(--bg-darker) 10%, transparent)',
+          background: 'linear-gradient(to top, var(--bg-darker) 30%, transparent)',
           pointerEvents: 'none'
         }} />
       </motion.div>
@@ -77,24 +77,18 @@ const Cover = () => {
         paddingBottom: '3rem',
         position: 'relative'
       }}>
-        <motion.p 
-          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 2, delay: 0.5 }}
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 2, delay: 0.5 }}
+          className="gold-gradient-text"
           style={{ 
             fontFamily: 'var(--font-script)', 
-            fontSize: '2.2rem', 
-            color: '#f3cfbe', 
-            marginBottom: '0.5rem',
-            textShadow: '0 2px 15px rgba(0,0,0,0.5)'
+            fontSize: '5.5rem', 
+            lineHeight: 1.1,
+            paddingBottom: '0.5rem',
+            textShadow: '0 8px 35px rgba(0, 0, 0, 0.9), 0 0 20px rgba(212, 175, 55, 0.4)'
           }}
         >
-          Anar Qyz Uzatu
-        </motion.p>
-        
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 2, delay: 1 }}
-          style={{ fontSize: '4.5rem', lineHeight: 1, letterSpacing: '15px', color: '#ffffff', fontWeight: 300, textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}
-        >
-          Анар
+          Anar<br />Qyz Uzatu
         </motion.h1>
       </div>
 

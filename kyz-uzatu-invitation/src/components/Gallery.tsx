@@ -21,9 +21,7 @@ const Gallery = () => {
             <path d="M50 0 C55 20, 80 45, 100 50 C80 55, 55 80, 50 100 C45 80, 20 55, 0 50 C20 45, 45 20, 50 0 Z" fill="var(--primary)" />
           </svg>
         </div>
-        <h2 style={{ fontSize: '1.2rem', letterSpacing: '6px', color: 'var(--primary)', marginBottom: '4rem', textTransform: 'uppercase', fontWeight: 300 }}>
-          Галерея
-        </h2>
+        {/* Removed Russian Gallery title as requested */}
 
         {/* 2-Column Staggered Grid (Masonry feel) */}
         <div style={{ 

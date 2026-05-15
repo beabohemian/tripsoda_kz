@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Location = () => {
   return (
-    <section className="luxury-section" style={{ overflow: 'hidden' }}>
+    <section className="luxury-section" style={{ padding: '2rem 1.5rem 8rem', overflow: 'hidden' }}>
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
