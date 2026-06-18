@@ -383,46 +383,49 @@ export default function TourDetail() {
                         </section>
                     )}
 
-                    {/* Photo & Video Options Table */}
-                    <section className="mt-12 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
-                        <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                            <span className="w-8 h-8 rounded-full bg-tripsoda-main/10 flex items-center justify-center text-tripsoda-main">📸</span>
-                            추가 옵션: 사진 및 영상 서비스
-                        </h2>
-                        <p className="text-gray-600 mb-6">투어 예약 시 추가할 수 있는 전문 촬영 옵션 서비스입니다.</p>
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                                <thead>
-                                    <tr className="bg-gray-50 border-y border-gray-200">
-                                        <th className="py-3 px-4 font-bold text-gray-700 text-sm whitespace-nowrap">서비스 구분</th>
-                                        <th className="py-3 px-4 font-bold text-gray-700 text-center text-sm whitespace-nowrap">개인 (1인)</th>
-                                        <th className="py-3 px-4 font-bold text-gray-700 text-center text-sm whitespace-nowrap">그룹 (2인 기준)</th>
-                                        <th className="py-3 px-4 font-bold text-gray-700 text-center text-sm whitespace-nowrap">추가 인원 (1인당)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr className="border-b border-gray-100">
-                                        <td className="py-3 px-4 font-semibold text-gray-800 text-sm whitespace-nowrap">사진 + 영상 패키지</td>
-                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">137,500 KZT</td>
-                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">137,500 KZT</td>
-                                        <td className="py-3 px-4 text-center text-gray-500 text-sm whitespace-nowrap">+ 18,750 KZT</td>
-                                    </tr>
-                                    <tr className="border-b border-gray-100 bg-gray-50/30">
-                                        <td className="py-3 px-4 font-semibold text-gray-800 text-sm whitespace-nowrap">사진 전용 서비스</td>
-                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">75,000 KZT</td>
-                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">75,000 KZT</td>
-                                        <td className="py-3 px-4 text-center text-gray-500 text-sm whitespace-nowrap">+ 18,750 KZT</td>
-                                    </tr>
-                                    <tr className="border-b border-gray-200">
-                                        <td className="py-3 px-4 font-semibold text-gray-800 text-sm whitespace-nowrap">영상 전용 서비스</td>
-                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">87,500 KZT</td>
-                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">87,500 KZT</td>
-                                        <td className="py-3 px-4 text-center text-gray-500 text-sm whitespace-nowrap">+ 18,750 KZT</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
+                    {/* Photo & Video Service Table (Only for Snap Tour) */}
+                    {tour.id === 7 && (
+                        <section className="mt-12 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
+                            <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                                <span className="w-8 h-8 rounded-full bg-tripsoda-main/10 flex items-center justify-center text-tripsoda-main">📸</span>
+                                사진 및 영상 서비스 안내
+                            </h2>
+                            <p className="text-gray-600 mb-6">전문 포토그래퍼 및 비디오그래퍼가 진행하는 촬영 서비스입니다.</p>
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr className="bg-gray-50 border-y border-gray-200">
+                                            <th className="py-3 px-4 font-bold text-gray-700 text-sm whitespace-nowrap">서비스 구분</th>
+                                            <th className="py-3 px-4 font-bold text-gray-700 text-center text-sm whitespace-nowrap">개인 (1인)</th>
+                                            <th className="py-3 px-4 font-bold text-gray-700 text-center text-sm whitespace-nowrap">그룹 (2인 기준)</th>
+                                            <th className="py-3 px-4 font-bold text-gray-700 text-center text-sm whitespace-nowrap">추가 인원 (1인당)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr className="border-b border-gray-100">
+                                            <td className="py-3 px-4 font-semibold text-gray-800 text-sm whitespace-nowrap">사진 + 영상 패키지</td>
+                                            <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">137,500 KZT~</td>
+                                            <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">137,500 KZT~</td>
+                                            <td className="py-3 px-4 text-center text-gray-500 text-sm whitespace-nowrap">+ 18,750 KZT</td>
+                                        </tr>
+                                        <tr className="border-b border-gray-100 bg-gray-50/30">
+                                            <td className="py-3 px-4 font-semibold text-gray-800 text-sm whitespace-nowrap">사진 전용 서비스</td>
+                                            <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">75,000 KZT~</td>
+                                            <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">75,000 KZT~</td>
+                                            <td className="py-3 px-4 text-center text-gray-500 text-sm whitespace-nowrap">+ 18,750 KZT</td>
+                                        </tr>
+                                        <tr className="border-b border-gray-200">
+                                            <td className="py-3 px-4 font-semibold text-gray-800 text-sm whitespace-nowrap">영상 전용 서비스</td>
+                                            <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">87,500 KZT~</td>
+                                            <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">87,500 KZT~</td>
+                                            <td className="py-3 px-4 text-center text-gray-500 text-sm whitespace-nowrap">+ 18,750 KZT</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p className="text-sm text-gray-500 mt-4">* 표기된 가격은 최소 시작가(~부터)이며, 시즌에 따라 변동될 수 있습니다.</p>
+                        </section>
+                    )}
                 </div>
 
                 {/* Sticky Sidebar Widget */}
