@@ -27,6 +27,7 @@ export default function Tours() {
         { id: 5, title: '노마드 에스닉 마을 투어', duration: '1일', image: '/images/tour_ethno_village.png' },
         { id: 6, title: '알마티 시티 투어', duration: '반나절', image: '/images/tour_city_1765784027581.png' },
         { id: 7, title: '카자흐 에스닉 스타일 스냅 촬영', duration: '약 1시간', image: '/images/tour_kazakh_snap.png' },
+        { id: 8, title: '투르겐 폭포 + 이식 호수 투어', duration: '1일', image: '/images/tour_assy.png' },
     ]
 
     return (

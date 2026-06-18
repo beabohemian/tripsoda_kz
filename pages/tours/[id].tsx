@@ -25,7 +25,8 @@ const tours = [
             { time: '20:30', title: '투어 종료', desc: '안전하게 알마티 시내 원하시는 곳에 하차합니다.' }
         ],
         inclusions: ['투어 전용 차량 및 기사', '현지 가이드', '국립공원 입장료'],
-        exclusions: ['개인 식비 및 기타 경비']
+        exclusions: ['개인 식비 및 기타 경비'],
+        pricing: { total: [140000, 140000, 140000], perPerson: [70000, 50000, 40000] }
     },
     {
         id: 2,
@@ -41,8 +42,9 @@ const tours = [
             { time: '15:30', title: '콜사이 호수 (Kolsai Lake)', desc: '알마티의 진주로 불리는 콜사이 호수. 보트를 타거나 호반을 산책하며 힐링합니다.', image: '/images/tour_kolsai_1765784008248.png' },
             { time: '22:00', title: '알마티 도착', desc: '알찬 1일 3대 명소 정복을 마치고 알마티로 무사히 복귀합니다.' }
         ],
-        inclusions: ['투어 전용 차량', '현지 가이드', '국립공원 입장료', '카인디 4륜 전용 차량 이동비'],
-        exclusions: ['개인 식사비', '기타 개인 경비']
+        inclusions: ['교통비', '가이드 서비스', '국립공원 입장료', '카인디 호수 전용 차량 이동 비용'],
+        exclusions: ['점심 식사비 등 개인 지출'],
+        pricing: { total: [180000, 180000, 180000], perPerson: [90000, 60000, 50000] }
     },
     {
         id: 3,
@@ -55,23 +57,25 @@ const tours = [
             { time: '포인트 2', title: '악타우 산맥 (Aktau Mountains)', desc: '과거 바다였던 지형이 솟아오르며 만들어낸 다채로운 단층. 흡사 다른 행성에 온 것 같은 풍경입니다.', image: '/images/aktau_mountains.png' },
             { time: '포인트 3', title: '카투타우 산맥 (Katutau Mountains)', desc: '화산 활동으로 형성된 기괴하고 거대한 암석 지대 탐험.' }
         ],
-        inclusions: ['4WD 전용 차량(Subaru Forester 등)', '현지 가이드', '국립공원 입장료'],
-        exclusions: ['식사비', '기타 개인 경비']
+        inclusions: ['4WD 전용 차량(Subaru Forester 등)', '가이드 서비스'],
+        exclusions: ['점심 식사 및 숙박비 (2일 투어 전환 시 별도 문의)'],
+        pricing: { total: [200000, 200000, 200000], perPerson: [100000, 70000, 50000] }
     },
     {
         id: 4,
         title: '빅 알마티 호수 (BAO) 투어',
         duration: '반나절',
         image: '/images/tour_bao.png',
-        description: '해발 2,511m에 위치한 에메랄드빛 만년설 호수. 알마티 시내에서 가장 접근성이 좋아 부담 없이 다녀올 수 있는 반나절 코스입니다.',
+        description: '해발 2,511m에 위치한 에메랄드빛 만년설 호수. 알마티 시내에서 가장 접근성이 좋아 부담 없이 다녀올 수 있는 반나절 코스입니다. (특이사항: 해당 호수는 전략적 시설로 검문이 있을 수 있으며, 이로 인해 투어 불가 시 무료 취소 또는 날짜 변경이 가능함)',
         schedule: [
             { time: '06:00', title: '상쾌한 아침 출발', desc: '오전 시간을 100% 활용하기 위해 이른 아침 픽업을 진행합니다.' },
             { time: '07:00', title: '빅 알마티 호수 (BAO) 도착', desc: '아침 햇살에 빛나는 에메랄드 호수! 호숫가를 따라 산책하며 자유 시간을 즐깁니다.', image: '/images/tour_bao.png' },
             { time: '08:30', title: '아유사이 정차 및 커피 타임', desc: '내려오는 길, 분위기 좋은 산장에서 멋진 경관을 바라보며 따뜻한 커피 한 잔의 여유.', image: '/images/cosmo_station.png' },
             { time: '10:00', title: '호텔 복귀', desc: '알마티 시내로 복귀하여 남은 하루 일정을 여유롭게 진행하세요.' }
         ],
-        inclusions: ['호텔 픽업/샌딩', '전용 차량', '현지 가이드', '환경 부담금'],
-        exclusions: ['식사 및 음료비']
+        inclusions: ['호텔 픽업 및 샌딩', '전용 차량 서비스', '가이드 서비스', '아유사이 폭포 방문'],
+        exclusions: ['개인 식사', '환경 부담금(별도 지불)'],
+        pricing: { total: [120000, 120000, 120000], perPerson: [60000, 40000, 30000] }
     },
     {
         id: 5,
@@ -86,8 +90,9 @@ const tours = [
             { time: '체험 4', title: '현지식 점심 (플로브 등)', desc: '맛있게 조리된 카자흐스탄 전통 볶음밥 플로브 등 풍성한 현지식으로 든든한 점심 식사.', image: '/images/kazakh_lunch.png' },
             { time: '체험 5', title: '자유 승마 체험', desc: '초원 위에서 직접 말을 타보며 노마드가 된 듯한 기분을 만끽하세요.', image: '/images/horse_riding_activity.png' }
         ],
-        inclusions: ['전용 차량 이동', '모든 프로그램 체험비', '현지식 점심 식사'],
-        exclusions: ['개인 기타 경비']
+        inclusions: ['차량 이동', '전통 무술 시연', '독수리 쇼', '전통 승마 경기 체험', '유르트 체험', '점심 식사(플로브, 삼사, 바우르삭 등 포함)'],
+        exclusions: ['프로그램 외 개인 경비'],
+        pricing: { total: [82000, 104000, 126000], perPerson: [40000, 35000, 30000] }
     },
     {
         id: 6,
@@ -103,8 +108,9 @@ const tours = [
             { time: '16:00', title: '콕토베 케이블카', desc: '도심 속 전망대 콕토베(Kok Tobe)로 이동하여 아름다운 도심 풍경을 감상합니다.', image: '/images/kok_tobe.png' },
             { time: '17:30', title: '투어 종료', desc: '알마티의 주요 스팟을 모두 돌아보고 숙소로 복귀합니다.' }
         ],
-        inclusions: ['차량 서비스', '현지 가이드'],
-        exclusions: ['케이블카 티켓(심불락/콕토베)', '식사비', '기타 개인 경비']
+        inclusions: ['전문 가이드 서비스', '차량 이동 서비스'],
+        exclusions: ['콕토베 케이블카 티켓 (관광객과 가이드 모두 별도로 지불해야 함)', '식사 비용'],
+        pricing: { total: [80000, 80000, 80000], perPerson: [40000, 30000, 20000] }
     },
     {
         id: 7,
@@ -118,7 +124,25 @@ const tours = [
             { time: '마무리', title: '원본 및 보정본 수령 안내', desc: '촬영을 마치고 사진 보정 일정과 수령 방법을 안내받습니다.' }
         ],
         inclusions: ['사진/영상 패키지(옵션별 상이)', '전통 의상 대여 (옵션 확인)', '전문 포토그래퍼'],
-        exclusions: ['헤어/메이크업', '개인 이동 경비']
+        exclusions: ['헤어/메이크업', '개인 이동 경비'],
+        pricing: null
+    },
+    {
+        id: 8,
+        title: '투르겐 폭포 + 이식 호수 투어',
+        duration: '1일',
+        image: '/images/tour_assy.png',
+        description: '장엄한 투르겐 폭포와 아름다운 이식 호수를 하루만에 둘러보는 힐링 코스.',
+        schedule: [
+            { time: '09:00', title: '출발', desc: '알마티에서 출발하여 투르겐 계곡으로 이동합니다.' },
+            { time: '11:00', title: '투르겐 폭포', desc: '투르겐 폭포의 장엄한 절경 감상 및 산책.' },
+            { time: '13:00', title: '점심 식사 및 휴식', desc: '현지에서 맛있는 점심 식사 시간을 가집니다.' },
+            { time: '15:00', title: '이식 호수', desc: '아름다운 이식 호숫가에서 평화로운 힐링 시간을 보냅니다.' },
+            { time: '18:00', title: '투어 종료', desc: '알마티 시내로 무사히 복귀합니다.' }
+        ],
+        inclusions: ['투어 전용 차량 및 기사', '현지 가이드', '국립공원 입장료'],
+        exclusions: ['개인 식비 및 기타 경비'],
+        pricing: { total: [120000, 120000, 120000], perPerson: [60000, 40000, 30000] }
     }
 ]
 
@@ -320,6 +344,84 @@ export default function TourDetail() {
                                 ))}
                             </ul>
                         </motion.div>
+                    </section>
+
+                    {/* Pricing Section (if available) */}
+                    {tour.pricing && (
+                        <section className="mt-12 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                                <span className="w-8 h-8 rounded-full bg-tripsoda-main/10 flex items-center justify-center text-tripsoda-main">💰</span>
+                                투어 요금 안내 (차량 1대 대절 기준)
+                            </h2>
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr className="bg-gray-50 border-y border-gray-200">
+                                            <th className="py-4 px-6 font-bold text-gray-700 whitespace-nowrap">구분</th>
+                                            <th className="py-4 px-6 font-bold text-gray-700 text-center whitespace-nowrap">2인 투어</th>
+                                            <th className="py-4 px-6 font-bold text-gray-700 text-center whitespace-nowrap">3인 투어</th>
+                                            <th className="py-4 px-6 font-bold text-gray-700 text-center whitespace-nowrap">4인 투어</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr className="border-b border-gray-100">
+                                            <td className="py-4 px-6 font-semibold text-gray-800 whitespace-nowrap">전체 판매가</td>
+                                            <td className="py-4 px-6 text-center text-gray-600 whitespace-nowrap">{tour.pricing.total[0].toLocaleString()} KZT</td>
+                                            <td className="py-4 px-6 text-center text-gray-600 whitespace-nowrap">{tour.pricing.total[1].toLocaleString()} KZT</td>
+                                            <td className="py-4 px-6 text-center text-gray-600 whitespace-nowrap">{tour.pricing.total[2].toLocaleString()} KZT</td>
+                                        </tr>
+                                        <tr className="border-b border-gray-200 bg-gray-50/50">
+                                            <td className="py-4 px-6 font-semibold text-tripsoda-main whitespace-nowrap">1인당 가격</td>
+                                            <td className="py-4 px-6 text-center font-bold text-tripsoda-textMain whitespace-nowrap">{tour.pricing.perPerson[0].toLocaleString()} KZT</td>
+                                            <td className="py-4 px-6 text-center font-bold text-tripsoda-textMain whitespace-nowrap">{tour.pricing.perPerson[1].toLocaleString()} KZT</td>
+                                            <td className="py-4 px-6 text-center font-bold text-tripsoda-textMain whitespace-nowrap">{tour.pricing.perPerson[2].toLocaleString()} KZT</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p className="text-sm text-gray-500 mt-4">* 모든 가격은 카자흐스탄 텡게(KZT) 기준입니다.</p>
+                        </section>
+                    )}
+
+                    {/* Photo & Video Options Table */}
+                    <section className="mt-12 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
+                        <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                            <span className="w-8 h-8 rounded-full bg-tripsoda-main/10 flex items-center justify-center text-tripsoda-main">📸</span>
+                            추가 옵션: 사진 및 영상 서비스
+                        </h2>
+                        <p className="text-gray-600 mb-6">투어 예약 시 추가할 수 있는 전문 촬영 옵션 서비스입니다.</p>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="bg-gray-50 border-y border-gray-200">
+                                        <th className="py-3 px-4 font-bold text-gray-700 text-sm whitespace-nowrap">서비스 구분</th>
+                                        <th className="py-3 px-4 font-bold text-gray-700 text-center text-sm whitespace-nowrap">개인 (1인)</th>
+                                        <th className="py-3 px-4 font-bold text-gray-700 text-center text-sm whitespace-nowrap">그룹 (2인 기준)</th>
+                                        <th className="py-3 px-4 font-bold text-gray-700 text-center text-sm whitespace-nowrap">추가 인원 (1인당)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="border-b border-gray-100">
+                                        <td className="py-3 px-4 font-semibold text-gray-800 text-sm whitespace-nowrap">사진 + 영상 패키지</td>
+                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">137,500 KZT</td>
+                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">137,500 KZT</td>
+                                        <td className="py-3 px-4 text-center text-gray-500 text-sm whitespace-nowrap">+ 18,750 KZT</td>
+                                    </tr>
+                                    <tr className="border-b border-gray-100 bg-gray-50/30">
+                                        <td className="py-3 px-4 font-semibold text-gray-800 text-sm whitespace-nowrap">사진 전용 서비스</td>
+                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">75,000 KZT</td>
+                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">75,000 KZT</td>
+                                        <td className="py-3 px-4 text-center text-gray-500 text-sm whitespace-nowrap">+ 18,750 KZT</td>
+                                    </tr>
+                                    <tr className="border-b border-gray-200">
+                                        <td className="py-3 px-4 font-semibold text-gray-800 text-sm whitespace-nowrap">영상 전용 서비스</td>
+                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">87,500 KZT</td>
+                                        <td className="py-3 px-4 text-center text-gray-600 text-sm whitespace-nowrap">87,500 KZT</td>
+                                        <td className="py-3 px-4 text-center text-gray-500 text-sm whitespace-nowrap">+ 18,750 KZT</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </section>
                 </div>
 
