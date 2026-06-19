@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;700&display=swap');
+
+:root {
+  --primary: #b08e2f; /* Rich gold, slightly darkened for readable contrast on beige */
+  --primary-light: #d6b450; /* Lighter gold accent */
+  --primary-dark: #7c6218;
+  --bg-dark: #fcf9f2; /* Bright ivory */
+  --bg-darker: #f5f0e6; /* Bright warm paper beige */
+  --text-main: #2f2720; /* Deep charcoal-brown for readable and luxury text feel */
+  --text-muted: #5c5348; /* Darker warm gray-brown for muted details */
+  
+  --font-heading: 'Cormorant Garamond', 'Playfair Display', serif;
+  --font-body: 'Lora', serif;
+  --font-script: 'Pinyon Script', cursive;
+  --font-luxury: 'Cinzel', serif;
+
+  /* Standardized Font Sizes */
+  --size-h1: clamp(6rem, 25vw, 12rem);
+  --size-h2: 2.2rem;
+  --size-h3: 1.6rem;
+  --size-body: 1.15rem;
+  --size-small: 0.85rem;
+}
+
+@keyframes gold-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float-dust {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+}
+
+.gold-gradient-text {
+  background: linear-gradient(
+    90deg, 
+    #7c6218 0%, 
+    #cfaf72 25%, 
+    #fff6cd 50%, 
+    #cfaf72 75%, 
+    #7c6218 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gold-shimmer 3s linear infinite;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.8)) 
+          drop-shadow(0 4px 10px rgba(44, 37, 30, 0.15));
+  display: inline-block;
+  transform: perspective(1000px) rotateX(5deg);
+}
+
+.luxury-pattern-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='50,20 60,50 50,80 40,50' fill='none' stroke='%23b08e2f' stroke-width='1' stroke-opacity='0.15'/%3E%3Cpath d='M60 50 C 80 40, 90 20, 75 10 C 60 0, 45 20, 60 30' fill='none' stroke='%23b08e2f' stroke-width='1.5' stroke-opacity='0.15'/%3E%3Cpath d='M40 50 C 20 40, 10 20, 25 10 C 40 0, 55 20, 40 30' fill='none' stroke='%23b08e2f' stroke-width='1.5' stroke-opacity='0.15'/%3E%3Cpath d='M60 50 C 80 60, 90 80, 75 90 C 60 100, 45 80, 60 70' fill='none' stroke='%23b08e2f' stroke-width='1.5' stroke-opacity='0.15'/%3E%3Cpath d='M40 50 C 20 60, 10 80, 25 90 C 40 100, 55 80, 40 70' fill='none' stroke='%23b08e2f' stroke-width='1.5' stroke-opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+}
+
+.gold-foil-border {
+  border: 1px solid transparent;
+  border-image: linear-gradient(to right, #7c6218, #fff6cd, #7c6218) 1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  background-color: var(--bg-darker);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Watermark Pattern Background */
+.app-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  box-shadow: 0 0 60px rgba(44, 37, 30, 0.12);
+  background-color: var(--bg-darker);
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='50,20 60,50 50,80 40,50' fill='none' stroke='%23b08e2f' stroke-width='1' stroke-opacity='0.08'/%3E%3Cpath d='M60 50 C 80 40, 90 20, 75 10 C 60 0, 45 20, 60 30' fill='none' stroke='%23b08e2f' stroke-width='1.5' stroke-opacity='0.08'/%3E%3Cpath d='M40 50 C 20 40, 10 20, 25 10 C 40 0, 55 20, 40 30' fill='none' stroke='%23b08e2f' stroke-width='1.5' stroke-opacity='0.08'/%3E%3Cpath d='M60 50 C 80 60, 90 80, 75 90 C 60 100, 45 80, 60 70' fill='none' stroke='%23b08e2f' stroke-width='1.5' stroke-opacity='0.08'/%3E%3Cpath d='M40 50 C 20 60, 10 80, 25 90 C 40 100, 55 80, 40 70' fill='none' stroke='%23b08e2f' stroke-width='1.5' stroke-opacity='0.08'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 30% 20%, rgba(176, 142, 47, 0.05) 0%, transparent 70%),
+    radial-gradient(circle at 70% 80%, rgba(176, 142, 47, 0.04) 0%, transparent 60%),
+    linear-gradient(rgba(245, 240, 230, 0.95), rgba(245, 240, 230, 1));
+  background-size: 100px 100px, 100% 100%, 100% 100%, 100% 100%;
+}
+
+/* Generous Breathing Room Section Styles */
+.luxury-section {
+  padding: 12rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 300;
+}
+
+.btn-primary {
+  background: transparent;
+  color: var(--primary-light);
+  border: 1px solid var(--primary-dark);
+  padding: 1.2rem 3rem;
+  border-radius: 2px; /* Sharp elegant edges */
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(212, 175, 55, 0.1);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+
+.btn-primary:hover::before {
+  transform: scaleY(1);
+}

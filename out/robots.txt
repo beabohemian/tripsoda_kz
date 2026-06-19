@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /project-almaty
+
+Sitemap: https://kz.tripsoda.com/sitemap.xml

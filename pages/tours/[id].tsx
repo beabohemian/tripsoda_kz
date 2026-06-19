@@ -142,9 +142,9 @@ const tours = [
     }
 ]
 
-export default function TourDetail() {
+export default function TourDetail({ id: propId }: { id: string }) {
     const router = useRouter()
-    const { id } = router.query
+    const id = propId || router.query.id
 
     // Parallax Scroll logic
     const { scrollY } = useScroll()
@@ -379,14 +379,13 @@ export default function TourDetail() {
                         </section>
                     )}
 
-                    {/* Photo & Video Service Table (Only for Snap Tour) */}
-                    {tour.id === 7 && (
-                        <section className="mt-12 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
-                            <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                                <span className="w-8 h-8 rounded-full bg-tripsoda-main/10 flex items-center justify-center text-tripsoda-main">📸</span>
-                                사진 및 영상 서비스 안내
-                            </h2>
-                            <p className="text-gray-600 mb-6">전문 포토그래퍼 및 비디오그래퍼가 진행하는 촬영 서비스입니다.</p>
+                    {/* Photo & Video Options Table */}
+                    <section className="mt-12 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
+                        <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                            <span className="w-8 h-8 rounded-full bg-tripsoda-main/10 flex items-center justify-center text-tripsoda-main">📸</span>
+                            추가 옵션: 사진 및 영상 서비스
+                        </h2>
+                        <p className="text-gray-600 mb-6">투어 예약 시 추가할 수 있는 전문 촬영 옵션 서비스입니다.</p>
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left border-collapse">
                                     <thead>
@@ -421,7 +420,6 @@ export default function TourDetail() {
                             </div>
                             <p className="text-sm text-gray-500 mt-4">* 표기된 가격은 최소 시작가(~부터)이며, 시즌에 따라 변동될 수 있습니다.</p>
                         </section>
-                    )}
                 </div>
 
                 {/* Sticky Sidebar Widget */}
