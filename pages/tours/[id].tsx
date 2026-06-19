@@ -491,3 +491,14 @@ export default function TourDetail() {
         </motion.div>
     )
 }
+
+export async function getStaticPaths() {
+    const paths = tours.map((tour) => ({
+        params: { id: tour.id.toString() },
+    }))
+    return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }: any) {
+    return { props: { id: params.id } }
+}
