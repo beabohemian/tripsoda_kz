@@ -54,19 +54,19 @@ export default function Home() {
             </Head>
 
             {/* Cinematic Hero Section */}
-            <section className="relative h-screen flex flex-col justify-center bg-[#FDFBF7] overflow-hidden perspective-1000">
+            <section className="relative h-screen flex flex-col justify-center bg-black overflow-hidden perspective-1000">
                 {/* Parallax Background Image */}
                 <motion.div
                     className="absolute inset-0 z-0 origin-bottom"
                     style={{ y: heroY, scale: heroScale, opacity: heroOpacity }}
                 >
                     <div
-                        className="absolute inset-0 bg-repeat bg-center opacity-[0.15]"
-                        style={{ backgroundImage: "url('/images/kazakh_pattern.png')", backgroundSize: '400px' }}
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{ backgroundImage: "url('/images/tour_charyn_1765783988719.png')" }}
                     />
-                    {/* Multi-stop cinematic gradient for bright mood */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#FDFBF7]/40 via-[#FDFBF7]/20 to-[#FDFBF7]/90 z-10" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#FDFBF7]/60 via-transparent to-[#FDFBF7]/60 z-10" />
+                    {/* Multi-stop cinematic gradient for maximum text readability and mood */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/90 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60 z-10" />
                 </motion.div>
 
                 {/* Main Content Layer */}
@@ -81,29 +81,29 @@ export default function Home() {
                         className="max-w-4xl"
                     >
                         <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-4">
-                            <span className="flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/60 backdrop-blur-md border border-gray-200 text-tripsoda-main text-sm font-bold tracking-widest shadow-sm">
+                            <span className="flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold tracking-widest shadow-2xl">
                                 <span className="w-2 h-2 rounded-full bg-tripsoda-main animate-pulse"></span>
                                 ALMATY, KAZAKHSTAN
                             </span>
-                            <span className="hidden sm:inline-flex py-1.5 px-4 rounded-full bg-white/40 backdrop-blur-md border border-gray-200 text-gray-600 text-sm font-medium tracking-wide">
+                            <span className="hidden sm:inline-flex py-1.5 px-4 rounded-full bg-black/30 backdrop-blur-md border border-white/10 text-gray-300 text-sm font-medium tracking-wide">
                                 100% 현지 법인 직영
                             </span>
                         </motion.div>
 
                         <div className="overflow-hidden mb-2">
-                            <motion.h1 variants={revealText} className="text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-gray-900 tracking-tighter leading-[1.1] drop-shadow-sm">
+                            <motion.h1 variants={revealText} className="text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-white tracking-tighter leading-[1.1] drop-shadow-2xl">
                                 Discover the
                             </motion.h1>
                         </div>
                         <div className="overflow-hidden mb-8">
-                            <motion.h1 variants={revealText} className="text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-tripsoda-main to-[#D84C27] tracking-tighter leading-[1.1] italic">
+                            <motion.h1 variants={revealText} className="text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 tracking-tighter leading-[1.1] drop-shadow-2xl italic">
                                 Untouched.
                             </motion.h1>
                         </div>
 
-                        <motion.p variants={fadeInUp} className="text-xl md:text-2xl font-medium text-gray-700 max-w-2xl leading-relaxed mb-12 drop-shadow-sm">
+                        <motion.p variants={fadeInUp} className="text-xl md:text-2xl font-light text-gray-300 max-w-2xl leading-relaxed mb-12 drop-shadow-md">
                             당신의 발길이 닿는 곳이 곧 예술이 되도록.<br className="hidden sm:block" />
-                            트립소다가 카자흐스탄 여행의 <span className="text-gray-900 font-bold border-b-2 border-tripsoda-main/30 pb-1">새로운 기준</span>을 제시합니다.
+                            트립소다가 카자흐스탄 여행의 <span className="text-white font-semibold border-b border-white/30 pb-1">새로운 기준</span>을 제시합니다.
                         </motion.p>
 
                         <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center gap-6">
@@ -120,14 +120,14 @@ export default function Home() {
                                     <div className="w-10 h-10 rounded-full border-2 border-gray-900 bg-gray-800 flex items-center justify-center text-xs font-bold">+5</div>
                                 </div>
                                 <div className="text-sm">
-                                    <div className="flex items-center text-tripsoda-main text-xs mb-0.5">
+                                    <div className="flex items-center text-yellow-400 text-xs mb-0.5">
                                         <Star size={12} fill="currentColor" />
                                         <Star size={12} fill="currentColor" />
                                         <Star size={12} fill="currentColor" />
                                         <Star size={12} fill="currentColor" />
                                         <Star size={12} fill="currentColor" />
                                     </div>
-                                    <span className="font-bold text-gray-900">4.9/5.0</span> 리뷰 평점
+                                    <span className="font-semibold text-white">4.9/5.0</span> 리뷰 평점
                                 </div>
                             </div>
                         </motion.div>
@@ -144,24 +144,24 @@ export default function Home() {
                     >
                         <div className="max-w-7xl mx-auto flex justify-between items-end">
                             <div className="flex gap-4">
-                                <div className="px-6 py-4 bg-white/60 backdrop-blur-xl border border-white rounded-2xl shadow-sm text-gray-800">
-                                    <p className="text-xs text-tripsoda-main font-bold uppercase tracking-widest mb-1">Location</p>
-                                    <p className="font-bold text-gray-900">알마티, 카자흐스탄</p>
+                                <div className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white">
+                                    <p className="text-xs text-white/60 font-bold uppercase tracking-widest mb-1">Location</p>
+                                    <p className="font-medium">알마티, 카자흐스탄</p>
                                 </div>
-                                <div className="px-6 py-4 bg-white/60 backdrop-blur-xl border border-white rounded-2xl shadow-sm text-gray-800">
-                                    <p className="text-xs text-tripsoda-main font-bold uppercase tracking-widest mb-1">Expertise</p>
-                                    <p className="font-bold text-gray-900">안전하고 투명한 정찰제 투어</p>
+                                <div className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white">
+                                    <p className="text-xs text-white/60 font-bold uppercase tracking-widest mb-1">Expertise</p>
+                                    <p className="font-medium">안전하고 투명한 정찰제 투어</p>
                                 </div>
                             </div>
 
                             {/* Scroll Indicator */}
                             <div className="flex flex-col items-center gap-3 mr-10 cursor-pointer group" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
-                                <p className="text-xs text-tripsoda-main font-bold tracking-widest uppercase group-hover:text-tripsoda-dark transition-colors">Scroll</p>
-                                <div className="w-8 h-14 border-2 border-tripsoda-main/40 rounded-full flex justify-center p-1 group-hover:border-tripsoda-main transition-colors">
+                                <p className="text-xs text-white/50 font-bold tracking-widest uppercase group-hover:text-white transition-colors">Scroll</p>
+                                <div className="w-8 h-14 border-2 border-white/30 rounded-full flex justify-center p-1 group-hover:border-white/60 transition-colors">
                                     <motion.div
-                                        animate={{ y: [0, 15, 0] }}
-                                        transition={{ duration: 1.5, repeat: Infinity }}
-                                        className="w-1.5 h-3 bg-tripsoda-main rounded-full"
+                                        animate={{ y: [0, 24, 0] }}
+                                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                                        className="w-1.5 h-3 bg-white rounded-full"
                                     />
                                 </div>
                             </div>
@@ -174,9 +174,8 @@ export default function Home() {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.5 }}
                         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 lg:hidden flex flex-col items-center gap-2"
-                        style={{ opacity: heroOpacity }}
                     >
-                        <ChevronDown size={24} className="text-tripsoda-main animate-bounce" />
+                        <ChevronDown size={24} className="text-white/50 animate-bounce" />
                     </motion.div>
                 </motion.div>
             </section>
