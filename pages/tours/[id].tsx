@@ -5,10 +5,6 @@ import { MapPin, Clock, Calendar } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 
-if (typeof global !== 'undefined' && typeof (global as any).performance === 'undefined') {
-    (global as any).performance = { now: () => Date.now() };
-}
-
 const tours = [
     {
         id: 1,

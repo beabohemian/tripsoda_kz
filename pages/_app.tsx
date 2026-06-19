@@ -6,6 +6,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import CustomCursor from '../components/ui/CustomCursor';
 
+if (typeof global !== 'undefined' && typeof (global as any).performance === 'undefined') {
+    (global as any).performance = { now: () => Date.now() };
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
