@@ -20,7 +20,7 @@ const tours = [
             { time: '18:00', title: '알마티 귀환 출발', desc: '가슴 뻥 뚫리는 대자연의 여운을 안고 알마티로 돌아갑니다.' },
             { time: '20:30', title: '투어 종료', desc: '안전하게 알마티 시내 원하시는 곳에 하차합니다.' }
         ],
-        inclusions: ['투어 전용 차량 및 기사', '현지 가이드', '국립공원 입장료'],
+        inclusions: ['투어 전용 차량', '현지 기사 겸 가이드 (영어 소통)', '국립공원 입장료'],
         exclusions: ['개인 식비 및 기타 경비'],
         pricing: { total: [140000, 140000, 140000], perPerson: [70000, 50000, 40000] }
     },
@@ -38,7 +38,7 @@ const tours = [
             { time: '15:30', title: '콜사이 호수 (Kolsai Lake)', desc: '알마티의 진주로 불리는 콜사이 호수. 보트를 타거나 호반을 산책하며 힐링합니다.', image: '/images/tour_kolsai_1765784008248.png' },
             { time: '22:00', title: '알마티 도착', desc: '알찬 1일 3대 명소 정복을 마치고 알마티로 무사히 복귀합니다.' }
         ],
-        inclusions: ['교통비', '가이드 서비스', '국립공원 입장료', '카인디 호수 전용 차량 이동 비용'],
+        inclusions: ['교통비', '현지 기사 겸 가이드 (영어 소통)', '국립공원 입장료', '카인디 호수 전용 차량 이동 비용'],
         exclusions: ['점심 식사비 등 개인 지출'],
         pricing: { total: [180000, 180000, 180000], perPerson: [90000, 60000, 50000] }
     },
@@ -53,9 +53,9 @@ const tours = [
             { time: '포인트 2', title: '악타우 산맥 (Aktau Mountains)', desc: '과거 바다였던 지형이 솟아오르며 만들어낸 다채로운 단층. 흡사 다른 행성에 온 것 같은 풍경입니다.', image: '/images/aktau_mountains.png' },
             { time: '포인트 3', title: '카투타우 산맥 (Katutau Mountains)', desc: '화산 활동으로 형성된 기괴하고 거대한 암석 지대 탐험.' }
         ],
-        inclusions: ['4WD 전용 차량(Subaru Forester 등)', '가이드 서비스'],
+        inclusions: ['4WD 전용 차량(Subaru Forester 등)', '현지 기사 겸 가이드 (영어 소통)'],
         exclusions: ['점심 식사 및 숙박비 (2일 투어 전환 시 별도 문의)'],
-        pricing: { total: [200000, 200000, 200000], perPerson: [100000, 70000, 50000] }
+        pricing: { total: [250000, 250000, 250000], perPerson: [125000, 85000, 65000] }
     },
     {
         id: 4,
@@ -69,7 +69,7 @@ const tours = [
             { time: '08:30', title: '아유사이 정차 및 커피 타임', desc: '내려오는 길, 분위기 좋은 산장에서 멋진 경관을 바라보며 따뜻한 커피 한 잔의 여유.', image: '/images/cosmo_station.png' },
             { time: '10:00', title: '호텔 복귀', desc: '알마티 시내로 복귀하여 남은 하루 일정을 여유롭게 진행하세요.' }
         ],
-        inclusions: ['호텔 픽업 및 샌딩', '전용 차량 서비스', '가이드 서비스', '아유사이 폭포 방문'],
+        inclusions: ['호텔 픽업 및 샌딩', '전용 차량 서비스', '현지 기사 겸 가이드 (영어 소통)', '아유사이 폭포 방문'],
         exclusions: ['개인 식사', '환경 부담금(별도 지불)'],
         pricing: { total: [120000, 120000, 120000], perPerson: [60000, 40000, 30000] }
     },
@@ -86,7 +86,7 @@ const tours = [
             { time: '체험 4', title: '현지식 점심 (플로브 등)', desc: '맛있게 조리된 카자흐스탄 전통 볶음밥 플로브 등 풍성한 현지식으로 든든한 점심 식사.', image: '/images/kazakh_lunch.png' },
             { time: '체험 5', title: '자유 승마 체험', desc: '초원 위에서 직접 말을 타보며 노마드가 된 듯한 기분을 만끽하세요.', image: '/images/horse_riding_activity.png' }
         ],
-        inclusions: ['차량 이동', '전통 무술 시연', '독수리 쇼', '전통 승마 경기 체험', '유르트 체험', '점심 식사(플로브, 삼사, 바우르삭 등 포함)'],
+        inclusions: ['차량 이동', '현지 기사 겸 가이드 (영어 소통)', '전통 무술 시연', '독수리 쇼', '전통 승마 경기 체험', '유르트 체험', '점심 식사(플로브, 삼사, 바우르삭 등 포함)'],
         exclusions: ['프로그램 외 개인 경비'],
         pricing: { total: [82000, 104000, 126000], perPerson: [40000, 35000, 30000] }
     },
@@ -104,7 +104,7 @@ const tours = [
             { time: '16:00', title: '콕토베 케이블카', desc: '도심 속 전망대 콕토베(Kok Tobe)로 이동하여 아름다운 도심 풍경을 감상합니다.', image: '/images/kok_tobe.png' },
             { time: '17:30', title: '투어 종료', desc: '알마티의 주요 스팟을 모두 돌아보고 숙소로 복귀합니다.' }
         ],
-        inclusions: ['전문 가이드 서비스', '차량 이동 서비스'],
+        inclusions: ['현지 기사 겸 가이드 (영어 소통)', '차량 이동 서비스'],
         exclusions: ['콕토베 케이블카 티켓 (관광객과 가이드 모두 별도로 지불해야 함)', '식사 비용'],
         pricing: { total: [80000, 80000, 80000], perPerson: [40000, 30000, 20000] }
     },
@@ -136,7 +136,7 @@ const tours = [
             { time: '15:00', title: '이식 호수', desc: '아름다운 이식 호숫가에서 평화로운 힐링 시간을 보냅니다.' },
             { time: '18:00', title: '투어 종료', desc: '알마티 시내로 무사히 복귀합니다.' }
         ],
-        inclusions: ['투어 전용 차량 및 기사', '현지 가이드', '국립공원 입장료'],
+        inclusions: ['투어 전용 차량', '현지 기사 겸 가이드 (영어 소통)', '국립공원 입장료'],
         exclusions: ['개인 식비 및 기타 경비'],
         pricing: { total: [120000, 120000, 120000], perPerson: [60000, 40000, 30000] }
     }
@@ -255,7 +255,7 @@ export default function TourDetail({ id: propId }: { id: string }) {
 
                             {/* Highlights */}
                             <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
-                                {['인생샷 보장', '편안한 이동', '전문 가이드', '알찬 일정'].map((tag, i) => (
+                                {['인생샷 보장', '편안한 이동', '기사 겸 가이드', '알찬 일정'].map((tag, i) => (
                                     <div key={i} className="bg-gray-50 text-gray-700 text-center py-4 rounded-2xl font-bold text-sm border border-gray-100 hover:border-tripsoda-main hover:text-tripsoda-main transition-colors">
                                         #{tag}
                                     </div>
@@ -318,7 +318,7 @@ export default function TourDetail({ id: propId }: { id: string }) {
                                 <span className="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center mr-3 text-blue-700">✓</span> 포함 사항
                             </h3>
                             <ul className="space-y-4">
-                                {(tour.inclusions || ['차량', '가이드']).map((item, i) => (
+                                {(tour.inclusions || ['차량', '현지 기사 겸 가이드 (영어 소통)']).map((item, i) => (
                                     <li key={i} className="flex items-start text-blue-900/80 text-base font-medium">
                                         <span className="mr-3 text-blue-500">•</span> {item}
                                     </li>

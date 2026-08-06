@@ -54,7 +54,7 @@ export default function Home() {
             </Head>
 
             {/* Cinematic Hero Section */}
-            <section className="relative h-screen flex flex-col justify-center bg-black overflow-hidden perspective-1000">
+            <section className="relative min-h-screen flex flex-col justify-between bg-black overflow-hidden perspective-1000 pt-20 pb-8 sm:pb-12">
                 {/* Parallax Background Image */}
                 <motion.div
                     className="absolute inset-0 z-0 origin-bottom"
@@ -71,7 +71,7 @@ export default function Home() {
 
                 {/* Main Content Layer */}
                 <motion.div
-                    className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 mt-20 md:mt-32"
+                    className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 my-auto py-6 lg:py-10"
                     style={{ opacity: heroOpacity }}
                 >
                     <motion.div
@@ -91,17 +91,17 @@ export default function Home() {
                         </motion.div>
 
                         <div className="overflow-hidden mb-2">
-                            <motion.h1 variants={revealText} className="text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-white tracking-tighter leading-[1.1] drop-shadow-2xl">
+                            <motion.h1 variants={revealText} className="text-5xl sm:text-7xl lg:text-[6.5rem] font-extrabold text-white tracking-tighter leading-[1.1] drop-shadow-2xl">
                                 Discover the
                             </motion.h1>
                         </div>
                         <div className="overflow-hidden mb-8">
-                            <motion.h1 variants={revealText} className="text-6xl md:text-8xl lg:text-[7rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 tracking-tighter leading-[1.1] drop-shadow-2xl italic">
+                            <motion.h1 variants={revealText} className="text-5xl sm:text-7xl lg:text-[6.5rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 tracking-tighter leading-[1.1] drop-shadow-2xl italic">
                                 Untouched.
                             </motion.h1>
                         </div>
 
-                        <motion.p variants={fadeInUp} className="text-xl md:text-2xl font-light text-gray-300 max-w-2xl leading-relaxed mb-12 drop-shadow-md">
+                        <motion.p variants={fadeInUp} className="text-xl md:text-2xl font-light text-gray-300 max-w-2xl leading-relaxed mb-10 drop-shadow-md">
                             당신의 발길이 닿는 곳이 곧 예술이 되도록.<br className="hidden sm:block" />
                             트립소다가 카자흐스탄 여행의 <span className="text-white font-semibold border-b border-white/30 pb-1">새로운 기준</span>을 제시합니다.
                         </motion.p>
@@ -135,12 +135,12 @@ export default function Home() {
                 </motion.div>
 
                 {/* Glassmorphism Quick Info Bar (Bottom) */}
-                <motion.div style={{ opacity: heroOpacity }}>
+                <motion.div style={{ opacity: heroOpacity }} className="relative z-30 w-full px-6 mt-6 lg:mt-10">
                     <motion.div
-                        initial={{ opacity: 0, y: 50 }}
+                        initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1, duration: 0.8 }}
-                        className="absolute bottom-10 left-0 w-full px-6 z-30 hidden lg:block"
+                        className="hidden lg:block w-full"
                     >
                         <div className="max-w-7xl mx-auto flex justify-between items-end">
                             <div className="flex gap-4">
@@ -173,7 +173,7 @@ export default function Home() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.5 }}
-                        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 lg:hidden flex flex-col items-center gap-2"
+                        className="lg:hidden flex flex-col items-center gap-2"
                     >
                         <ChevronDown size={24} className="text-white/50 animate-bounce" />
                     </motion.div>
