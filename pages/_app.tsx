@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import "../styles/renewal.css";
+import "../styles/guides.css";
 import React from "react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -17,16 +18,15 @@ if (
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const PageLayout = ["/", "/admin", "/preview-medical"].includes(router.pathname)
-    ? React.Fragment
-    : Layout;
+  const minimalLayout =
+    router.pathname.startsWith("/guides") ||
+    ["/", "/admin", "/preview-medical"].includes(router.pathname);
+  const PageLayout = minimalLayout ? React.Fragment : Layout;
 
   return (
     <>
-      {!["/", "/admin", "/preview-medical"].includes(router.pathname) && (
-        <div className="film-grain"></div>
-      )}
-      {!["/", "/admin", "/preview-medical"].includes(router.pathname) && <CustomCursor />}
+      {!minimalLayout && <div className="film-grain"></div>}
+      {!minimalLayout && <CustomCursor />}
       <PageLayout>
         <Head>
           <title>트립소다 카자흐스탄 | TripSoda Kazakhstan</title>
@@ -38,7 +38,11 @@ function MyApp({ Component, pageProps }: AppProps) {
             name="keywords"
             content="카자흐스탄 여행, 알마티 투어, 중앙아시아 배낭여행, 알마티 렌터카, 카자흐스탄 가이드, 트립소다, TripSoda"
           />
-          <link rel="canonical" href="https://kz.tripsoda.com" />
+          <link
+            rel="canonical"
+            href="https://kz.tripsoda.com"
+            key="canonical"
+          />
           <meta
             property="og:title"
             content="트립소다 카자흐스탄 | TripSoda Kazakhstan"

@@ -1,3 +1,4 @@
+import "./build-article-index.mjs";
 import { spawnSync } from "node:child_process";
 import { existsSync, rmSync } from "node:fs";
 const env = {

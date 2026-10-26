@@ -590,6 +590,7 @@ export default function Home({
               {n}
             </a>
           ))}
+          {!medical && <a href="/guides/">{lang === "ko" ? "여행 가이드" : "Travel guides (KO)"}</a>}
         </nav>
         <div className="nav-tools">
           <label className="language-picker">
