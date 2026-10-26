@@ -1,345 +1,1197 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import { Users, Languages, Wallet, FileText, ArrowRight, Search, Map, Star, ChevronDown } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform, Variants } from 'framer-motion'
+import Head from "next/head";
+import { medicalCopy, medicalExtra } from "../lib/medical";
+import { russian, kazakh, extra } from "../lib/translations";
+import { useEffect, useState } from "react";
+import {
+  ArrowUpRight,
+  ArrowRight,
+  MapPin,
+  Check,
+  Globe2,
+  Menu,
+  X,
+} from "lucide-react";
 
-export default function Home() {
-    const { scrollY } = useScroll();
-    const heroOpacity = useTransform(scrollY, [0, 900], [1, 0]);
-    const heroY = useTransform(scrollY, [0, 900], [0, 150]);
-    const heroScale = useTransform(scrollY, [0, 900], [1, 1.1]);
-
-    // Animation Variants
-    const staggerContainer: Variants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.2 }
-        }
-    };
-
-    const fadeInUp: Variants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-    };
-
-    const revealText: Variants = {
-        hidden: { opacity: 0, y: "100%" },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-    };
-
-    // Advanced Scroll Reveal
-    useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+type Lang = "ko" | "en" | "ru" | "kk";
+const baseCopy = {
+  ko: {
+    nav: ["맞춤여행", "기업·여행사", "현지 운영", "트립소다 소개"],
+    quote: "맞춤 견적 요청",
+    eyebrow: "YOUR LOCAL TEAM IN KAZAKHSTAN",
+    title: (
+      <>
+        카자흐스탄 여행·행사,
+        <br />
+        현지 팀이 직접 설계합니다.
+      </>
+    ),
+    intro:
+      "맞춤여행·차량·가이드·숙박부터 출장·인센티브·통역·의전까지.\n트립소다 카자흐스탄 현지 법인이 필요한 서비스를 조율합니다.",
+    personal: "나만의 여행 설계하기",
+    business: "기업·여행사 파트너 문의",
+    location: "카자흐스탄 · 알마티",
+    foot: "현지 법인 · 알마티 운영 거점 · 한국어 상담",
+    serviceLabel: "ONE LOCAL TEAM. YOUR ENTIRE JOURNEY.",
+    serviceTitle: (
+      <>
+        여행의 목적은 달라도,
+        <br />
+        필요한 건 확실한 현지 팀.
+      </>
+    ),
+    serviceDesc:
+      "필요한 서비스만 선택하거나 전체 일정을 맡기세요.\n날짜, 인원, 예산에 맞춰 개별 견적을 제안합니다.",
+    audiences: [
+      {
+        tag: "FOR TRAVELERS",
+        title: "개인·가족·그룹 맞춤여행",
+        desc: "정해진 상품에 여행을 맞추지 마세요. 가고 싶은 곳과 여행하는 방식부터 듣겠습니다.",
+        items: [
+          "희망 지역·일정에 맞춘 여행 설계",
+          "가이드·차량·숙박 수배 상담",
+          "가족·친구·소규모 그룹 일정 조율",
+        ],
+        cta: "맞춤여행 견적 요청",
+      },
+      {
+        tag: "FOR TRAVEL PARTNERS & BUSINESSES",
+        title: "여행사·기업 현지 운영",
+        desc: "고객의 일정에 필요한 현지 자원을 함께 구성합니다. 요청 범위와 운영 조건부터 구체적으로 협의하세요.",
+        items: [
+          "여행사 현지 행사·인센티브 운영",
+          "기업 출장·단체 행사 기획 및 수배",
+          "통역·의전 및 차량·숙박·가이드",
+        ],
+        cta: "파트너 프로젝트 문의",
+      },
+    ],
+    capabilityLabel: "BUILT ON LOCAL OPERATIONS",
+    capabilityTitle: "현지에서 연결하고,\n일정으로 완성합니다.",
+    capabilities: [
+      [
+        "여행 설계",
+        "여행 목적과 이동 거리, 소요 시간을 고려해 지역과 코스를 조합합니다.",
+      ],
+      [
+        "가이드·차량",
+        "인원과 일정에 맞춰 차량과 가이드 언어, 동행 범위를 협의합니다.",
+      ],
+      [
+        "숙박 수배",
+        "희망 지역, 객실 구성, 숙박 예산을 바탕으로 가능한 조건을 확인합니다.",
+      ],
+      [
+        "기업 출장·인센티브",
+        "출장 목적과 참가자 구성, 행사 동선에 맞춰 현지 일정을 기획하고 수배합니다.",
+      ],
+      [
+        "행사·통역·의전",
+        "현지 행사 운영, 언어별 통역과 의전 요구를 확인해 필요한 인력과 서비스를 구성합니다.",
+      ],
+      [
+        "알마티 거점",
+        "현지 담당 팀과 출발 전 준비부터 일정 브리핑, 현지 운영까지 조율합니다.",
+      ],
+    ],
+    exampleLabel: "POSSIBILITIES, NOT PACKAGES",
+    exampleTitle: "이런 여행도 가능합니다.",
+    exampleDesc:
+      "아래 코스는 출발점입니다. 지역, 기간, 인원과 관심사에 따라 자유롭게 조합하세요.",
+    examples: [
+      ["호수와 캐니언", "콜사이 · 카인디 · 차른", "대자연 중심의 일정 예시"],
+      [
+        "초원으로 떠나는 하루",
+        "투르겐 · 아씨 고원",
+        "트레킹과 풍경을 즐기는 일정 예시",
+      ],
+      [
+        "도시와 현지 문화",
+        "알마티 · 에스닉 마을",
+        "도시 탐방과 문화 체험 일정 예시",
+      ],
+    ],
+    exampleCta: "이 코스로 견적 시작",
+    processTitle: "요청부터 예약까지,\n조건을 확인하며 한 단계씩.",
+    steps: [
+      [
+        "문의·예약 신청",
+        "일정, 인원, 필요한 서비스를 적어 문의하거나 예약을 신청하세요.",
+      ],
+      [
+        "담당자 연락",
+        "담당자와 운영 가능 여부, 최종 견적 및 취소 조건을 확인합니다.",
+      ],
+      [
+        "계약금 계좌이체",
+        "담당자가 안내한 계약금과 입금 계좌를 확인하고 이체합니다.",
+      ],
+      ["예약 확정", "입금 확인 후 담당자가 예약 확정 내용을 안내합니다."],
+    ],
+    quoteTitle: "어떤 일이 필요하신가요?",
+    quoteDesc:
+      "정해진 상품이 없어도 괜찮습니다. 필요한 조건을 자유롭게 알려주세요.",
+    type: ["개인·그룹 여행", "기업·여행사"],
+    labels: {
+      name: "이름 / 담당자",
+      company: "회사명",
+      email: "이메일",
+      date: "희망 출발일",
+      people: "인원",
+      budget: "예산 / 통화",
+      service: "필요한 서비스",
+      message: "지역·기간·요청 사항",
+      consent:
+        "문의·예약 상담을 위해 이름, 연락처와 요청 내용을 수집·이용하는 데 동의합니다.",
+      submit: "요청 내용 확인",
+      preview: "견적 요청 내용",
+      edit: "수정하기",
+      send: "WhatsApp으로 요청 보내기",
+      note: "신청이 접수되면 담당자가 연락드립니다. 계약금 입금 확인 후 예약이 확정됩니다.",
+      draft: "입력 내용을 확인한 후 접수해 주세요.",
+      placeholder:
+        "방문하고 싶은 지역, 여행 목적, 숙박 조건, 가이드 언어 등을 알려주세요.",
+      select: "선택해 주세요",
+      flexible: "일정 미정 / 협의 가능",
+      services: [
+        "맞춤여행",
+        "단체여행",
+        "차량",
+        "가이드",
+        "숙박",
+        "현지 행사",
+        "인센티브",
+        "출장",
+        "통역",
+        "의전",
+      ],
+    },
+    faqTitle: "문의 전에 확인하세요.",
+    faqs: [
+      [
+        "정해진 투어 외의 견적도 가능한가요?",
+        "네. 대표 코스 외에도 필요한 지역, 날짜, 인원, 서비스 범위를 알려주세요. 운영 가능 여부를 확인해 개별 제안을 드립니다.",
+      ],
+      [
+        "한국어 가이드가 항상 포함되나요?",
+        "가이드 언어와 동행 범위는 요청 조건에 따라 달라집니다. 한국어 가이드가 필요하다면 견적 요청에 적어주세요.",
+      ],
+      [
+        "사이트에서 바로 결제할 수 있나요?",
+        "문의 또는 예약 신청 후 담당자가 연락드립니다. 최종 견적과 취소 조건을 확인하고 계약금을 계좌이체하면, 입금 확인 후 예약이 확정됩니다.",
+      ],
+    ],
+    footer: "카자흐스탄 현지 법인 · 알마티",
+    contact: "연락처",
+    address: "Nazarbayev Ave 65, 4층 401/5호, Almaty",
+    privacy:
+      "입력 정보는 문의·예약 상담을 위해 담당자가 확인합니다. 접수만으로 예약이 확정되지는 않습니다.",
+  },
+  en: {
+    nav: ["Travel", "Business", "Operations", "About Tripsoda"],
+    quote: "Request a proposal",
+    eyebrow: "YOUR LOCAL TEAM IN KAZAKHSTAN",
+    title: (
+      <>
+        Kazakhstan travel & events.
+        <br />
+        Planned by your local team.
+      </>
+    ),
+    intro:
+      "Tailor-made travel, transport, guides and hotels. Business trips, incentives, interpreting and protocol.\nOur Kazakhstan team coordinates the services your journey needs.",
+    personal: "Plan a private journey",
+    business: "Discuss a business project",
+    location: "ALMATY · KAZAKHSTAN",
+    foot: "Kazakhstan legal entity · Almaty base · Korean-language consultation",
+    serviceLabel: "ONE LOCAL TEAM. YOUR ENTIRE JOURNEY.",
+    serviceTitle: (
+      <>
+        Different purposes.
+        <br />
+        The same local expertise.
+      </>
+    ),
+    serviceDesc:
+      "Ask for individual services or a complete itinerary.\nWe prepare a proposal around your dates, group and budget.",
+    audiences: [
+      {
+        tag: "FOR TRAVELERS",
+        title: "Private & group journeys",
+        desc: "Start with the places you want to see and the way you want to travel. We build the itinerary around you.",
+        items: [
+          "Itineraries around your destinations and dates",
+          "Guide, vehicle and accommodation arrangements",
+          "Coordination for families, friends and small groups",
+        ],
+        cta: "Request a travel proposal",
+      },
+      {
+        tag: "FOR TRAVEL PARTNERS & BUSINESSES",
+        title: "Local operations for partners",
+        desc: "Build the local arrangements your itinerary requires. Discuss the scope, logistics and operating conditions with our team.",
+        items: [
+          "Ground handling, group events and incentive travel",
+          "Corporate trips and event arrangements",
+          "Interpreters, protocol support, transport and hotels",
+        ],
+        cta: "Discuss a partner project",
+      },
+    ],
+    capabilityLabel: "BUILT ON LOCAL OPERATIONS",
+    capabilityTitle: "Local arrangements.\nA coordinated itinerary.",
+    capabilities: [
+      [
+        "Itinerary planning",
+        "Combine destinations and routes around the purpose of the trip, travel distances and available time.",
+      ],
+      [
+        "Guides & transport",
+        "Discuss vehicle requirements, guide languages and coverage based on the itinerary and group size.",
+      ],
+      [
+        "Accommodation",
+        "Check availability against your preferred location, room configuration and budget.",
+      ],
+      [
+        "Corporate & incentive travel",
+        "Plan local arrangements around business objectives, participant profiles and event logistics.",
+      ],
+      [
+        "Events, interpreting & protocol",
+        "Coordinate local events, language requirements, interpreters and protocol arrangements.",
+      ],
+      [
+        "Almaty base",
+        "Work with our local team on preparation, itinerary briefings and on-the-ground coordination.",
+      ],
+    ],
+    exampleLabel: "POSSIBILITIES, NOT PACKAGES",
+    exampleTitle: "A few places to begin.",
+    exampleDesc:
+      "These routes are starting points. Combine destinations, dates and services to suit your plans.",
+    examples: [
+      [
+        "Lakes & canyons",
+        "Kolsai · Kaindy · Charyn",
+        "An example itinerary focused on nature",
+      ],
+      [
+        "A day in the highlands",
+        "Turgen · Assy Plateau",
+        "An example for walking and open landscapes",
+      ],
+      [
+        "City & local culture",
+        "Almaty · Ethno village",
+        "An example combining the city and cultural experiences",
+      ],
+    ],
+    exampleCta: "Build a proposal from this",
+    processTitle: "From your brief to a booking.\nClear terms at every step.",
+    steps: [
+      [
+        "Inquiry or booking request",
+        "Share your dates, group size and the services you need.",
+      ],
+      [
+        "Your coordinator gets in touch",
+        "Review availability, your final quote and cancellation terms.",
+      ],
+      [
+        "Deposit by bank transfer",
+        "Check the deposit amount and bank details provided by your coordinator, then transfer the deposit.",
+      ],
+      [
+        "Booking confirmed",
+        "Your coordinator confirms your booking after verifying the deposit.",
+      ],
+    ],
+    quoteTitle: "Tell us what you have in mind.",
+    quoteDesc:
+      "You do not need to choose a package. Start with the arrangements you need.",
+    type: ["Private & group travel", "Business & travel partner"],
+    labels: {
+      name: "Name / contact person",
+      company: "Company",
+      email: "Email",
+      date: "Preferred departure",
+      people: "Guests",
+      budget: "Budget / currency",
+      service: "Services required",
+      message: "Destinations, duration & requirements",
+      consent:
+        "I consent to the collection and use of my name, contact details and request for travel consultation.",
+      submit: "Review request",
+      preview: "Your proposal request",
+      edit: "Edit details",
+      send: "Send request via WhatsApp",
+      note: "A coordinator will contact you after submission. Your booking is confirmed after your deposit is verified.",
+      draft: "Review your details and submit your request.",
+      placeholder:
+        "Tell us your destinations, trip purpose, accommodation preferences and guide language.",
+      select: "Please select",
+      flexible: "Dates flexible / to be discussed",
+      services: [
+        "Tailor-made travel",
+        "Group travel",
+        "Vehicle",
+        "Guide",
+        "Accommodation",
+        "Local event",
+        "Incentive travel",
+        "Business trip",
+        "Interpreter",
+        "Protocol support",
+      ],
+    },
+    faqTitle: "Before you get in touch.",
+    faqs: [
+      [
+        "Can I request something beyond the example tours?",
+        "Yes. Share your destinations, dates, group size and required services. We will check what is possible and prepare an individual proposal.",
+      ],
+      [
+        "Is a Korean-speaking guide always included?",
+        "Guide language and coverage depend on your requested arrangements. Please specify your preferred language in your request.",
+      ],
+      [
+        "Can I pay directly on this website?",
+        "After your inquiry or booking request, a coordinator contacts you to agree the quote and cancellation terms. You pay the deposit by bank transfer. Your booking is confirmed after the deposit is verified.",
+      ],
+    ],
+    footer: "Kazakhstan legal entity · Almaty",
+    contact: "Contact",
+    address: "Nazarbayev Ave 65, 4F #401/5, Almaty",
+    privacy:
+      "Our coordinators use your details to handle your inquiry or booking request. Submission alone does not confirm a booking.",
+  },
+};
+const copy = { ...baseCopy, ru: russian, kk: kazakh };
+export default function Home({
+  medical: initialMedicalMarket = false,
+  initialLanguage = "ko",
+  preview = false,
+}: {
+  medical?: boolean;
+  initialLanguage?: Lang;
+  preview?: boolean;
+}) {
+  const [lang, setLang] = useState<Lang>(initialLanguage);
+  const [medicalMarket, setMedicalMarket] = useState(initialMedicalMarket);
+  const whatsappOnly = process.env.NEXT_PUBLIC_CONTACT_MODE === "whatsapp";
+  useEffect(() => {
+    if (preview) return;
+    let saved: string | null = null;
+    try {
+      saved = localStorage.getItem("kz-language");
+    } catch {}
+    const browserLanguage = navigator.language.toLowerCase().split("-")[0];
+    setLang(
+      saved && ["ko", "en", "ru", "kk"].includes(saved)
+        ? (saved as Lang)
+        : ["ko", "en", "ru", "kk"].includes(browserLanguage)
+          ? (browserLanguage as Lang)
+          : "ko",
+    );
+    const controller = new AbortController();
+    fetch("/__country", { cache: "no-store", signal: controller.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data && ["KZ", "RU"].includes(data.country)) setMedicalMarket(true);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, [preview]);
+  const medical = medicalMarket && (preview || lang === "ru" || lang === "kk");
+  const [menu, setMenu] = useState(false);
+  const [audience, setAudience] = useState(0);
+  const [review, setReview] = useState(false);
+  const [example, setExample] = useState("");
+  const [sending, setSending] = useState(false);
+  const [receipt, setReceipt] = useState("");
+  const [submitError, setSubmitError] = useState("");
+  const [requestKey, setRequestKey] = useState("");
+  const [intent, setIntent] = useState("inquiry");
+  const [chosen, setChosen] = useState<number[]>([]);
+  const [form, setForm] = useState({
+    name: "",
+    company: "",
+    email: "",
+    date: "",
+    people: "",
+    budget: "",
+    message: "",
+  });
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+  const c = medical
+    ? {
+        ...copy[lang],
+        ...medicalCopy[lang],
+        labels: { ...copy[lang].labels, ...medicalCopy[lang].labels },
+      }
+    : copy[lang];
+  const x = medical ? { ...extra[lang], ...medicalExtra[lang] } : extra[lang];
+  const changeLang = (v: Lang) => {
+    setLang(v);
+    setChosen([]);
+    setExample("");
+    setReview(false);
+    setRequestKey("");
+    try {
+      if (!preview) {
+        localStorage.setItem("kz-language", v);
+        document.cookie = `kz-language=${v}; Path=/; Max-Age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
+      }
+    } catch {}
+  };
+  const request = (type: number, route = "") => {
+    setReceipt("");
+    setSubmitError("");
+    setRequestKey("");
+    setAudience(type);
+    setExample(route);
+    setReview(false);
+    setMenu(false);
+    document.getElementById("proposal")?.scrollIntoView({ behavior: "smooth" });
+  };
+  const update = (key: keyof typeof form, value: string) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+    setReview(false);
+  };
+  const message = [
+    `Tripsoda Kazakhstan — ${c.type[audience]} — ${intent === "booking" ? x.booking : x.inquiry}`,
+    `${c.labels.name}: ${form.name}`,
+    audience === 1 ? `${c.labels.company}: ${form.company}` : "",
+    `${c.labels.email}: ${form.email}`,
+    `${c.labels.date}: ${form.date || c.labels.flexible}`,
+    `${c.labels.people}: ${form.people}`,
+    `${c.labels.budget}: ${form.budget || "—"}`,
+    `${c.labels.service}: ${chosen.map((i) => c.labels.services[i]).join(", ") || "—"}`,
+    example ? `Route: ${example}` : "",
+    `${c.labels.message}: ${form.message}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+  async function submitRequest() {
+    if (whatsappOnly) return;
+    setSending(true);
+    setSubmitError("");
+    const key = requestKey || crypto.randomUUID();
+    setRequestKey(key);
+    try {
+      const response = await fetch("/api/inquiries/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          message: medical
+            ? `[KOREA MEDICAL TOUR]\n${form.message}`
+            : form.message,
+          people: Number(form.people),
+          key,
+          audience: audience === 1 ? "business" : "personal",
+          intent,
+          language: lang,
+          services: medical
+            ? chosen.map(
+                (i) =>
+                  [
+                    "checkup",
+                    "beauty",
+                    "specialist",
+                    "interpreter",
+                    "hotel",
+                    "vehicle",
+                  ][i],
+              )
+            : chosen.map(
+                (i) =>
+                  [
+                    "custom",
+                    "group",
+                    "vehicle",
+                    "guide",
+                    "hotel",
+                    "event",
+                    "incentive",
+                    "business",
+                    "interpreter",
+                    "protocol",
+                  ][i],
+              ),
+          example,
+          consent: true,
+        }),
+      });
+      if (!response.ok) throw new Error();
+      const data = await response.json();
+      setReceipt(data.id);
+      setRequestKey("");
+    } catch {
+      setSubmitError(x.error);
+    } finally {
+      setSending(false);
+    }
+  }
+  return (
+    <div className="kz-site">
+      <Head>
+        <title>
+          {medical
+            ? c.title
+            : lang === "ko"
+              ? "트립소다 카자흐스탄 | 개인 맞춤여행 · 기업·여행사 현지 운영"
+              : `TripSoda Kazakhstan | ${c.nav[0]} · ${c.nav[1]}`}
+        </title>
+        <meta name="description" content={c.intro.replace("\n", " ")} />
+      </Head>
+      <header className="kz-nav">
+        <a className="kz-brand" href="#">
+          <img src="/images/logo.png" alt="TripSoda Kazakhstan LLP" />
+        </a>
+        <nav
+          className={menu ? "is-open" : ""}
+          aria-label={lang === "ko" ? "주 메뉴" : "Main navigation"}
+        >
+          {c.nav.map((n, i) => (
+            <a
+              key={n}
+              href={["#travel", "#business", "#operations", "#tripsoda"][i]}
+              onClick={() => setMenu(false)}
+            >
+              {n}
+            </a>
+          ))}
+        </nav>
+        <div className="nav-tools">
+          <label className="language-picker">
+            <Globe2 size={15} />
+            <span className="sr-only">언어 / Language</span>
+            <select
+              value={lang}
+              onChange={(e) => changeLang(e.target.value as Lang)}
+              aria-label="언어 / Language"
+            >
+              <option value="ko">한국어</option>
+              <option value="en">English</option>
+              <option value="ru">Русский</option>
+              <option value="kk">Қазақша</option>
+            </select>
+          </label>
+          <button className="nav-proposal" onClick={() => request(audience)}>
+            {c.quote}
+            <ArrowUpRight size={15} />
+          </button>
+          <button
+            className="mobile-toggle"
+            aria-expanded={menu}
+            aria-label={x.menu}
+            onClick={() => setMenu(!menu)}
+          >
+            {menu ? <X /> : <Menu />}
+          </button>
+        </div>
+      </header>
+      <main>
+        <section className={`kz-hero ${medical ? "medical-hero" : ""}`}>
+          {!medical && (
+            <>
+              <img
+                src="/images/tour_charyn_1765783988719.png"
+                alt={
+                  lang === "ko"
+                    ? "카자흐스탄 차른 캐니언"
+                    : "Charyn Canyon, Kazakhstan"
                 }
-            });
-        }, { threshold: 0.1 });
-
-        const reveals = document.querySelectorAll('.reveal');
-        reveals.forEach(el => observer.observe(el));
-        return () => reveals.forEach(el => observer.unobserve(el));
-    }, []);
-
-    return (
-        <>
-            <Head>
-                <title>트립소다 카자흐스탄 | 알마티 현지 직영 투어 및 자유여행</title>
-                <meta name="description" content="카자흐스탄 현지 법인 직영 여행사. 알마티 차른캐년, 콜사이, 아씨고원 투어를 중간 마진 없이 합리적인 가격으로 제공합니다." />
-                <meta name="keywords" content="카자흐스탄 여행, 알마티 투어, 차른캐년 투어, 콜사이호수, 아씨고원, 중앙아시아 배낭여행, 알마티 가이드" />
-                <link rel="canonical" href="https://kz.tripsoda.com" />
-            </Head>
-
-            {/* Cinematic Hero Section */}
-            <section className="relative min-h-screen flex flex-col justify-between bg-black overflow-hidden perspective-1000 pt-20 pb-8 sm:pb-12">
-                {/* Parallax Background Image */}
-                <motion.div
-                    className="absolute inset-0 z-0 origin-bottom"
-                    style={{ y: heroY, scale: heroScale, opacity: heroOpacity }}
-                >
-                    <div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: "url('/images/tour_charyn_1765783988719.png')" }}
+                className="kz-hero-photo"
+              />
+              <div className="kz-hero-shade" />
+            </>
+          )}
+          <div className="kz-hero-content">
+            <span className="kz-eyebrow">
+              <i />
+              {c.eyebrow}
+            </span>
+            <h1>{c.title}</h1>
+            {medical && (
+              <div className="medical-hero-fields">
+                {c.capabilities.map(([title]) => (
+                  <a key={title} href="#operations">
+                    {title}
+                    <ArrowUpRight size={18} />
+                  </a>
+                ))}
+              </div>
+            )}
+            <p>{c.intro}</p>
+            <div className="kz-actions">
+              <button className="kz-btn primary" onClick={() => request(0)}>
+                {c.personal}
+                <ArrowUpRight size={19} />
+              </button>
+              <button
+                className="kz-btn ghost"
+                onClick={() => request(medical ? 0 : 1)}
+              >
+                {c.business}
+                <ArrowRight size={18} />
+              </button>
+            </div>
+          </div>
+          <div className="kz-hero-bottom">
+            <span>
+              <MapPin size={14} />
+              {c.location}
+            </span>
+            <span>{c.foot}</span>
+            <a href="#services">EXPLORE ↓</a>
+          </div>
+        </section>
+        <section className="kz-section" id="services">
+          <div className="kz-section-head">
+            <div>
+              <span className="kz-eyebrow green">{c.serviceLabel}</span>
+              <h2>{c.serviceTitle}</h2>
+            </div>
+            <p>{c.serviceDesc}</p>
+          </div>
+          <div className="audience-grid">
+            {c.audiences.map((a, i) => (
+              <article
+                id={i === 0 ? "travel" : "business"}
+                className={`audience-card audience-${i}`}
+                key={a.tag}
+              >
+                <span className="kz-eyebrow">{a.tag}</span>
+                <h3>{a.title}</h3>
+                <p>{a.desc}</p>
+                <ul>
+                  {a.items.map((item) => (
+                    <li key={item}>
+                      <Check size={17} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <button onClick={() => request(medical ? 0 : i)}>
+                  {a.cta}
+                  <ArrowUpRight size={20} />
+                </button>
+              </article>
+            ))}
+          </div>
+        </section>
+        {!medical && (
+          <>
+            <section className="kz-operations" id="operations">
+              <div className="operations-photo">
+                <img
+                  src="/images/office_lounge.jpg"
+                  alt={
+                    lang === "ko"
+                      ? "트립소다 알마티 라운지"
+                      : "Tripsoda Almaty lounge"
+                  }
+                  loading="lazy"
+                />
+                <span>OUR BASE, YOUR LOCAL CONNECTION.</span>
+              </div>
+              <div className="operations-content">
+                <span className="kz-eyebrow green">{c.capabilityLabel}</span>
+                <h2>{c.capabilityTitle}</h2>
+                {c.capabilities.map(([title, desc], i) => (
+                  <div className="capability" key={title}>
+                    <span>0{i + 1}</span>
+                    <div>
+                      <h3>{title}</h3>
+                      <p>{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+            <section className="kz-section local-team">
+              <span className="kz-eyebrow green">YOUR LOCAL TEAM</span>
+              <h2>
+                {
+                  {
+                    ko: "현지에서 만나는 사람들.",
+                    en: "Meet your team on the ground.",
+                    ru: "Ваша команда на месте.",
+                    kk: "Жергілікті командамен танысыңыз.",
+                  }[lang]
+                }
+              </h2>
+              <div className="guide-grid">
+                {[
+                  {
+                    name: "Nora",
+                    ko: "노라",
+                    image: "/images/guides/nora.jpg",
+                    role: {
+                      ko: "전문 관광 가이드 · VIP 의전",
+                      en: "Tour guide · VIP protocol",
+                      ru: "Гид · VIP-сопровождение",
+                      kk: "Гид · VIP сүйемелдеу",
+                    },
+                  },
+                  {
+                    name: "Chingis",
+                    ko: "칭그스",
+                    image: "/images/guides/chingis_jump.jpg",
+                    role: {
+                      ko: "전문 관광 가이드 · 아웃도어·산악",
+                      en: "Tour guide · Outdoors & mountains",
+                      ru: "Гид · Активный отдых и горы",
+                      kk: "Гид · Белсенді демалыс және таулар",
+                    },
+                  },
+                  {
+                    name: "Aibol",
+                    ko: "아이볼",
+                    image: "/images/guides/aibol.jpg",
+                    role: {
+                      ko: "전문 관광 가이드 · 통역",
+                      en: "Tour guide · Interpreting",
+                      ru: "Гид · Устный перевод",
+                      kk: "Гид · Ауызша аударма",
+                    },
+                  },
+                ].map((g) => (
+                  <article key={g.name}>
+                    <img src={g.image} alt={g.name} loading="lazy" />
+                    <div>
+                      <h3>{lang === "ko" ? `${g.ko} (${g.name})` : g.name}</h3>
+                      <p>{g.role[lang]}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          </>
+        )}
+        {medical && (
+          <section className="kz-section medical-care" id="operations">
+            <span className="kz-eyebrow green">KOREA · MEDICAL TRAVEL</span>
+            <h2>{c.capabilityTitle}</h2>
+            <div className="medical-grid">
+              {c.capabilities.map(([title, desc], i) => (
+                <article key={title}>
+                  <span>0{i + 1}</span>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                  <button
+                    className="kz-btn secondary"
+                    onClick={() => {
+                      setChosen([Math.min(i, 2)]);
+                      request(0, title);
+                    }}
+                  >
+                    {c.quote} ↗
+                  </button>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+        <section id="tripsoda" className="brand-connection kz-section">
+          <span className="kz-eyebrow green">SEOUL TO ALMATY</span>
+          <h2>{x.brandTitle}</h2>
+          <p>{x.brandBody}</p>
+          <div className="brand-pair">
+            <article>
+              <span>SEOUL · KOREA</span>
+              <h3>TripSoda</h3>
+              <p>{x.hq}</p>
+              <a href="https://tripsoda.com" target="_blank" rel="noreferrer">
+                {x.visit} ↗
+              </a>
+            </article>
+            <div aria-hidden="true">↔</div>
+            <article>
+              <span>ALMATY · KAZAKHSTAN</span>
+              <img src="/images/logo.png" alt="TripSoda Kazakhstan LLP" />
+              <p>{x.local}</p>
+              <a href="#operations">{x.operations} ↗</a>
+            </article>
+          </div>
+        </section>
+        <section id="founder" className="founder-section kz-section">
+          <span className="kz-eyebrow green">A MESSAGE FROM OUR CEO</span>
+          <div className="founder-grid">
+            <div>
+              <h2>{x.greetingTitle}</h2>
+              <p className="founder-name">
+                {x.name}
+                <span>CEO · TRIPSODA KAZAKHSTAN</span>
+              </p>
+            </div>
+            <div>
+              {x.greeting.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+        {!medical && (
+          <section className="kz-section">
+            <div className="kz-section-head">
+              <div>
+                <span className="kz-eyebrow green">{c.exampleLabel}</span>
+                <h2>{c.exampleTitle}</h2>
+              </div>
+              <p>{c.exampleDesc}</p>
+            </div>
+            <div className="kz-example-grid">
+              {c.examples.map(([tag, title, desc], i) => (
+                <article key={title}>
+                  <div className="example-photo">
+                    <img
+                      src={
+                        [
+                          "/images/tour_charyn_1765783988719.png",
+                          "/images/tour_assy.png",
+                          "/images/tour_city_1765784027581.png",
+                        ][i]
+                      }
+                      alt={title}
+                      loading="lazy"
                     />
-                    {/* Multi-stop cinematic gradient for maximum text readability and mood */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/90 z-10" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60 z-10" />
-                </motion.div>
-
-                {/* Main Content Layer */}
-                <motion.div
-                    className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 my-auto py-6 lg:py-10"
-                    style={{ opacity: heroOpacity }}
+                    <span>
+                      0{i + 1} / {tag}
+                    </span>
+                  </div>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                  <button onClick={() => request(0, title)}>
+                    {c.exampleCta}
+                    <ArrowUpRight size={17} />
+                  </button>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+        <section className="kz-process kz-section">
+          <span className="kz-eyebrow green">
+            A CLEAR PATH FROM BRIEF TO BOOKING
+          </span>
+          <h2>{c.processTitle}</h2>
+          <div>
+            {c.steps.map(([title, desc], i) => (
+              <article key={title}>
+                <span>0{i + 1}</span>
+                <h3>{title}</h3>
+                <p>{desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section className="proposal-section" id="proposal">
+          <div className="proposal-intro">
+            <span className="kz-eyebrow">LET’S BUILD YOUR BRIEF</span>
+            <h2>{c.quoteTitle}</h2>
+            <p>{c.quoteDesc}</p>
+            <a
+              href="https://pf.kakao.com/_nSKuX/chat"
+              target="_blank"
+              rel="noreferrer"
+            >
+              KakaoTalk ↗
+            </a>
+            <a
+              href="https://wa.me/77789861833"
+              target="_blank"
+              rel="noreferrer"
+            >
+              WhatsApp ↗
+            </a>
+            <small>{c.privacy}</small>
+          </div>
+          <div className="proposal-form">
+            {receipt ? (
+              <div className="receipt" role="status">
+                <Check size={40} />
+                <h3>{x.received}</h3>
+                <p>
+                  {x.reference}: {receipt}
+                </p>
+                <p>{x.receivedBody}</p>
+                <button
+                  className="kz-btn primary"
+                  onClick={() => {
+                    setReceipt("");
+                    setReview(false);
+                  }}
                 >
-                    <motion.div
-                        variants={staggerContainer}
-                        initial="hidden"
-                        animate="visible"
-                        className="max-w-4xl"
+                  {x.another}
+                </button>
+              </div>
+            ) : review ? (
+              <div className="proposal-review">
+                {submitError && (
+                  <p className="admin-error" role="alert">
+                    {submitError}
+                  </p>
+                )}
+                <h3>{c.labels.preview}</h3>
+                <pre>{message}</pre>
+                <p>{c.labels.draft}</p>
+                <div className="kz-actions">
+                  <button
+                    className="kz-btn secondary"
+                    onClick={() => {
+                      setReview(false);
+                      setRequestKey("");
+                    }}
+                  >
+                    {c.labels.edit}
+                  </button>
+                  {whatsappOnly ? (
+                    <a
+                      className="kz-btn primary"
+                      href={`https://wa.me/77789861833?text=${encodeURIComponent(message)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                        <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-4">
-                            <span className="flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold tracking-widest shadow-2xl">
-                                <span className="w-2 h-2 rounded-full bg-tripsoda-main animate-pulse"></span>
-                                ALMATY, KAZAKHSTAN
-                            </span>
-                            <span className="hidden sm:inline-flex py-1.5 px-4 rounded-full bg-black/30 backdrop-blur-md border border-white/10 text-gray-300 text-sm font-medium tracking-wide">
-                                100% 현지 법인 직영
-                            </span>
-                        </motion.div>
-
-                        <div className="overflow-hidden mb-2">
-                            <motion.h1 variants={revealText} className="text-5xl sm:text-7xl lg:text-[6.5rem] font-extrabold text-white tracking-tighter leading-[1.1] drop-shadow-2xl">
-                                Discover the
-                            </motion.h1>
-                        </div>
-                        <div className="overflow-hidden mb-8">
-                            <motion.h1 variants={revealText} className="text-5xl sm:text-7xl lg:text-[6.5rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 tracking-tighter leading-[1.1] drop-shadow-2xl italic">
-                                Untouched.
-                            </motion.h1>
-                        </div>
-
-                        <motion.p variants={fadeInUp} className="text-xl md:text-2xl font-light text-gray-300 max-w-2xl leading-relaxed mb-10 drop-shadow-md">
-                            당신의 발길이 닿는 곳이 곧 예술이 되도록.<br className="hidden sm:block" />
-                            트립소다가 카자흐스탄 여행의 <span className="text-white font-semibold border-b border-white/30 pb-1">새로운 기준</span>을 제시합니다.
-                        </motion.p>
-
-                        <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center gap-6">
-                            <a href="http://pf.kakao.com/_nSKuX/chat" target="_blank" rel="noreferrer" className="group w-full sm:w-auto">
-                                <div className="relative px-8 py-5 bg-tripsoda-main text-white rounded-full font-bold overflow-hidden transition-all duration-500 hover:scale-105 hover:bg-tripsoda-dark shadow-[0_0_40px_rgba(255,107,0,0.4)] flex items-center justify-center gap-3">
-                                    <span className="relative z-10 text-lg tracking-wide">여정 시작하기</span>
-                                    <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1.5 transition-transform" />
-                                </div>
-                            </a>
-                            <div className="flex items-center gap-4 text-white/80">
-                                <div className="flex -space-x-3">
-                                    <img className="w-10 h-10 rounded-full border-2 border-gray-900 object-cover" src="/images/guides/nora.jpg" alt="Guide 1" />
-                                    <img className="w-10 h-10 rounded-full border-2 border-gray-900 object-cover" src="/images/guides/chingis_jump.jpg" alt="Guide 2" />
-                                    <div className="w-10 h-10 rounded-full border-2 border-gray-900 bg-gray-800 flex items-center justify-center text-xs font-bold">+5</div>
-                                </div>
-                                <div className="text-sm">
-                                    <div className="flex items-center text-yellow-400 text-xs mb-0.5">
-                                        <Star size={12} fill="currentColor" />
-                                        <Star size={12} fill="currentColor" />
-                                        <Star size={12} fill="currentColor" />
-                                        <Star size={12} fill="currentColor" />
-                                        <Star size={12} fill="currentColor" />
-                                    </div>
-                                    <span className="font-semibold text-white">4.9/5.0</span> 리뷰 평점
-                                </div>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                </motion.div>
-
-                {/* Glassmorphism Quick Info Bar (Bottom) */}
-                <motion.div style={{ opacity: heroOpacity }} className="relative z-30 w-full px-6 mt-6 lg:mt-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1, duration: 0.8 }}
-                        className="hidden lg:block w-full"
+                      {c.labels.send}
+                      <ArrowUpRight size={17} />
+                    </a>
+                  ) : (
+                    <button
+                      className="kz-btn primary"
+                      disabled={sending}
+                      onClick={submitRequest}
                     >
-                        <div className="max-w-7xl mx-auto flex justify-between items-end">
-                            <div className="flex gap-4">
-                                <div className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white">
-                                    <p className="text-xs text-white/60 font-bold uppercase tracking-widest mb-1">Location</p>
-                                    <p className="font-medium">알마티, 카자흐스탄</p>
-                                </div>
-                                <div className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white">
-                                    <p className="text-xs text-white/60 font-bold uppercase tracking-widest mb-1">Expertise</p>
-                                    <p className="font-medium">안전하고 투명한 정찰제 투어</p>
-                                </div>
-                            </div>
-
-                            {/* Scroll Indicator */}
-                            <div className="flex flex-col items-center gap-3 mr-10 cursor-pointer group" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
-                                <p className="text-xs text-white/50 font-bold tracking-widest uppercase group-hover:text-white transition-colors">Scroll</p>
-                                <div className="w-8 h-14 border-2 border-white/30 rounded-full flex justify-center p-1 group-hover:border-white/60 transition-colors">
-                                    <motion.div
-                                        animate={{ y: [0, 24, 0] }}
-                                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                                        className="w-1.5 h-3 bg-white rounded-full"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Mobile Scroll Indicator */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1.5 }}
-                        className="lg:hidden flex flex-col items-center gap-2"
+                      {sending ? x.sending : x.submit}
+                      <ArrowRight size={17} />
+                    </button>
+                  )}
+                </div>
+                <small>
+                  {whatsappOnly
+                    ? {
+                        ko: "WhatsApp에서 메시지를 전송해야 상담 요청이 전달됩니다. 예약은 담당자와 조건 협의 및 계약금 확인 후 확정됩니다.",
+                        en: "Send the message in WhatsApp to submit your inquiry. Booking is confirmed after agreed terms and deposit verification.",
+                        ru: "Отправьте сообщение в WhatsApp, чтобы передать запрос. Бронирование подтверждается после согласования условий и проверки предоплаты.",
+                        kk: "Өтінімді жеткізу үшін WhatsApp-та хабарламаны жіберіңіз. Брондау шарттар келісіліп, депозит тексерілген соң расталады.",
+                      }[lang]
+                    : c.labels.note}
+                </small>
+              </div>
+            ) : (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setReview(true);
+                }}
+              >
+                <div
+                  className="audience-switch"
+                  role="group"
+                  aria-label={x.requestType}
+                >
+                  {c.type.map((t, i) => (
+                    <button
+                      type="button"
+                      key={t}
+                      aria-pressed={audience === i}
+                      onClick={() => setAudience(i)}
+                      className={audience === i ? "active" : ""}
                     >
-                        <ChevronDown size={24} className="text-white/50 animate-bounce" />
-                    </motion.div>
-                </motion.div>
-            </section>
-
-            {/* Bright Bento Box Section */}
-            <section className="py-32 bg-gray-50 relative overflow-hidden">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-                    <div className="reveal text-center mb-20">
-                        <span className="text-tripsoda-main font-bold tracking-widest uppercase text-sm mb-3 block">Why Tripsoda Kazkhstan</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">트립소다 카자흐스탄과 함께해야 하는 이유</h2>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            완벽한 현지 케어와 거품 없는 가격으로 잊지 못할 추억을 선사합니다.
-                        </p>
-                    </div>
-
-                    {/* Bento Grid */}
-                    <div className="bento-grid">
-                        {/* Box 1: Large Span */}
-                        <div className="reveal bento-item col-span-12 md:col-span-8 p-10 md:p-12 bg-white border border-gray-100 hover:shadow-xl group">
-                            <div className="absolute -top-4 -right-4 p-8 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
-                                <Users size={180} className="text-tripsoda-main" />
-                            </div>
-                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 relative z-10">100% 현지 법인 직영</h3>
-                            <p className="text-gray-600 max-w-md relative z-10 leading-relaxed">
-                                중간 마진과 하청으로 인한 퀄리티 저하는 없습니다.<br />
-                                트립소다 카자흐스탄 현지 법인이 일정을 직접 운영하고 책임집니다.
-                            </p>
-                        </div>
-
-                        {/* Box 2: Square */}
-                        <div className="reveal bento-item col-span-12 md:col-span-4 p-8 bg-tripsoda-light border border-tripsoda-main/20 group" style={{ transitionDelay: '0.1s' }}>
-                            <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:-translate-y-2 transition-transform duration-500">
-                                <Languages size={28} className="text-tripsoda-main" />
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-3">완벽한 언어 소통</h3>
-                            <p className="text-gray-600 text-sm leading-relaxed">
-                                한국인 매니저와 한국어가 유창한 현지 가이드가 동행하여 언어 장벽 없는 편안한 여행을 만듭니다.
-                            </p>
-                        </div>
-
-                        {/* Box 3: Square */}
-                        <div className="reveal bento-item col-span-12 md:col-span-4 p-8 bg-white border border-gray-100 hover:shadow-xl group" style={{ transitionDelay: '0.2s' }}>
-                            <div className="w-14 h-14 bg-tripsoda-main/10 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-500">
-                                <Wallet size={28} className="text-tripsoda-main" />
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-3">투명한 정찰제</h3>
-                            <p className="text-gray-600 text-sm leading-relaxed">
-                                불필요한 옵션 강요나 숨겨진 팁 요구 없이, 정해진 예산 내에서 안심하고 즐길 수 있습니다.
-                            </p>
-                        </div>
-
-                        {/* Box 4: Large Span */}
-                        <div className="reveal bento-item col-span-12 md:col-span-8 p-10 md:p-12 bg-gradient-to-tr from-tripsoda-light to-white border border-gray-100 group overflow-hidden" style={{ transitionDelay: '0.3s' }}>
-                            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-blue-100 blur-[80px] rounded-full group-hover:bg-blue-200/50 transition-colors duration-700 pointer-events-none"></div>
-                            <div className="w-14 h-14 bg-white shadow-sm rounded-2xl flex items-center justify-center mb-6 border border-gray-50 group-hover:-translate-y-2 transition-transform duration-500">
-                                <FileText size={28} className="text-blue-500" />
-                            </div>
-                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 relative z-10">나에게 딱 맞춘 1:1 맞춤 견적</h3>
-                            <p className="text-gray-600 max-w-lg relative z-10 leading-relaxed">
-                                꽉 막힌 패키지는 싫고 혼자 가는 자유여행은 막막하다면? 배낭여행객의 예산과 취향에 맞춰 거품 없는 코스를 디자인해 드립니다.
-                            </p>
-                        </div>
-                    </div>
+                      {t}
+                    </button>
+                  ))}
                 </div>
-            </section>
-
-            {/* Best Tours Preview */}
-            <section className="py-24 bg-white">
-                <div className="max-w-7xl mx-auto px-4">
-                    <div className="reveal text-center mb-16">
-                        <span className="text-tripsoda-main font-bold tracking-widest uppercase text-sm mb-2 block">Best Sellers</span>
-                        <h2 className="text-4xl font-bold text-tripsoda-textMain">여행자들이 선택한 인기 투어</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[
-                            { id: 1, title: '투르겐 폭포 + 아씨 고원 투어', img: '/images/tour_assy.png', duration: '1일' },
-                            { id: 2, title: '콜사이 + 차른 캐니언 + 카인디 1일 투어', img: '/images/tour_charyn_1765783988719.png', duration: '1일' },
-                            { id: 3, title: '알틴 에멜 국립공원 투어', img: '/images/tour_singing_dune.png', duration: '1일 (또는 1박 2일)' },
-                        ].map((tour, idx) => (
-                            <div key={tour.id} className="reveal group block overflow-hidden rounded-3xl shadow-lg relative h-[450px]">
-                                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: `url('${tour.img}')` }}></div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                                <div className="absolute bottom-0 left-0 p-8 text-white w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <span className="inline-block px-3 py-1 bg-tripsoda-main text-xs font-bold rounded-full mb-3">{tour.duration}</span>
-                                    <h3 className="text-2xl font-bold mb-4 leading-snug">{tour.title}</h3>
-
-                                    <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity delay-100">
-                                        <Link href="/contact">
-                                            <a className="flex-1 bg-white text-tripsoda-main text-center text-sm font-bold py-3 rounded-xl hover:bg-gray-100 transition-colors">
-                                                견적 문의
-                                            </a>
-                                        </Link>
-                                        <Link href={`/tours/${tour.id}`}>
-                                            <a className="flex-1 bg-tripsoda-main text-white text-center text-sm font-bold py-3 rounded-xl hover:bg-tripsoda-dark transition-colors border border-tripsoda-main">
-                                                자세히 보기
-                                            </a>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="reveal text-center mt-16">
-                        <Link href="/tours">
-                            <a className="inline-flex items-center gap-2 px-8 py-4 border-2 border-tripsoda-textMain rounded-full text-tripsoda-textMain font-bold hover:bg-tripsoda-textMain hover:text-white transition-all">
-                                전체 투어 보러가기
-                            </a>
-                        </Link>
-                    </div>
+                {example && (
+                  <div className="selected-example">
+                    {example}
+                    <button
+                      type="button"
+                      aria-label={x.remove}
+                      onClick={() => setExample("")}
+                    >
+                      <X size={15} />
+                    </button>
+                  </div>
+                )}
+                <label className="request-intent">
+                  {x.purpose}
+                  <select
+                    value={intent}
+                    onChange={(e) => setIntent(e.target.value)}
+                  >
+                    <option value="inquiry">{x.inquiry}</option>
+                    <option value="booking">{x.booking}</option>
+                  </select>
+                </label>
+                <div className="form-grid">
+                  <label>
+                    {c.labels.name}
+                    <input
+                      required
+                      value={form.name}
+                      maxLength={100}
+                      autoComplete="name"
+                      onChange={(e) => update("name", e.target.value)}
+                    />
+                  </label>
+                  {audience === 1 && (
+                    <label>
+                      {c.labels.company}
+                      <input
+                        required
+                        value={form.company}
+                        maxLength={150}
+                        autoComplete="organization"
+                        onChange={(e) => update("company", e.target.value)}
+                      />
+                    </label>
+                  )}
+                  <label>
+                    {c.labels.email}
+                    <input
+                      required
+                      type="email"
+                      value={form.email}
+                      autoComplete="email"
+                      maxLength={200}
+                      onChange={(e) => update("email", e.target.value)}
+                    />
+                  </label>
+                  <label>
+                    {c.labels.date}
+                    <input
+                      type="date"
+                      min={new Date(
+                        Date.now() - new Date().getTimezoneOffset() * 60000,
+                      )
+                        .toISOString()
+                        .slice(0, 10)}
+                      value={form.date}
+                      onChange={(e) => update("date", e.target.value)}
+                    />
+                    <small>{c.labels.flexible}</small>
+                  </label>
+                  <label>
+                    {c.labels.people}
+                    <input
+                      type="number"
+                      required
+                      min="1"
+                      max="10000"
+                      value={form.people}
+                      onChange={(e) => update("people", e.target.value)}
+                    />
+                  </label>
+                  <label>
+                    {c.labels.budget}
+                    <input
+                      value={form.budget}
+                      maxLength={100}
+                      placeholder="KRW / USD / KZT"
+                      onChange={(e) => update("budget", e.target.value)}
+                    />
+                  </label>
                 </div>
-            </section>
-
-            {/* Reviews (Infinite Scroller) */}
-            <section className="py-24 bg-gray-50 overflow-hidden">
-                <div className="max-w-7xl mx-auto px-4 text-center mb-16 reveal">
-                    <h2 className="text-3xl font-bold text-tripsoda-textMain mb-4">트립소다 카자흐스탄 여행자들의 생생 후기</h2>
-                    <p className="text-tripsoda-textSub">카자흐스탄의 매력에 푹 빠진 여행자들의 이야기를 들어보세요.</p>
-                </div>
-
-                <div className="relative reveal">
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
-                    <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
-
-                    <div className="flex space-x-6 animate-scroll w-max hover:pause">
-                        {[
-                            { text: "차른 캐년의 웅장함은 사진으로 다 담기지 않아요. 가이드님의 설명 덕분에 더 알찬 여행이었습니다!", name: "김민지 님", tour: "차른 캐년 투어" },
-                            { text: "카인디 호수의 물빛은 정말 비현실적이었어요. 인생 사진 건졌습니다! 트립소다 강추해요.", name: "이현수 님", tour: "카인디 호수 투어" },
-                            { text: "알마티 시내 투어도 너무 좋았어요. 콕토베 야경은 잊을 수 없을 것 같습니다. 라운지도 편안했어요.", name: "박지영 님", tour: "알마티 시티 투어" },
-                            { text: "아씨 고원에서 본 별들은 제 인생 최고의 장면이었어요. 캠핑 장비도 훌륭했고 가이드분도 친절하셨습니다.", name: "최동훈 님", tour: "아씨 고원 캠핑" },
-                            { text: "침블락 스키장은 시설이 정말 좋더라고요. 장비 렌탈부터 리프트권까지 편하게 해결했습니다.", name: "정수빈 님", tour: "침블락 스키 투어" },
-                            { text: "콜사이 호수에서 배 타는 경험은 꼭 해보세요! 평화롭고 아름다운 자연 그 자체였습니다.", name: "강민우 님", tour: "콜사이 호수 투어" },
-                            { text: "혼자 여행이라 걱정했는데, 안전하게 다녀올 수 있어서 좋았어요. 다음엔 친구들이랑 또 오고 싶네요.", name: "윤서연 님", tour: "빅 알마티 호수 투어" },
-                        ].concat([
-                            { text: "차른 캐년의 웅장함은 사진으로 다 담기지 않아요. 가이드님의 설명 덕분에 더 알찬 여행이었습니다!", name: "김민지 님", tour: "차른 캐년 투어" },
-                            { text: "카인디 호수의 물빛은 정말 비현실적이었어요. 인생 사진 건졌습니다! 트립소다 강추해요.", name: "이현수 님", tour: "카인디 호수 투어" },
-                            { text: "알마티 시내 투어도 너무 좋았어요. 콕토베 야경은 잊을 수 없을 것 같습니다. 라운지도 편안했어요.", name: "박지영 님", tour: "알마티 시티 투어" },
-                            { text: "아씨 고원에서 본 별들은 제 인생 최고의 장면이었어요. 캠핑 장비도 훌륭했고 가이드분도 친절하셨습니다.", name: "최동훈 님", tour: "아씨 고원 캠핑" },
-                            { text: "침블락 스키장은 시설이 정말 좋더라고요. 장비 렌탈부터 리프트권까지 편하게 해결했습니다.", name: "정수빈 님", tour: "침블락 스키 투어" },
-                            { text: "콜사이 호수에서 배 타는 경험은 꼭 해보세요! 평화롭고 아름다운 자연 그 자체였습니다.", name: "강민우 님", tour: "콜사이 호수 투어" },
-                            { text: "혼자 여행이라 걱정했는데, 안전하게 다녀올 수 있어서 좋았어요. 다음엔 친구들이랑 또 오고 싶네요.", name: "윤서연 님", tour: "빅 알마티 호수 투어" },
-                        ]).map((review, index) => (
-                            <div key={index} className="w-96 bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex-shrink-0">
-                                <div className="flex items-center mb-4">
-                                    <div className="text-yellow-400 flex text-sm">
-                                        {'★'.repeat(5)}
-                                    </div>
-                                    <span className="text-xs text-gray-400 ml-2">{review.tour}</span>
-                                </div>
-                                <p className="text-gray-600 mb-6 leading-relaxed text-sm min-h-[80px]">"{review.text}"</p>
-                                <div className="flex items-center">
-                                    <div className="w-8 h-8 rounded-full bg-tripsoda-light flex items-center justify-center text-tripsoda-main font-bold text-xs mr-3">
-                                        {review.name[0]}
-                                    </div>
-                                    <p className="font-bold text-tripsoda-main text-sm">{review.name}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-
-        </>
-    )
+                <fieldset>
+                  <legend>{c.labels.service}</legend>
+                  <div className="service-options">
+                    {c.labels.services.map((s, i) => (
+                      <label key={s}>
+                        <input
+                          type="checkbox"
+                          checked={chosen.includes(i)}
+                          onChange={() =>
+                            setChosen(
+                              chosen.includes(i)
+                                ? chosen.filter((v) => v !== i)
+                                : [...chosen, i],
+                            )
+                          }
+                        />
+                        {s}
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+                <label>
+                  {c.labels.message}
+                  <textarea
+                    required
+                    rows={4}
+                    maxLength={medical ? 2470 : 2500}
+                    value={form.message}
+                    placeholder={c.labels.placeholder}
+                    onChange={(e) => update("message", e.target.value)}
+                  />
+                </label>
+                <label className="consent">
+                  <input required type="checkbox" />
+                  {c.labels.consent}
+                </label>
+                <button className="kz-btn primary" type="submit">
+                  {c.labels.submit}
+                  <ArrowRight size={18} />
+                </button>
+                <small>
+                  {whatsappOnly
+                    ? {
+                        ko: "WhatsApp에서 메시지를 전송해야 상담 요청이 전달됩니다. 예약은 담당자와 조건 협의 및 계약금 확인 후 확정됩니다.",
+                        en: "Send the message in WhatsApp to submit your inquiry. Booking is confirmed after agreed terms and deposit verification.",
+                        ru: "Отправьте сообщение в WhatsApp, чтобы передать запрос. Бронирование подтверждается после согласования условий и проверки предоплаты.",
+                        kk: "Өтінімді жеткізу үшін WhatsApp-та хабарламаны жіберіңіз. Брондау шарттар келісіліп, депозит тексерілген соң расталады.",
+                      }[lang]
+                    : c.labels.note}
+                </small>
+              </form>
+            )}
+          </div>
+        </section>
+        <section className="kz-section kz-faq">
+          <h2>{c.faqTitle}</h2>
+          <div>
+            {c.faqs.map(([q, a]) => (
+              <details key={q}>
+                <summary>
+                  {q}
+                  <span aria-hidden="true">+</span>
+                </summary>
+                <p>{a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      </main>
+      <footer className="kz-footer">
+        <div>
+          <a className="kz-brand" href="#">
+            <img src="/images/logo.png" alt="TripSoda Kazakhstan LLP" />
+          </a>
+          <p>{c.footer}</p>
+          <p>{c.address}</p>
+        </div>
+        <div>
+          <span>{c.contact}</span>
+          <a href="mailto:jinki@tripsoda.com">CEO · jinki@tripsoda.com</a>
+          <a href="mailto:alua@tripsoda.com">
+            Head Manager · alua@tripsoda.com
+          </a>
+          <a href="mailto:zhibek@tripsoda.com">Manager · zhibek@tripsoda.com</a>
+          <a
+            href="https://instagram.com/tripsoda_kz"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Instagram ↗
+          </a>
+          <a href="https://wa.me/77789861833">+7 778 986 1833</a>
+          <p>© {new Date().getFullYear()} Tripsoda Kazakhstan LLP</p>
+        </div>
+      </footer>
+    </div>
+  );
 }

@@ -5,6 +5,13 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
+concurrency:
+  group: tripsoda-kz-production
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,7 +23,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -26,7 +33,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
       - name: Export
         run: npm run export
       - name: Deploy to S3

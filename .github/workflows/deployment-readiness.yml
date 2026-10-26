@@ -1,0 +1,34 @@
+name: Deployment readiness (read only)
+on:
+  push:
+    branches: [redesign/kazakhstan-experience]
+    paths: [.github/workflows/deployment-readiness.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure existing deployment credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+      - name: Read current domain origin
+        env:
+          DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+        run: |
+          aws cloudfront get-distribution --id "$DISTRIBUTION_ID" --query 'Distribution.{Status:Status,Domain:DomainName,Aliases:DistributionConfig.Aliases,Origins:DistributionConfig.Origins.Items[*].{Id:Id,DomainName:DomainName},Cache:DistributionConfig.DefaultCacheBehavior}'
+      - name: Check available managed servers
+        continue-on-error: true
+        run: aws ssm describe-instance-information --query 'InstanceInformationList[*].{Id:InstanceId,Name:Name,Platform:PlatformName,Status:PingStatus}'
+      - name: Check existing compute names
+        continue-on-error: true
+        run: aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query 'Reservations[].Instances[].{Id:InstanceId,Name:Tags[?Key==`Name`].Value,Type:InstanceType}'
+      - name: Check email service readiness
+        continue-on-error: true
+        run: aws sesv2 get-account --query '{ProductionAccessEnabled:ProductionAccessEnabled,SendingEnabled:SendingEnabled}'
+      - name: Check verified sender domains
+        continue-on-error: true
+        run: aws sesv2 list-email-identities --query 'EmailIdentities[?IdentityName==`tripsoda.com` || IdentityName==`jinki@tripsoda.com`].{Name:IdentityName,Status:VerificationStatus}'

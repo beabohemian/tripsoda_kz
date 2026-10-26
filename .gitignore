@@ -3,3 +3,13 @@ _envs
 node_modules
 .env.local
 .next/*
+.data/
+.env.*
+!.env.example
+*.tsbuildinfo
+
+.next-test/
+
+.next-preview/
+
+.next-geo/

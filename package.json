@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next build && next export",
+    "export": "node scripts/export-static.mjs",
     "lint": "next lint",
     "build-production": "dotenv -e _envs/.env.production -- next build",
-    "start": "dotenv -e _envs/.env.production -- next start -p ${PORT:-4011}"
+    "start": "next start -p ${PORT:-4011}",
+    "admin:setup": "node scripts/setup-admin.mjs",
+    "test:inquiries": "node scripts/test-inquiries.mjs"
   },
   "dependencies": {
     "framer-motion": "^10.16.16",
@@ -29,6 +31,7 @@
     "autoprefixer": "^10.4.14",
     "dotenv-cli": "^7.2.1",
     "postcss": "^8.4.24",
+    "prettier": "3.6.2",
     "tailwindcss": "^3.3.2",
     "typescript": "4.9.5"
   }
