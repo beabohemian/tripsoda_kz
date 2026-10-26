@@ -1,4 +1,6 @@
 import Head from "next/head";
+import type { GetServerSideProps } from "next";
+import { medicalCopy, medicalExtra } from "../lib/medical";
 import { russian, kazakh, extra } from "../lib/translations";
 import { useEffect, useState } from "react";
 import {
@@ -366,8 +368,14 @@ const baseCopy = {
   },
 };
 const copy = { ...baseCopy, ru: russian, kk: kazakh };
-export default function Home() {
-  const [lang, setLang] = useState<Lang>("ko");
+export default function Home({
+  medical = false,
+  initialLanguage = "ko",
+}: {
+  medical?: boolean;
+  initialLanguage?: Lang;
+}) {
+  const [lang, setLang] = useState<Lang>(initialLanguage);
   const [menu, setMenu] = useState(false);
   const [audience, setAudience] = useState(0);
   const [review, setReview] = useState(false);
@@ -392,20 +400,20 @@ export default function Home() {
     try {
       saved = localStorage.getItem("kz-language");
     } catch {}
-    const detected = navigator.language.toLowerCase().split("-")[0];
-    setLang(
-      saved && ["ko", "en", "ru", "kk"].includes(saved)
-        ? (saved as Lang)
-        : ["ko", "ru", "kk"].includes(detected)
-          ? (detected as Lang)
-          : "en",
-    );
+    if (saved && ["ko", "en", "ru", "kk"].includes(saved))
+      setLang(saved as Lang);
   }, []);
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
-  const c = copy[lang];
-  const x = extra[lang];
+  const c = medical
+    ? {
+        ...copy[lang],
+        ...medicalCopy[lang],
+        labels: { ...copy[lang].labels, ...medicalCopy[lang].labels },
+      }
+    : copy[lang];
+  const x = medical ? { ...extra[lang], ...medicalExtra[lang] } : extra[lang];
   const changeLang = (v: Lang) => {
     setLang(v);
     try {
@@ -451,26 +459,41 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
+          message: medical
+            ? `[KOREA MEDICAL TOUR]\n${form.message}`
+            : form.message,
           people: Number(form.people),
           key,
           audience: audience === 1 ? "business" : "personal",
           intent,
           language: lang,
-          services: chosen.map(
-            (i) =>
-              [
-                "custom",
-                "group",
-                "vehicle",
-                "guide",
-                "hotel",
-                "event",
-                "incentive",
-                "business",
-                "interpreter",
-                "protocol",
-              ][i],
-          ),
+          services: medical
+            ? chosen.map(
+                (i) =>
+                  [
+                    "checkup",
+                    "beauty",
+                    "specialist",
+                    "interpreter",
+                    "hotel",
+                    "vehicle",
+                  ][i],
+              )
+            : chosen.map(
+                (i) =>
+                  [
+                    "custom",
+                    "group",
+                    "vehicle",
+                    "guide",
+                    "hotel",
+                    "event",
+                    "incentive",
+                    "business",
+                    "interpreter",
+                    "protocol",
+                  ][i],
+              ),
           example,
           consent: true,
         }),
@@ -489,9 +512,11 @@ export default function Home() {
     <div className="kz-site">
       <Head>
         <title>
-          {lang === "ko"
-            ? "트립소다 카자흐스탄 | 개인 맞춤여행 · 기업·여행사 현지 운영"
-            : `TripSoda Kazakhstan | ${c.nav[0]} · ${c.nav[1]}`}
+          {medical
+            ? c.title
+            : lang === "ko"
+              ? "트립소다 카자흐스탄 | 개인 맞춤여행 · 기업·여행사 현지 운영"
+              : `TripSoda Kazakhstan | ${c.nav[0]} · ${c.nav[1]}`}
         </title>
         <meta name="description" content={c.intro.replace("\n", " ")} />
       </Head>
@@ -543,17 +568,21 @@ export default function Home() {
         </div>
       </header>
       <main>
-        <section className="kz-hero">
-          <img
-            src="/images/tour_charyn_1765783988719.png"
-            alt={
-              lang === "ko"
-                ? "카자흐스탄 차른 캐니언"
-                : "Charyn Canyon, Kazakhstan"
-            }
-            className="kz-hero-photo"
-          />
-          <div className="kz-hero-shade" />
+        <section className={`kz-hero ${medical ? "medical-hero" : ""}`}>
+          {!medical && (
+            <>
+              <img
+                src="/images/tour_charyn_1765783988719.png"
+                alt={
+                  lang === "ko"
+                    ? "카자흐스탄 차른 캐니언"
+                    : "Charyn Canyon, Kazakhstan"
+                }
+                className="kz-hero-photo"
+              />
+              <div className="kz-hero-shade" />
+            </>
+          )}
           <div className="kz-hero-content">
             <span className="kz-eyebrow">
               <i />
@@ -566,7 +595,10 @@ export default function Home() {
                 {c.personal}
                 <ArrowUpRight size={19} />
               </button>
-              <button className="kz-btn ghost" onClick={() => request(1)}>
+              <button
+                className="kz-btn ghost"
+                onClick={() => request(medical ? 0 : 1)}
+              >
                 {c.business}
                 <ArrowRight size={18} />
               </button>
@@ -607,7 +639,7 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <button onClick={() => request(i)}>
+                <button onClick={() => request(medical ? 0 : i)}>
                   {a.cta}
                   <ArrowUpRight size={20} />
                 </button>
@@ -615,91 +647,119 @@ export default function Home() {
             ))}
           </div>
         </section>
-        <section className="kz-operations" id="operations">
-          <div className="operations-photo">
-            <img
-              src="/images/office_lounge.jpg"
-              alt={
-                lang === "ko"
-                  ? "트립소다 알마티 라운지"
-                  : "Tripsoda Almaty lounge"
-              }
-              loading="lazy"
-            />
-            <span>OUR BASE, YOUR LOCAL CONNECTION.</span>
-          </div>
-          <div className="operations-content">
-            <span className="kz-eyebrow green">{c.capabilityLabel}</span>
+        {!medical && (
+          <>
+            <section className="kz-operations" id="operations">
+              <div className="operations-photo">
+                <img
+                  src="/images/office_lounge.jpg"
+                  alt={
+                    lang === "ko"
+                      ? "트립소다 알마티 라운지"
+                      : "Tripsoda Almaty lounge"
+                  }
+                  loading="lazy"
+                />
+                <span>OUR BASE, YOUR LOCAL CONNECTION.</span>
+              </div>
+              <div className="operations-content">
+                <span className="kz-eyebrow green">{c.capabilityLabel}</span>
+                <h2>{c.capabilityTitle}</h2>
+                {c.capabilities.map(([title, desc], i) => (
+                  <div className="capability" key={title}>
+                    <span>0{i + 1}</span>
+                    <div>
+                      <h3>{title}</h3>
+                      <p>{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+            <section className="kz-section local-team">
+              <span className="kz-eyebrow green">YOUR LOCAL TEAM</span>
+              <h2>
+                {
+                  {
+                    ko: "현지에서 만나는 사람들.",
+                    en: "Meet your team on the ground.",
+                    ru: "Ваша команда на месте.",
+                    kk: "Жергілікті командамен танысыңыз.",
+                  }[lang]
+                }
+              </h2>
+              <div className="guide-grid">
+                {[
+                  {
+                    name: "Nora",
+                    ko: "노라",
+                    image: "/images/guides/nora.jpg",
+                    role: {
+                      ko: "전문 관광 가이드 · VIP 의전",
+                      en: "Tour guide · VIP protocol",
+                      ru: "Гид · VIP-сопровождение",
+                      kk: "Гид · VIP сүйемелдеу",
+                    },
+                  },
+                  {
+                    name: "Chingis",
+                    ko: "칭그스",
+                    image: "/images/guides/chingis_jump.jpg",
+                    role: {
+                      ko: "전문 관광 가이드 · 아웃도어·산악",
+                      en: "Tour guide · Outdoors & mountains",
+                      ru: "Гид · Активный отдых и горы",
+                      kk: "Гид · Белсенді демалыс және таулар",
+                    },
+                  },
+                  {
+                    name: "Aibol",
+                    ko: "아이볼",
+                    image: "/images/guides/aibol.jpg",
+                    role: {
+                      ko: "전문 관광 가이드 · 통역",
+                      en: "Tour guide · Interpreting",
+                      ru: "Гид · Устный перевод",
+                      kk: "Гид · Ауызша аударма",
+                    },
+                  },
+                ].map((g) => (
+                  <article key={g.name}>
+                    <img src={g.image} alt={g.name} loading="lazy" />
+                    <div>
+                      <h3>{lang === "ko" ? `${g.ko} (${g.name})` : g.name}</h3>
+                      <p>{g.role[lang]}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          </>
+        )}
+        {medical && (
+          <section className="kz-section medical-care" id="operations">
+            <span className="kz-eyebrow green">KOREA · MEDICAL TRAVEL</span>
             <h2>{c.capabilityTitle}</h2>
-            {c.capabilities.map(([title, desc], i) => (
-              <div className="capability" key={title}>
-                <span>0{i + 1}</span>
-                <div>
+            <div className="medical-grid">
+              {c.capabilities.map(([title, desc], i) => (
+                <article key={title}>
+                  <span>0{i + 1}</span>
                   <h3>{title}</h3>
                   <p>{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-        <section className="kz-section local-team">
-          <span className="kz-eyebrow green">YOUR LOCAL TEAM</span>
-          <h2>
-            {
-              {
-                ko: "현지에서 만나는 사람들.",
-                en: "Meet your team on the ground.",
-                ru: "Ваша команда на месте.",
-                kk: "Жергілікті командамен танысыңыз.",
-              }[lang]
-            }
-          </h2>
-          <div className="guide-grid">
-            {[
-              {
-                name: "Nora",
-                ko: "노라",
-                image: "/images/guides/nora.jpg",
-                role: {
-                  ko: "전문 관광 가이드 · VIP 의전",
-                  en: "Tour guide · VIP protocol",
-                  ru: "Гид · VIP-сопровождение",
-                  kk: "Гид · VIP сүйемелдеу",
-                },
-              },
-              {
-                name: "Chingis",
-                ko: "칭그스",
-                image: "/images/guides/chingis_jump.jpg",
-                role: {
-                  ko: "전문 관광 가이드 · 아웃도어·산악",
-                  en: "Tour guide · Outdoors & mountains",
-                  ru: "Гид · Активный отдых и горы",
-                  kk: "Гид · Белсенді демалыс және таулар",
-                },
-              },
-              {
-                name: "Aibol",
-                ko: "아이볼",
-                image: "/images/guides/aibol.jpg",
-                role: {
-                  ko: "전문 관광 가이드 · 통역",
-                  en: "Tour guide · Interpreting",
-                  ru: "Гид · Устный перевод",
-                  kk: "Гид · Ауызша аударма",
-                },
-              },
-            ].map((g) => (
-              <article key={g.name}>
-                <img src={g.image} alt={g.name} loading="lazy" />
-                <div>
-                  <h3>{lang === "ko" ? `${g.ko} (${g.name})` : g.name}</h3>
-                  <p>{g.role[lang]}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
+                  <button
+                    className="kz-btn secondary"
+                    onClick={() => {
+                      setChosen([Math.min(i, 2)]);
+                      request(0, title);
+                    }}
+                  >
+                    {c.quote} ↗
+                  </button>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
         <section id="tripsoda" className="brand-connection kz-section">
           <span className="kz-eyebrow green">SEOUL TO ALMATY</span>
           <h2>{x.brandTitle}</h2>
@@ -739,43 +799,45 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="kz-section">
-          <div className="kz-section-head">
-            <div>
-              <span className="kz-eyebrow green">{c.exampleLabel}</span>
-              <h2>{c.exampleTitle}</h2>
+        {!medical && (
+          <section className="kz-section">
+            <div className="kz-section-head">
+              <div>
+                <span className="kz-eyebrow green">{c.exampleLabel}</span>
+                <h2>{c.exampleTitle}</h2>
+              </div>
+              <p>{c.exampleDesc}</p>
             </div>
-            <p>{c.exampleDesc}</p>
-          </div>
-          <div className="kz-example-grid">
-            {c.examples.map(([tag, title, desc], i) => (
-              <article key={title}>
-                <div className="example-photo">
-                  <img
-                    src={
-                      [
-                        "/images/tour_charyn_1765783988719.png",
-                        "/images/tour_assy.png",
-                        "/images/tour_city_1765784027581.png",
-                      ][i]
-                    }
-                    alt={title}
-                    loading="lazy"
-                  />
-                  <span>
-                    0{i + 1} / {tag}
-                  </span>
-                </div>
-                <h3>{title}</h3>
-                <p>{desc}</p>
-                <button onClick={() => request(0, title)}>
-                  {c.exampleCta}
-                  <ArrowUpRight size={17} />
-                </button>
-              </article>
-            ))}
-          </div>
-        </section>
+            <div className="kz-example-grid">
+              {c.examples.map(([tag, title, desc], i) => (
+                <article key={title}>
+                  <div className="example-photo">
+                    <img
+                      src={
+                        [
+                          "/images/tour_charyn_1765783988719.png",
+                          "/images/tour_assy.png",
+                          "/images/tour_city_1765784027581.png",
+                        ][i]
+                      }
+                      alt={title}
+                      loading="lazy"
+                    />
+                    <span>
+                      0{i + 1} / {tag}
+                    </span>
+                  </div>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                  <button onClick={() => request(0, title)}>
+                    {c.exampleCta}
+                    <ArrowUpRight size={17} />
+                  </button>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
         <section className="kz-process kz-section">
           <span className="kz-eyebrow green">
             A CLEAR PATH FROM BRIEF TO BOOKING
@@ -1003,7 +1065,7 @@ export default function Home() {
                   <textarea
                     required
                     rows={4}
-                    maxLength={2500}
+                    maxLength={medical ? 2470 : 2500}
                     value={form.message}
                     placeholder={c.labels.placeholder}
                     onChange={(e) => update("message", e.target.value)}
@@ -1066,3 +1128,19 @@ export default function Home() {
     </div>
   );
 }
+
+// Only a deployment-controlled, overwritten country header may select the medical market.
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const header = process.env.KZ_TRUSTED_COUNTRY_HEADER?.toLowerCase();
+  const raw = header ? req.headers[header] : undefined;
+  const country = typeof raw === "string" ? raw.toUpperCase() : "";
+  const medical = country === "KZ" || country === "RU";
+  const accept = req.headers["accept-language"] || "";
+  const initialLanguage = medical
+    ? country === "KZ" && /^kk\b/i.test(accept)
+      ? "kk"
+      : "ru"
+    : "ko";
+  res.setHeader("Cache-Control", "private, no-store");
+  return { props: { medical, initialLanguage } };
+};

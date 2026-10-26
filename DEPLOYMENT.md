@@ -41,3 +41,11 @@ The Codex chat monitor is separate from this application. It checks connected Gm
 ## Container option
 
 `Dockerfile` and `compose.yaml` provide a Node 24 service with a named data volume. Supply `.env.production` with the reviewed configuration and run `docker compose up --build -d` on the deployment host. Port 4011 is bound to loopback; terminate HTTPS in the host's reverse proxy and route the existing domain there. The image build excludes local environment files and data. Container packaging is supplied but was not executed because Docker was unavailable in this workspace.
+
+## 국가별 메디컬 투어 화면
+- 한국 및 국가 미확인 접속: 한국어 카자흐스탄 여행 화면이 기본입니다.
+- 신뢰하는 프록시의 IP 기반 국가 코드가 KZ 또는 RU일 때만 한국 메디컬 투어 전용 화면을 서버에서 렌더링합니다. 언어 선택이나 브라우저 언어만으로 메디컬 화면을 켜지 않습니다.
+- `KZ_TRUSTED_COUNTRY_HEADER`에 프록시가 생성·덮어쓰는 국가 헤더 이름을 지정합니다. CloudFront라면 `cloudfront-viewer-country` 전달을 설정하고 원본 서버 직접 접근을 차단해야 합니다. 임의 클라이언트 헤더를 신뢰하지 마세요. HTML 캐시를 비활성화해야 합니다. 응답에도 private, no-store가 설정됩니다.
+- 국가 헤더 미연결 상태에서는 현지 국가 자동 전환이 동작하지 않습니다. 운영 연결 후 KZ/RU/KR 및 국가 미확인 요청을 각각 검증하세요.
+- 메디컬 화면은 최초 러시아어(카자흐스탄 접속 + 카자흐어 선호 시 카자흐어)이며 수동 선택 언어를 보존합니다. 외국어 선택은 국가 분기를 바꾸지 않습니다.
+- 초기 문의에는 의료서류를 수집하지 않습니다. 건강검진·뷰티·중증질환 상담 요청은 관리화면에 각 분야와 KOREA MEDICAL TOUR 표식으로 저장됩니다. 진료 가능 여부는 의료기관 확인이 필요합니다. 제휴 병원, 의료 성과, 자격에 관한 미확인 주장은 넣지 않았습니다.

@@ -4,6 +4,9 @@ import { saveInquiry } from "../../lib/server/store";
 import { notifyInquiry } from "../../lib/server/mail";
 export const config = { api: { bodyParser: { sizeLimit: "16kb" } } };
 const services = [
+  "checkup",
+  "beauty",
+  "specialist",
   "custom",
   "group",
   "vehicle",

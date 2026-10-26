@@ -15,6 +15,9 @@ const mailLabels: Record<string, string> = {
   failed: "발송 실패",
 };
 const serviceLabels: Record<string, string> = {
+  checkup: "한국 건강검진",
+  beauty: "한국 뷰티 상담",
+  specialist: "한국 중증질환 진료 상담",
   custom: "맞춤여행",
   group: "단체여행",
   vehicle: "차량",

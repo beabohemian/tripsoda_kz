@@ -11,6 +11,7 @@ const base = "http://127.0.0.1:3013";
 const env = {
   ...process.env,
   APP_ORIGIN: base,
+  KZ_TRUSTED_COUNTRY_HEADER: "x-test-country",
   KZ_DATA_DIR: dataDir,
   NEXT_DIST_DIR: ".next-test",
   ADMIN_PASSWORD_HASH: `${salt}:${scryptSync(password, salt, 64).toString("hex")}`,
@@ -204,6 +205,43 @@ try {
   assert.equal(
     (await api("/api/admin/inquiries/", undefined, "GET")).response.status,
     401,
+  );
+  const medical = await api("/api/inquiries/", {
+    ...payload,
+    key: randomUUID(),
+    audience: "personal",
+    language: "kk",
+    message: "[KOREA MEDICAL TOUR] Test only",
+    services: ["checkup", "beauty", "specialist"],
+  });
+  assert.equal(medical.response.status, 201);
+  list = await api("/api/admin/inquiries/", undefined, "GET", true);
+  assert.deepEqual(
+    list.data.rows.find((row) => row.id === medical.data.id).payload.services,
+    ["checkup", "beauty", "specialist"],
+  );
+  for (const [country, language, expectedMedical, expectedLang] of [
+    ["", "ru", false, "ko"],
+    ["KR", "ru", false, "ko"],
+    ["RU", "en", true, "ru"],
+    ["KZ", "kk-KZ,ru;q=0.8", true, "kk"],
+    ["US", "kk", false, "ko"],
+  ]) {
+    const response = await fetch(base + "/", {
+      headers: { "x-test-country": country, "accept-language": language },
+    });
+    const html = await response.text();
+    const match = html.match(
+      /<script id="__NEXT_DATA__" type="application\/json">(.*?)<\/script>/s,
+    );
+    const props = JSON.parse(match[1]).props.pageProps;
+    assert.equal(props.medical, expectedMedical);
+    assert.equal(props.initialLanguage, expectedLang);
+    assert.equal(html.includes("medical-hero"), expectedMedical);
+    assert.ok(response.headers.get("cache-control").includes("no-store"));
+  }
+  console.log(
+    "PASS: country-only medical routing, Korean fallback, cache isolation, medical inquiry persistence.",
   );
   console.log(
     "PASS: authentication, origin check, validation, idempotency, durable storage across restart, email outbox, booking transitions, deposit verification and concurrent-update protection. No emails sent.",
