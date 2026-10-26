@@ -220,32 +220,6 @@ try {
     list.data.rows.find((row) => row.id === medical.data.id).payload.services,
     ["checkup", "beauty", "specialist"],
   );
-  for (const [country, language, expectedMedical, expectedLang] of [
-    ["", "ru", false, "ko"],
-    ["KR", "ru", false, "ko"],
-    ["RU", "en", true, "en"],
-    ["KZ", "kk-KZ,ru;q=0.8", true, "kk"],
-    ["US", "kk", false, "ko"],
-  ]) {
-    const response = await fetch(base + "/", {
-      headers: { "x-test-country": country, "accept-language": language },
-    });
-    const html = await response.text();
-    const match = html.match(
-      /<script id="__NEXT_DATA__" type="application\/json">(.*?)<\/script>/s,
-    );
-    const props = JSON.parse(match[1]).props.pageProps;
-    assert.equal(props.medical, expectedMedical);
-    assert.equal(props.initialLanguage, expectedLang);
-    assert.equal(
-      html.includes("medical-hero"),
-      expectedMedical && ["ru", "kk"].includes(expectedLang),
-    );
-    assert.ok(response.headers.get("cache-control").includes("no-store"));
-  }
-  console.log(
-    "PASS: country-only medical routing, Korean fallback, cache isolation, medical inquiry persistence.",
-  );
   console.log(
     "PASS: authentication, origin check, validation, idempotency, durable storage across restart, email outbox, booking transitions, deposit verification and concurrent-update protection. No emails sent.",
   );

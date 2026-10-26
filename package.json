@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "node scripts/check-static-export.mjs",
+    "export": "node scripts/export-static.mjs",
     "lint": "next lint",
     "build-production": "dotenv -e _envs/.env.production -- next build",
     "start": "next start -p ${PORT:-4011}",

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import type { GetServerSideProps } from "next";
 import { medicalCopy, medicalExtra } from "../lib/medical";
 import { russian, kazakh, extra } from "../lib/translations";
 import { useEffect, useState } from "react";
@@ -369,7 +368,7 @@ const baseCopy = {
 };
 const copy = { ...baseCopy, ru: russian, kk: kazakh };
 export default function Home({
-  medical: medicalMarket = false,
+  medical: initialMedicalMarket = false,
   initialLanguage = "ko",
   preview = false,
 }: {
@@ -378,6 +377,31 @@ export default function Home({
   preview?: boolean;
 }) {
   const [lang, setLang] = useState<Lang>(initialLanguage);
+  const [medicalMarket, setMedicalMarket] = useState(initialMedicalMarket);
+  const whatsappOnly = process.env.NEXT_PUBLIC_CONTACT_MODE === "whatsapp";
+  useEffect(() => {
+    if (preview) return;
+    let saved: string | null = null;
+    try {
+      saved = localStorage.getItem("kz-language");
+    } catch {}
+    const browserLanguage = navigator.language.toLowerCase().split("-")[0];
+    setLang(
+      saved && ["ko", "en", "ru", "kk"].includes(saved)
+        ? (saved as Lang)
+        : ["ko", "en", "ru", "kk"].includes(browserLanguage)
+          ? (browserLanguage as Lang)
+          : "ko",
+    );
+    const controller = new AbortController();
+    fetch("/__country", { cache: "no-store", signal: controller.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data && ["KZ", "RU"].includes(data.country)) setMedicalMarket(true);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, [preview]);
   const medical = medicalMarket && (preview || lang === "ru" || lang === "kk");
   const [menu, setMenu] = useState(false);
   const [audience, setAudience] = useState(0);
@@ -451,6 +475,7 @@ export default function Home({
     .filter(Boolean)
     .join("\n");
   async function submitRequest() {
+    if (whatsappOnly) return;
     setSending(true);
     setSubmitError("");
     const key = requestKey || crypto.randomUUID();
@@ -925,16 +950,37 @@ export default function Home({
                   >
                     {c.labels.edit}
                   </button>
-                  <button
-                    className="kz-btn primary"
-                    disabled={sending}
-                    onClick={submitRequest}
-                  >
-                    {sending ? x.sending : x.submit}
-                    <ArrowRight size={17} />
-                  </button>
+                  {whatsappOnly ? (
+                    <a
+                      className="kz-btn primary"
+                      href={`https://wa.me/77789861833?text=${encodeURIComponent(message)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {c.labels.send}
+                      <ArrowUpRight size={17} />
+                    </a>
+                  ) : (
+                    <button
+                      className="kz-btn primary"
+                      disabled={sending}
+                      onClick={submitRequest}
+                    >
+                      {sending ? x.sending : x.submit}
+                      <ArrowRight size={17} />
+                    </button>
+                  )}
                 </div>
-                <small>{c.labels.note}</small>
+                <small>
+                  {whatsappOnly
+                    ? {
+                        ko: "WhatsApp에서 메시지를 전송해야 상담 요청이 전달됩니다. 예약은 담당자와 조건 협의 및 계약금 확인 후 확정됩니다.",
+                        en: "Send the message in WhatsApp to submit your inquiry. Booking is confirmed after agreed terms and deposit verification.",
+                        ru: "Отправьте сообщение в WhatsApp, чтобы передать запрос. Бронирование подтверждается после согласования условий и проверки предоплаты.",
+                        kk: "Өтінімді жеткізу үшін WhatsApp-та хабарламаны жіберіңіз. Брондау шарттар келісіліп, депозит тексерілген соң расталады.",
+                      }[lang]
+                    : c.labels.note}
+                </small>
               </div>
             ) : (
               <form
@@ -1091,7 +1137,16 @@ export default function Home({
                   {c.labels.submit}
                   <ArrowRight size={18} />
                 </button>
-                <small>{c.labels.note}</small>
+                <small>
+                  {whatsappOnly
+                    ? {
+                        ko: "WhatsApp에서 메시지를 전송해야 상담 요청이 전달됩니다. 예약은 담당자와 조건 협의 및 계약금 확인 후 확정됩니다.",
+                        en: "Send the message in WhatsApp to submit your inquiry. Booking is confirmed after agreed terms and deposit verification.",
+                        ru: "Отправьте сообщение в WhatsApp, чтобы передать запрос. Бронирование подтверждается после согласования условий и проверки предоплаты.",
+                        kk: "Өтінімді жеткізу үшін WhatsApp-та хабарламаны жіберіңіз. Брондау шарттар келісіліп, депозит тексерілген соң расталады.",
+                      }[lang]
+                    : c.labels.note}
+                </small>
               </form>
             )}
           </div>
@@ -1140,24 +1195,3 @@ export default function Home({
     </div>
   );
 }
-
-// Only a deployment-controlled, overwritten country header may select the medical market.
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const header = process.env.KZ_TRUSTED_COUNTRY_HEADER?.toLowerCase();
-  const raw = header ? req.headers[header] : undefined;
-  const country = typeof raw === "string" ? raw.toUpperCase() : "";
-  const medical = country === "KZ" || country === "RU";
-  const accept = req.headers["accept-language"] || "";
-  const preferred = accept.toLowerCase().split(/[-,;]/)[0];
-  const saved = req.cookies["kz-language"];
-  const initialLanguage =
-    saved && ["ko", "en", "ru", "kk"].includes(saved)
-      ? saved
-      : medical
-        ? ["ko", "en", "kk"].includes(preferred)
-          ? preferred
-          : "ru"
-        : "ko";
-  res.setHeader("Cache-Control", "private, no-store");
-  return { props: { medical, initialLanguage } };
-};

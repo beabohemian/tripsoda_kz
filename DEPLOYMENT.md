@@ -55,3 +55,8 @@ The Codex chat monitor is separate from this application. It checks connected Gm
 - 메디컬 화면은 신뢰하는 접속 국가가 KZ/RU이며 표시 언어가 ru/kk일 때만 표시합니다. 위의 국가별 초기 언어 설명보다 이 규칙이 우선합니다.
 - 현지에서도 브라우저 선호 언어가 한국어·영어이면 해당 여행 화면을 표시합니다. 수동 언어 선택은 쿠키로 서버 렌더링에 반영합니다.
 - `/preview-medical/`은 개발 환경에서만 열리는 검토용 예외이며 한국어로도 메디컬 내용을 확인할 수 있습니다. 운영 환경에서는 404입니다.
+
+## Current production release: static + WhatsApp (approved 2026-10-26)
+The user approved deploying the redesign through the existing main → S3 → CloudFront pipeline with WhatsApp inquiries first. `npm run export` now builds with `NEXT_PUBLIC_CONTACT_MODE=whatsapp` and excludes admin, API and preview pages. The review button opens a prefilled WhatsApp conversation; the customer must send the message there. No saved-request or email-delivery success is claimed. Server-side inquiry management remains available for future server deployment only.
+
+Browser language selects ko/en/ru/kk; unknown languages fall back to Korean. The optional same-origin `/__country` endpoint can enable the medical market only for KZ/RU. Until the CloudFront country endpoint is installed, the public site stays in Kazakhstan-travel mode in all four languages. Korean and English always stay in travel mode. Do not claim country routing is active without validating the CloudFront setup.
