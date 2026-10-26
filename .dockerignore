@@ -1,0 +1,11 @@
+.git
+node_modules
+.next*
+.data
+.env*
+_envs
+out
+*.tsbuildinfo
+kyz-uzatu-invitation
+rentcar-platform
+public/__qa-*

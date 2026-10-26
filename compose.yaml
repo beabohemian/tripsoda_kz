@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    env_file: .env.production
+    ports:
+      - "127.0.0.1:4011:4011"
+    volumes:
+      - inquiry-data:/var/lib/tripsoda-kz
+    restart: unless-stopped
+    init: true
+volumes:
+  inquiry-data:
