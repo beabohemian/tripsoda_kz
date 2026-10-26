@@ -3,7 +3,7 @@ import { existsSync, rmSync } from "node:fs";
 const env = {
   ...process.env,
   KZ_STATIC_EXPORT: "1",
-  NEXT_PUBLIC_CONTACT_MODE: "whatsapp",
+  NEXT_PUBLIC_CONTACT_MODE: "legacy-mail",
 };
 const next = "node_modules/next/dist/bin/next";
 for (const args of [["build"], ["export"]]) {
@@ -20,5 +20,5 @@ for (const privatePath of ["out/admin", "out/preview-medical", "out/api"]) {
 // Build manifests are unnecessary for a static site; do not expose private route names.
 rmSync("out/_next/server", { recursive: true, force: true });
 console.log(
-  "Static release ready: WhatsApp inquiries; no admin/API/preview routes.",
+  "Static release ready: existing Tripsoda mail API; no admin/API/preview routes.",
 );
