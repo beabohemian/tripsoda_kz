@@ -10,7 +10,7 @@ Deploy one Node service behind HTTPS on a host with a persistent disk. Mount tha
 
 ## Configuration
 
-Copy `.env.example` into the deployment environment. Configure `APP_ORIGIN` exactly (no trailing slash), `KZ_DATA_DIR`, SMTP credentials, `MAIL_FROM`, and `MAIL_TO`. Never put SMTP credentials or admin secrets in browser-exposed variables. Recipient defaults shown in the example are the existing head-manager and CEO business emails; review them before enabling production delivery.
+Copy `.env.example` into the deployment environment. Configure `APP_ORIGIN` exactly (no trailing slash), `KZ_DATA_DIR`, SMTP credentials, `MAIL_FROM`, and `MAIL_TO`. Never put SMTP credentials or admin secrets in browser-exposed variables. The approved primary recipient is jinki@tripsoda.com, with alua@tripsoda.com in CC. Configure MAIL_TO and MAIL_CC accordingly.
 
 Configure an administrator password with `npm run admin:setup`, passing a unique password of at least 16 characters through stdin and ending input. This writes only a salted hash and session secret to ignored `.env.local`. Restart the process. The password is not printed or committed. The administration page is `/admin/`; authentication uses an eight-hour HttpOnly SameSite=Strict signed cookie, Secure when `APP_ORIGIN` is HTTPS. Rotating the configured password/session secret invalidates sessions.
 

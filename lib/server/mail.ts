@@ -37,6 +37,7 @@ export async function notifyInquiry(id: string) {
     await transport.sendMail({
       from: process.env.MAIL_FROM,
       to: process.env.MAIL_TO,
+      cc: process.env.MAIL_CC || undefined,
       replyTo: p.email,
       subject: `[KZ 접수] ${p.intent === "booking" ? "예약 신청" : "견적 문의"} · ${row.id}`,
       messageId: `<${row.id}@kz.tripsoda.com>`,
