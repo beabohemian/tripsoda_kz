@@ -2,7 +2,7 @@ const ru = {
   nav: ["Медицинская поездка", "Сопровождение", "Направления", "О Tripsoda"],
   quote: "Обсудить поездку",
   eyebrow: "TRIPSODA · MEDICAL TRAVEL TO KOREA",
-  title: "Корея. Поездка ради вашего здоровья.",
+  title: "Медицинские туры в Корею.",
   intro:
     "Чекап, эстетическая медицина и консультации по сложным заболеваниям. Начните с запроса: обсудим цель поездки, языковую поддержку и организационные условия.",
   personal: "Оставить запрос",
@@ -109,7 +109,7 @@ const kk = {
   ...ru,
   nav: ["Медициналық сапар", "Сүйемелдеу", "Бағыттар", "Tripsoda туралы"],
   quote: "Сапарды талқылау",
-  title: "Кореяға денсаулық үшін сапар.",
+  title: "Кореяға медициналық турлар.",
   intro:
     "Денсаулықты тексеру, эстетикалық медицина және күрделі аурулар бойынша кеңес. Сапар мақсатын, тілдік қолдауды және ұйымдастыру шарттарын бірге талқылаймыз.",
   personal: "Өтінім қалдыру",
@@ -215,7 +215,7 @@ const en = {
   ...ru,
   nav: ["Medical travel", "Support", "Care interests", "About Tripsoda"],
   quote: "Discuss your trip",
-  title: "Korea. A journey for your health.",
+  title: "Medical travel to Korea.",
   intro:
     "Health checkups, beauty and consultations for complex conditions. Start with your travel needs; clinical availability and care plans are confirmed by the medical provider.",
   personal: "Send an inquiry",
@@ -321,7 +321,7 @@ const ko = {
   ...en,
   nav: ["메디컬 투어", "동행 지원", "진료 상담 분야", "트립소다 소개"],
   quote: "메디컬 투어 상담",
-  title: "건강을 위한 한국 여행.",
+  title: "한국 메디컬 투어.",
   intro:
     "건강검진부터 뷰티, 중증질환 진료 상담까지. 방문 목적과 필요한 지원을 알려주세요. 의료기관의 진료 가능 여부를 확인한 뒤 여행 조건을 조율합니다.",
   personal: "상담 요청하기",

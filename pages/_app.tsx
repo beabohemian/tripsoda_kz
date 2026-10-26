@@ -17,16 +17,16 @@ if (
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const PageLayout = ["/", "/admin"].includes(router.pathname)
+  const PageLayout = ["/", "/admin", "/preview-medical"].includes(router.pathname)
     ? React.Fragment
     : Layout;
 
   return (
     <>
-      {!["/", "/admin"].includes(router.pathname) && (
+      {!["/", "/admin", "/preview-medical"].includes(router.pathname) && (
         <div className="film-grain"></div>
       )}
-      {!["/", "/admin"].includes(router.pathname) && <CustomCursor />}
+      {!["/", "/admin", "/preview-medical"].includes(router.pathname) && <CustomCursor />}
       <PageLayout>
         <Head>
           <title>트립소다 카자흐스탄 | TripSoda Kazakhstan</title>

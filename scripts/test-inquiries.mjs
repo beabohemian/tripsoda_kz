@@ -223,7 +223,7 @@ try {
   for (const [country, language, expectedMedical, expectedLang] of [
     ["", "ru", false, "ko"],
     ["KR", "ru", false, "ko"],
-    ["RU", "en", true, "ru"],
+    ["RU", "en", true, "en"],
     ["KZ", "kk-KZ,ru;q=0.8", true, "kk"],
     ["US", "kk", false, "ko"],
   ]) {
@@ -237,7 +237,10 @@ try {
     const props = JSON.parse(match[1]).props.pageProps;
     assert.equal(props.medical, expectedMedical);
     assert.equal(props.initialLanguage, expectedLang);
-    assert.equal(html.includes("medical-hero"), expectedMedical);
+    assert.equal(
+      html.includes("medical-hero"),
+      expectedMedical && ["ru", "kk"].includes(expectedLang),
+    );
     assert.ok(response.headers.get("cache-control").includes("no-store"));
   }
   console.log(

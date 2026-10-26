@@ -369,13 +369,16 @@ const baseCopy = {
 };
 const copy = { ...baseCopy, ru: russian, kk: kazakh };
 export default function Home({
-  medical = false,
+  medical: medicalMarket = false,
   initialLanguage = "ko",
+  preview = false,
 }: {
   medical?: boolean;
   initialLanguage?: Lang;
+  preview?: boolean;
 }) {
   const [lang, setLang] = useState<Lang>(initialLanguage);
+  const medical = medicalMarket && (preview || lang === "ru" || lang === "kk");
   const [menu, setMenu] = useState(false);
   const [audience, setAudience] = useState(0);
   const [review, setReview] = useState(false);
@@ -396,14 +399,6 @@ export default function Home({
     message: "",
   });
   useEffect(() => {
-    let saved: string | null = null;
-    try {
-      saved = localStorage.getItem("kz-language");
-    } catch {}
-    if (saved && ["ko", "en", "ru", "kk"].includes(saved))
-      setLang(saved as Lang);
-  }, []);
-  useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
   const c = medical
@@ -416,8 +411,15 @@ export default function Home({
   const x = medical ? { ...extra[lang], ...medicalExtra[lang] } : extra[lang];
   const changeLang = (v: Lang) => {
     setLang(v);
+    setChosen([]);
+    setExample("");
+    setReview(false);
+    setRequestKey("");
     try {
-      localStorage.setItem("kz-language", v);
+      if (!preview) {
+        localStorage.setItem("kz-language", v);
+        document.cookie = `kz-language=${v}; Path=/; Max-Age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
+      }
     } catch {}
   };
   const request = (type: number, route = "") => {
@@ -589,6 +591,16 @@ export default function Home({
               {c.eyebrow}
             </span>
             <h1>{c.title}</h1>
+            {medical && (
+              <div className="medical-hero-fields">
+                {c.capabilities.map(([title]) => (
+                  <a key={title} href="#operations">
+                    {title}
+                    <ArrowUpRight size={18} />
+                  </a>
+                ))}
+              </div>
+            )}
             <p>{c.intro}</p>
             <div className="kz-actions">
               <button className="kz-btn primary" onClick={() => request(0)}>
@@ -1136,11 +1148,16 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const country = typeof raw === "string" ? raw.toUpperCase() : "";
   const medical = country === "KZ" || country === "RU";
   const accept = req.headers["accept-language"] || "";
-  const initialLanguage = medical
-    ? country === "KZ" && /^kk\b/i.test(accept)
-      ? "kk"
-      : "ru"
-    : "ko";
+  const preferred = accept.toLowerCase().split(/[-,;]/)[0];
+  const saved = req.cookies["kz-language"];
+  const initialLanguage =
+    saved && ["ko", "en", "ru", "kk"].includes(saved)
+      ? saved
+      : medical
+        ? ["ko", "en", "kk"].includes(preferred)
+          ? preferred
+          : "ru"
+        : "ko";
   res.setHeader("Cache-Control", "private, no-store");
   return { props: { medical, initialLanguage } };
 };
