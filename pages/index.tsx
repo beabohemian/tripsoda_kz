@@ -379,6 +379,7 @@ export default function Home({
   const [lang, setLang] = useState<Lang>(initialLanguage);
   const [medicalMarket, setMedicalMarket] = useState(initialMedicalMarket);
   const whatsappOnly = process.env.NEXT_PUBLIC_CONTACT_MODE === "whatsapp";
+  const legacyMail = process.env.NEXT_PUBLIC_CONTACT_MODE === "legacy-mail";
   useEffect(() => {
     if (preview) return;
     let saved: string | null = null;
@@ -417,6 +418,7 @@ export default function Home({
     name: "",
     company: "",
     email: "",
+    phone: "",
     date: "",
     people: "",
     budget: "",
@@ -465,6 +467,7 @@ export default function Home({
     `${c.labels.name}: ${form.name}`,
     audience === 1 ? `${c.labels.company}: ${form.company}` : "",
     `${c.labels.email}: ${form.email}`,
+    `Phone / 연락처: ${form.phone || "—"}`,
     `${c.labels.date}: ${form.date || c.labels.flexible}`,
     `${c.labels.people}: ${form.people}`,
     `${c.labels.budget}: ${form.budget || "—"}`,
@@ -481,6 +484,29 @@ export default function Home({
     const key = requestKey || crypto.randomUUID();
     setRequestKey(key);
     try {
+      if (legacyMail) {
+        const response = await fetch("https://api.tripsoda.com/admin/kz/mail", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: form.name.trim(),
+            email: form.email.trim(),
+            phone: form.phone.trim(),
+            date: form.date || c.labels.flexible,
+            duration: c.labels.flexible,
+            pax: String(form.people),
+            destinations:
+              example ||
+              (medical ? "Korea medical travel" : "Kazakhstan custom travel"),
+            accommodation: c.labels.flexible,
+            message: `[KZ 접수] ${key}\n${message}`,
+          }),
+        });
+        if (!response.ok) throw new Error("MAIL_REQUEST_FAILED");
+        setReceipt(key);
+        setRequestKey("");
+        return;
+      }
       const response = await fetch("/api/inquiries/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -916,9 +942,11 @@ export default function Home({
               <div className="receipt" role="status">
                 <Check size={40} />
                 <h3>{x.received}</h3>
-                <p>
-                  {x.reference}: {receipt}
-                </p>
+                {!legacyMail && (
+                  <p>
+                    {x.reference}: {receipt}
+                  </p>
+                )}
                 <p>{x.receivedBody}</p>
                 <button
                   className="kz-btn primary"
@@ -1060,6 +1088,24 @@ export default function Home({
                       autoComplete="email"
                       maxLength={200}
                       onChange={(e) => update("email", e.target.value)}
+                    />
+                  </label>
+                  <label>
+                    {
+                      {
+                        ko: "연락처",
+                        en: "Phone / contact",
+                        ru: "Телефон / контакт",
+                        kk: "Телефон / байланыс",
+                      }[lang]
+                    }
+                    <input
+                      type="tel"
+                      autoComplete="tel"
+                      required={legacyMail}
+                      maxLength={60}
+                      value={form.phone}
+                      onChange={(e) => update("phone", e.target.value)}
                     />
                   </label>
                   <label>
