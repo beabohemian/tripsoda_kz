@@ -1,0 +1,21 @@
+# Daily travel guides
+
+Publish at least one original Korean guide daily at 09:00 Asia/Seoul. Aim for five Kazakhstan guides and two Kyrgyzstan guides per seven publications, adapting to useful seasonal topics. User explicitly authorizes research, writing, committing, PR merge and deployment without per-article approval. Never send customer messages.
+
+## Content and quality
+- Start with a concrete independent traveller's question, not a promotional headline. Examples: Almaty airport to town; 4-night Almaty itinerary; Kolsai/Kaindy transport; travel costs; winter packing; Bishkek to Issyk-Kul; Karakol base selection; Kazakhstan/Kyrgyzstan combined itinerary.
+- Search current Korean results and official/operator sources before writing. Search demand is a hypothesis unless analytics supports it; don't invent search-volume numbers. Use at least two relevant sources when making factual travel claims. Check transport, prices, hours, seasonal access and entry requirements freshly. Resolve contradictory sources using the responsible authority; omit unverified precise claims.
+- Answer the query early. Give usable decisions, tradeoffs, route steps, budget inclusions or a checklist as appropriate. No fixed word quota, filler, repetitive templates, keyword stuffing, fabricated first-person travel experience, invented staff expertise/reviews or guarantees. Write natural Korean. Attribute as 트립소다 카자흐스탄 콘텐츠팀. No pretending a human personally inspected AI-researched text.
+- Include checked date and supporting source links. Respect copyright; summarize rather than copy. Only use owned/licensed images with recorded rights. Images are optional.
+- Subtle conversion: explain independent options first. Where vehicles, guides or lodging are useful, naturally offer help for just that segment. End with a short contextual invitation to /#proposal. Don't promise unverified Kyrgyzstan operations or package prices. No medical-tour content in this Korean travel publication.
+- Compare all existing titles, keywords and article bodies; avoid cannibalizing an existing query. Pick a genuinely different question. No future dates or republishing the same article to meet quotas.
+
+## Format and publishing
+- Repository: beabohemian/tripsoda_kz. Local source: /Users/jinki/Documents/Codex/2026-10-26/kz-tripsoda-com-gh/work/tripsoda_kz.
+- One JSON file per article in content/articles/<slug>.json. Follow lib/articles.ts and existing JSON. Paragraphs are plain text, not HTML or Markdown; sources are structured links. published/updated use YYYY-MM-DD Korea date.
+- Pages /guides/ and /guides/<slug>/ statically render content with canonical, metadata, Article schema and related links. scripts/build-article-index.mjs validates files and updates public/sitemap.xml as part of export.
+- Use a clean temporary Git worktree from latest origin/main for each daily publication. Never stage pre-existing dirty out/ files, secrets or unrelated changes. Modern Node: /Users/jinki/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node. Put its directory first in PATH for npm.
+- Run npm ci when needed, then npm run export. Confirm generated HTML includes the title/body/canonical and sitemap URL, no private /admin or /preview-medical routes. Stage only intended content/source/sitemap changes, not out/ or tsbuildinfo.
+- Commit and push a daily branch. Create PR with concise summary and verification; attach PR to chat, merge after checks succeed. Existing main GitHub Actions deploys to S3/CloudFront. Verify deployment success and public article URL + /guides/ + sitemap before claiming published.
+- Maintain content/publication-log.json recording slug, Korea date, main keyword, country, source checked date and public URL. Treat public deployment as source of truth; if a prior run was interrupted reconcile its PR/action before creating duplicates. If today's guide is already live, quietly exit. If failed, repair/retry boundedly; never fabricate a success or publish unchecked material just to meet quota.
+- Notify user only after verified new publication (title/link) or a blocking failure requiring action. Keep routine checks quiet. Do not alter website routing, inquiry transport, credentials or unrelated design during a daily writing run.
