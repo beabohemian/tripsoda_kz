@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { GetStaticPropsContext } from "next";
 import GuideShell from "../../components/GuideShell";
+import { getHeroImageAttribution } from "../../lib/article-images";
 import { Article, getArticles } from "../../lib/articles";
 export default function Guide({
   article: a,
@@ -10,6 +11,9 @@ export default function Guide({
   related: Article[];
 }) {
   const url = `https://kz.tripsoda.com/guides/${a.slug}/`;
+  const imageUrl = a.heroImage
+    ? `https://kz.tripsoda.com${a.heroImage.src}`
+    : undefined;
   return (
     <GuideShell>
       <Head>
@@ -20,6 +24,7 @@ export default function Guide({
         <meta property="og:description" content={a.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
+        {imageUrl && <meta property="og:image" content={imageUrl} />}
         <meta
           property="article:published_time"
           content={`${a.published}T09:00:00+09:00`}
@@ -36,6 +41,7 @@ export default function Guide({
               dateModified: a.updated,
               inLanguage: "ko",
               mainEntityOfPage: url,
+              ...(imageUrl ? { image: [imageUrl] } : {}),
               author: {
                 "@type": "Organization",
                 name: "트립소다 카자흐스탄 콘텐츠팀",
@@ -61,6 +67,22 @@ export default function Guide({
           트립소다 카자흐스탄 콘텐츠팀 · 게시 {a.published} · 정보 확인{" "}
           {a.updated}
         </p>
+        {a.heroImage && (
+          <figure className="guide-hero-image">
+            <img
+              src={a.heroImage.src}
+              alt={a.heroImage.alt}
+              width={a.heroImage.width}
+              height={a.heroImage.height}
+            />
+            <figcaption>
+              <span>{a.heroImage.caption}</span>
+              <small>
+                {getHeroImageAttribution(a.heroImage)} · {a.heroImage.rights}
+              </small>
+            </figcaption>
+          </figure>
+        )}
         <p className="guide-lead">{a.intro}</p>
         <nav className="guide-toc" aria-label="글 목차">
           <strong>이 글에서 확인할 것</strong>
