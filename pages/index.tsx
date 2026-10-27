@@ -1,7 +1,8 @@
 import Head from "next/head";
+import { track } from "../lib/analytics";
 import { medicalCopy, medicalExtra } from "../lib/medical";
 import { russian, kazakh, extra } from "../lib/translations";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   ArrowRight,
@@ -412,6 +413,8 @@ export default function Home({
   const [receipt, setReceipt] = useState("");
   const [submitError, setSubmitError] = useState("");
   const [requestKey, setRequestKey] = useState("");
+  const formStarted = useRef(false);
+  const submitLock = useRef(false);
   const [intent, setIntent] = useState("inquiry");
   const [chosen, setChosen] = useState<number[]>([]);
   const [form, setForm] = useState({
@@ -435,7 +438,21 @@ export default function Home({
       }
     : copy[lang];
   const x = medical ? { ...extra[lang], ...medicalExtra[lang] } : extra[lang];
+  const trackForm = (
+    event:
+      | "form_start"
+      | "form_review"
+      | "form_submit_attempt"
+      | "generate_lead"
+      | "form_submit_error",
+  ) =>
+    track(event, {
+      audience_type: audience === 1 ? "business" : "personal",
+      request_type: intent === "booking" ? "booking" : "inquiry",
+      site_language: lang,
+    });
   const changeLang = (v: Lang) => {
+    track("language_change", { site_language: v });
     setLang(v);
     setChosen([]);
     setExample("");
@@ -449,6 +466,11 @@ export default function Home({
     } catch {}
   };
   const request = (type: number, route = "") => {
+    track("quote_click", {
+      audience_type: type === 1 ? "business" : "personal",
+      site_language: lang,
+      cta_location: "home",
+    });
     setReceipt("");
     setSubmitError("");
     setRequestKey("");
@@ -478,7 +500,9 @@ export default function Home({
     .filter(Boolean)
     .join("\n");
   async function submitRequest() {
-    if (whatsappOnly) return;
+    if (whatsappOnly || submitLock.current) return;
+    submitLock.current = true;
+    trackForm("form_submit_attempt");
     setSending(true);
     setSubmitError("");
     const key = requestKey || crypto.randomUUID();
@@ -503,6 +527,8 @@ export default function Home({
           }),
         });
         if (!response.ok) throw new Error("MAIL_REQUEST_FAILED");
+        trackForm("generate_lead");
+        formStarted.current = false;
         setReceipt(key);
         setRequestKey("");
         return;
@@ -553,11 +579,15 @@ export default function Home({
       });
       if (!response.ok) throw new Error();
       const data = await response.json();
+      trackForm("generate_lead");
+      formStarted.current = false;
       setReceipt(data.id);
       setRequestKey("");
     } catch {
+      trackForm("form_submit_error");
       setSubmitError(x.error);
     } finally {
+      submitLock.current = false;
       setSending(false);
     }
   }
@@ -590,7 +620,11 @@ export default function Home({
               {n}
             </a>
           ))}
-          {!medical && <a href="/guides/">{lang === "ko" ? "여행 가이드" : "Travel guides (KO)"}</a>}
+          {!medical && (
+            <a href="/guides/">
+              {lang === "ko" ? "여행 가이드" : "Travel guides (KO)"}
+            </a>
+          )}
         </nav>
         <div className="nav-tools">
           <label className="language-picker">
@@ -1013,8 +1047,15 @@ export default function Home({
               </div>
             ) : (
               <form
+                onChange={() => {
+                  if (!formStarted.current) {
+                    formStarted.current = true;
+                    trackForm("form_start");
+                  }
+                }}
                 onSubmit={(e) => {
                   e.preventDefault();
+                  trackForm("form_review");
                   setReview(true);
                 }}
               >
