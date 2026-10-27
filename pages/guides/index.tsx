@@ -36,6 +36,18 @@ export default function Guides({ articles }: { articles: Article[] }) {
         <div className="guide-cards">
           {articles.map((a) => (
             <a className="guide-card" key={a.slug} href={`/guides/${a.slug}/`}>
+              {a.heroImage && (
+                <figure className="guide-card-image">
+                  <img
+                    src={a.heroImage.src}
+                    alt={a.heroImage.alt}
+                    width={a.heroImage.width}
+                    height={a.heroImage.height}
+                    loading="lazy"
+                  />
+                  <figcaption>AI 생성 이미지 · Higgsfield</figcaption>
+                </figure>
+              )}
               <span>
                 {a.country} · {a.published}
               </span>

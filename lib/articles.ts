@@ -11,6 +11,16 @@ export type Article = {
   intro: string;
   sections: { heading: string; paragraphs: string[]; bullets?: string[] }[];
   sources: { title: string; url: string }[];
+  heroImage?: {
+    src: string;
+    alt: string;
+    caption: string;
+    width: number;
+    height: number;
+    kind: "ai-generated";
+    provider: "Higgsfield";
+    rights: string;
+  };
 };
 export function getArticles(): Article[] {
   const dir = path.join(process.cwd(), "content/articles");

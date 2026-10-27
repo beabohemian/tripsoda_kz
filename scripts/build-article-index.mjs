@@ -1,4 +1,9 @@
-import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from "node:fs";
 const files = readdirSync("content/articles").filter((f) =>
   f.endsWith(".json"),
 );
@@ -39,6 +44,32 @@ const articles = files.map((file) => {
   for (const source of a.sources)
     if (!source.title || !source.url.startsWith("https://"))
       throw new Error(`${file}: invalid source`);
+  if (a.heroImage) {
+    const image = a.heroImage;
+    const imagePath = new RegExp(
+      `^/images/articles/${a.slug}-hero\\.(?:avif|jpe?g|png|webp)$`,
+    );
+    if (
+      typeof image.src !== "string" ||
+      !imagePath.test(image.src) ||
+      !existsSync(`public${image.src}`)
+    )
+      throw new Error(`${file}: missing/invalid hero image file`);
+    for (const key of ["alt", "caption", "rights"])
+      if (typeof image[key] !== "string" || !image[key].trim())
+        throw new Error(`${file}: missing hero image ${key}`);
+    if (
+      !Number.isSafeInteger(image.width) ||
+      image.width < 1 ||
+      !Number.isSafeInteger(image.height) ||
+      image.height < 1
+    )
+      throw new Error(`${file}: invalid hero image dimensions`);
+    if (image.kind !== "ai-generated" || image.provider !== "Higgsfield")
+      throw new Error(`${file}: unsupported hero image provenance`);
+    if (/실제\s*(?:사진|촬영)|현장\s*촬영|documentary/i.test(image.caption))
+      throw new Error(`${file}: generated image caption implies documentary origin`);
+  }
   return a;
 });
 const base = readFileSync("public/sitemap.xml", "utf8").replace(
