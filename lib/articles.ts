@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import type { ArticleHeroImage } from "./article-images";
 export type Article = {
   slug: string;
   title: string;
@@ -11,16 +12,7 @@ export type Article = {
   intro: string;
   sections: { heading: string; paragraphs: string[]; bullets?: string[] }[];
   sources: { title: string; url: string }[];
-  heroImage?: {
-    src: string;
-    alt: string;
-    caption: string;
-    width: number;
-    height: number;
-    kind: "ai-generated";
-    provider: "Higgsfield";
-    rights: string;
-  };
+  heroImage?: ArticleHeroImage;
 };
 export function getArticles(): Article[] {
   const dir = path.join(process.cwd(), "content/articles");

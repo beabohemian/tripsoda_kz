@@ -1,5 +1,6 @@
 import Head from "next/head";
 import GuideShell from "../../components/GuideShell";
+import { getHeroImageAttribution } from "../../lib/article-images";
 import { Article, getArticles } from "../../lib/articles";
 export default function Guides({ articles }: { articles: Article[] }) {
   return (
@@ -45,7 +46,9 @@ export default function Guides({ articles }: { articles: Article[] }) {
                     height={a.heroImage.height}
                     loading="lazy"
                   />
-                  <figcaption>AI 생성 이미지 · Higgsfield</figcaption>
+                  <figcaption>
+                    {getHeroImageAttribution(a.heroImage)}
+                  </figcaption>
                 </figure>
               )}
               <span>

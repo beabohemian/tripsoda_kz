@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { GetStaticPropsContext } from "next";
 import GuideShell from "../../components/GuideShell";
+import { getHeroImageAttribution } from "../../lib/article-images";
 import { Article, getArticles } from "../../lib/articles";
 export default function Guide({
   article: a,
@@ -77,7 +78,7 @@ export default function Guide({
             <figcaption>
               <span>{a.heroImage.caption}</span>
               <small>
-                AI 생성 이미지 · Higgsfield · {a.heroImage.rights}
+                {getHeroImageAttribution(a.heroImage)} · {a.heroImage.rights}
               </small>
             </figcaption>
           </figure>

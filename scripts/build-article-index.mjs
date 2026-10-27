@@ -65,10 +65,27 @@ const articles = files.map((file) => {
       image.height < 1
     )
       throw new Error(`${file}: invalid hero image dimensions`);
-    if (image.kind !== "ai-generated" || image.provider !== "Higgsfield")
+    if (image.kind === "ai-generated") {
+      if (image.provider !== "Higgsfield")
+        throw new Error(`${file}: unsupported generated-image provider`);
+      if (/실제\s*(?:사진|촬영)|현장\s*촬영|documentary/i.test(image.caption))
+        throw new Error(
+          `${file}: generated image caption implies documentary origin`,
+        );
+    } else if (image.kind === "photograph") {
+      if (typeof image.credit !== "string" || !image.credit.trim())
+        throw new Error(`${file}: missing photograph credit`);
+      if (image.provider)
+        throw new Error(`${file}: photograph must not name an AI provider`);
+      if (
+        image.sourceUrl !== undefined &&
+        (typeof image.sourceUrl !== "string" ||
+          !image.sourceUrl.startsWith("https://"))
+      )
+        throw new Error(`${file}: invalid photograph source URL`);
+    } else {
       throw new Error(`${file}: unsupported hero image provenance`);
-    if (/실제\s*(?:사진|촬영)|현장\s*촬영|documentary/i.test(image.caption))
-      throw new Error(`${file}: generated image caption implies documentary origin`);
+    }
   }
   return a;
 });
