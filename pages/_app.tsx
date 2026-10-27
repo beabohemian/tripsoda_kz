@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import "../styles/renewal.css";
 import "../styles/guides.css";
 import React from "react";
+import WebAnalytics from "../components/WebAnalytics";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -25,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <WebAnalytics />
       {!minimalLayout && <div className="film-grain"></div>}
       {!minimalLayout && <CustomCursor />}
       <PageLayout>
