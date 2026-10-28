@@ -439,6 +439,7 @@ export default function Home({
       }
     : copy[lang];
   const x = medical ? { ...extra[lang], ...medicalExtra[lang] } : extra[lang];
+  const requiredMark = <span className="required-mark" aria-hidden="true">*</span>;
   const trackForm = (
     event:
       | "form_start"
@@ -1043,14 +1044,14 @@ export default function Home({
                   </select>
                 </label>
                 <p className="form-requirements">{{
-                  ko: "필수 입력: 이름, 이메일, 연락처, 인원, 요청사항. 여행 조건은 선택입니다.",
-                  en: "Required: name, email, contact, group size and requirements. Other trip details are optional.",
-                  ru: "Обязательны: имя, email, контакт, число участников и пожелания. Другие детали поездки — по желанию.",
-                  kk: "Міндетті: аты-жөні, email, байланыс, адам саны және өтініш. Сапардың басқа мәліметтері — ерікті.",
+                  ko: "* 표시는 필수 항목입니다.",
+                  en: "* indicates a required field.",
+                  ru: "* — обязательное поле.",
+                  kk: "* — міндетті өріс.",
                 }[lang]}</p>
                 <div className="form-grid">
                   <label>
-                    {c.labels.name}
+                    <span>{c.labels.name}{requiredMark}</span>
                     <input
                       required
                       value={form.name}
@@ -1061,8 +1062,9 @@ export default function Home({
                   </label>
                   {audience === 1 && (
                     <label>
-                      {c.labels.company}
+                      <span>{c.labels.company}{requiredMark}</span>
                       <input
+                        required
                         value={form.company}
                         maxLength={150}
                         autoComplete="organization"
@@ -1071,7 +1073,7 @@ export default function Home({
                     </label>
                   )}
                   <label>
-                    {c.labels.email}
+                    <span>{c.labels.email}{requiredMark}</span>
                     <input
                       required
                       type="email"
@@ -1082,14 +1084,12 @@ export default function Home({
                     />
                   </label>
                   <label>
-                    {
-                      {
-                        ko: "연락처",
-                        en: "Phone / contact",
-                        ru: "Телефон / контакт",
-                        kk: "Телефон / байланыс",
-                      }[lang]
-                    }
+                    <span>{{
+                      ko: "연락처",
+                      en: "Phone / contact",
+                      ru: "Телефон / контакт",
+                      kk: "Телефон / байланыс",
+                    }[lang]}{requiredMark}</span>
                     <input
                       type="tel"
                       autoComplete="tel"
@@ -1114,7 +1114,7 @@ export default function Home({
                     <small>{c.labels.flexible}</small>
                   </label>
                   <label>
-                    {c.labels.people}
+                    <span>{c.labels.people}{requiredMark}</span>
                     <input
                       type="number"
                       required
@@ -1156,7 +1156,7 @@ export default function Home({
                   </div>
                 </fieldset>
                 <label>
-                  {c.labels.message}
+                  <span>{c.labels.message}{requiredMark}</span>
                   <textarea
                     required
                     rows={4}
@@ -1168,7 +1168,7 @@ export default function Home({
                 </label>
                 <label className="consent">
                   <input required type="checkbox" />
-                  {c.labels.consent}
+                  <span>{c.labels.consent}{requiredMark}</span>
                 </label>
                 <button className="kz-btn primary" type="submit">
                   {c.labels.submit}

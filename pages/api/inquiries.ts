@@ -54,6 +54,7 @@ export default async function handler(
     p.consent !== true ||
     !text(p.date, 10) ||
     (p.date && !/^\d{4}-\d{2}-\d{2}$/.test(p.date)) ||
+    (p.audience === "business" && !p.company.trim()) ||
     !/^[a-f0-9-]{36}$/.test(p.key || "")
   )
     return res.status(400).json({ error: "INVALID_REQUEST" });
