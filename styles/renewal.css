@@ -1613,3 +1613,21 @@
     padding: 10px 12px;
   }
 }
+
+/* Local operations and guide teams share the existing Tripsoda card design. */
+.team-group + .team-group { margin-top: 56px; }
+.team-group-heading { margin: 0 0 22px; }
+.team-group-heading h3 { font-size: 24px; font-weight: 750; color: #111827; }
+.team-group-heading p, .team-assignment-note { color: #626b70; font-size: 14px; line-height: 1.8; }
+.team-group-heading p { margin-top: 8px; }
+.guide-grid h4 { font-size: 21px; font-weight: 750; }
+.team-name-en { display: inline-block; margin-left: 9px; color: #6b7280; font-size: 13px; font-weight: 450; }
+.guide-grid .team-role { color: #13735c; font-size: 13px; font-weight: 650; }
+.guide-grid .team-bio { font-size: 14px; line-height: 1.85; margin-top: 14px; }
+.guide-grid .team-photo { height: auto; aspect-ratio: 1 / 1; object-position: center; }
+.guide-grid .team-photo-jinki { object-position: 67% center; }
+.team-assignment-note { margin-top: 28px; max-width: 780px; }
+@media (max-width: 760px) {
+  .team-group + .team-group { margin-top: 40px; }
+  .guide-grid .team-photo { aspect-ratio: 1.15 / 1; }
+}

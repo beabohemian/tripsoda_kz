@@ -1,3 +1,4 @@
+import LocalTeam from "../components/LocalTeam";
 import Head from "next/head";
 import { track } from "../lib/analytics";
 import { medicalCopy, medicalExtra } from "../lib/medical";
@@ -774,64 +775,7 @@ export default function Home({
                 ))}
               </div>
             </section>
-            <section className="kz-section local-team">
-              <span className="kz-eyebrow green">YOUR LOCAL TEAM</span>
-              <h2>
-                {
-                  {
-                    ko: "현지에서 만나는 사람들.",
-                    en: "Meet your team on the ground.",
-                    ru: "Ваша команда на месте.",
-                    kk: "Жергілікті командамен танысыңыз.",
-                  }[lang]
-                }
-              </h2>
-              <div className="guide-grid">
-                {[
-                  {
-                    name: "Nora",
-                    ko: "노라",
-                    image: "/images/guides/nora.jpg",
-                    role: {
-                      ko: "전문 관광 가이드 · VIP 의전",
-                      en: "Tour guide · VIP protocol",
-                      ru: "Гид · VIP-сопровождение",
-                      kk: "Гид · VIP сүйемелдеу",
-                    },
-                  },
-                  {
-                    name: "Chingis",
-                    ko: "칭그스",
-                    image: "/images/guides/chingis_jump.jpg",
-                    role: {
-                      ko: "전문 관광 가이드 · 아웃도어·산악",
-                      en: "Tour guide · Outdoors & mountains",
-                      ru: "Гид · Активный отдых и горы",
-                      kk: "Гид · Белсенді демалыс және таулар",
-                    },
-                  },
-                  {
-                    name: "Aibol",
-                    ko: "아이볼",
-                    image: "/images/guides/aibol.jpg",
-                    role: {
-                      ko: "전문 관광 가이드 · 통역",
-                      en: "Tour guide · Interpreting",
-                      ru: "Гид · Устный перевод",
-                      kk: "Гид · Ауызша аударма",
-                    },
-                  },
-                ].map((g) => (
-                  <article key={g.name}>
-                    <img src={g.image} alt={g.name} loading="lazy" />
-                    <div>
-                      <h3>{lang === "ko" ? `${g.ko} (${g.name})` : g.name}</h3>
-                      <p>{g.role[lang]}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </section>
+            <LocalTeam lang={lang} />
           </>
         )}
         {medical && (
