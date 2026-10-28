@@ -379,7 +379,6 @@ export default function Home({
   preview?: boolean;
 }) {
   const [lang, setLang] = useState<Lang>(initialLanguage);
-  const [medicalMarket, setMedicalMarket] = useState(initialMedicalMarket);
   const whatsappOnly = process.env.NEXT_PUBLIC_CONTACT_MODE === "whatsapp";
   const legacyMail = process.env.NEXT_PUBLIC_CONTACT_MODE === "legacy-mail";
   useEffect(() => {
@@ -396,16 +395,9 @@ export default function Home({
           ? (browserLanguage as Lang)
           : "ko",
     );
-    const controller = new AbortController();
-    fetch("/__country", { cache: "no-store", signal: controller.signal })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => {
-        if (data && ["KZ", "RU"].includes(data.country)) setMedicalMarket(true);
-      })
-      .catch(() => {});
-    return () => controller.abort();
   }, [preview]);
-  const medical = medicalMarket && (preview || lang === "ru" || lang === "kk");
+  // The selected language determines the offering, including on static hosting.
+  const medical = lang === "ru" || lang === "kk" || (preview && initialMedicalMarket);
   const [menu, setMenu] = useState(false);
   const [audience, setAudience] = useState(0);
   const [review, setReview] = useState(false);
