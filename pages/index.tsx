@@ -775,7 +775,7 @@ export default function Home({
                 ))}
               </div>
             </section>
-            <LocalTeam lang={lang === "ko" ? "ko" : "en"} />
+            <LocalTeam lang={lang} />
           </>
         )}
         {medical && (
