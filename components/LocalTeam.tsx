@@ -3,10 +3,16 @@ import { teamMembers, type TeamLanguage } from "../lib/team";
 export default function LocalTeam({ lang = "ko" }: { lang?: TeamLanguage }) {
   const ko = lang === "ko";
   const copy = {
-    ko: ["현지에서 만나는 사람들.", "운영팀", "문의와 일정 설계부터 현장 운영까지, 여행의 앞뒤를 함께 챙깁니다.", "가이드팀", "카자흐스탄의 풍경과 문화를 안내하는 현지 가이드팀입니다.", "소개된 구성원 외에도 선별된 현지 가이드들이 함께합니다. 행사 성격에 맞춰 담당자 및 가이드가 배정되며, 예약 확정 시 안내합니다. 모든 가이드가 한국어 가이드는 아닙니다. 자유여행 개인 고객에게는 기본적으로 영어 가이드가 배정됩니다. 한국어 안내가 필요하다면 예약 전 요청해 주세요."],
-    en: ["Meet your team on the ground.", "Operations Team", "From your first enquiry and itinerary planning to local coordination.", "Guide Team", "Meet the local guides who introduce Kazakhstan’s landscapes and culture.", "Additional selected local guides work with our team. Your coordinator and guide are assigned according to the nature of your trip or event and announced when your booking is confirmed. Not all guides speak Korean. Individual independent travellers are assigned an English-speaking guide by default. If you need a Korean-speaking guide, please request one before booking."],
-    ru: ["Ваша команда на месте.", "Организация поездок", "От первого обращения и планирования маршрута до координации на месте.", "Команда гидов", "Местные гиды знакомят гостей с природой и культурой Казахстана.", "С нами работают и другие отобранные местные гиды. Координатор и гид назначаются с учётом формата поездки или мероприятия; подробности сообщаем при подтверждении бронирования. Не все гиды говорят по-корейски. Индивидуальным самостоятельным путешественникам по умолчанию назначается англоговорящий гид. Если нужен корейскоговорящий гид, сообщите об этом до бронирования."],
-    kk: ["Жергілікті командамен танысыңыз.", "Ұйымдастыру тобы", "Алғашқы сұраудан бастап маршрутты жоспарлау мен жергілікті үйлестіруге дейін көмектесеміз.", "Гидтер тобы", "Жергілікті гидтер Қазақстанның табиғаты мен мәдениетін таныстырады.", "Бізбен басқа да іріктелген жергілікті гидтер жұмыс істейді. Жауапты маман мен гид сапардың немесе іс-шараның сипатына қарай тағайындалып, брондау расталған кезде хабарланады. Барлық гид корей тілінде сөйлемейді. Жеке еркін саяхатшыларға әдетте ағылшын тілінде сөйлейтін гид тағайындалады. Корей тіліндегі гид қажет болса, брондаудан бұрын хабарлаңыз."],
+    ko: ["현지에서 만나는 사람들.", "운영팀", "문의와 일정 설계부터 현장 운영까지, 여행의 앞뒤를 함께 챙깁니다.", "가이드팀", "카자흐스탄의 풍경과 문화를 안내하는 현지 가이드팀입니다."],
+    en: ["Meet your team on the ground.", "Operations Team", "From your first enquiry and itinerary planning to local coordination.", "Guide Team", "Meet the local guides who introduce Kazakhstan’s landscapes and culture."],
+    ru: ["Ваша команда на месте.", "Организация поездок", "От первого обращения и планирования маршрута до координации на месте.", "Команда гидов", "Местные гиды знакомят гостей с природой и культурой Казахстана."],
+    kk: ["Жергілікті командамен танысыңыз.", "Ұйымдастыру тобы", "Алғашқы сұраудан бастап маршрутты жоспарлау мен жергілікті үйлестіруге дейін көмектесеміз.", "Гидтер тобы", "Жергілікті гидтер Қазақстанның табиғаты мен мәдениетін таныстырады."],
+  }[lang];
+  const assignment = {
+    ko: { title: "가이드 배정 안내", intro: "소개된 멤버 외에도 선별된 현지 가이드들이 함께합니다.", timingLabel: "담당자 배정", timing: "행사 성격에 맞춰 배정하며, 예약 확정 시 안내합니다.", languageLabel: "안내 언어", language: "개인 자유여행은 영어 가이드가 기본입니다. 모든 가이드가 한국어를 구사하지는 않으므로, 한국어 안내는 예약 전에 요청해 주세요." },
+    en: { title: "Your guide assignment", intro: "Additional selected local guides work with our team.", timingLabel: "Your coordinator & guide", timing: "Assigned to suit your trip or event, with details shared at booking confirmation.", languageLabel: "Guide language", language: "English is the default for individual independent travellers. Not all guides speak Korean; request Korean-language guidance before booking." },
+    ru: { title: "Назначение гида", intro: "С нами работают и другие отобранные местные гиды.", timingLabel: "Координатор и гид", timing: "Назначаются с учётом формата поездки. Подробности — при подтверждении бронирования.", languageLabel: "Язык гида", language: "Для индивидуальных самостоятельных поездок по умолчанию предоставляется англоговорящий гид. Не все гиды говорят по-корейски; запросите корейский язык до бронирования." },
+    kk: { title: "Гидті тағайындау", intro: "Бізбен басқа да іріктелген жергілікті гидтер жұмыс істейді.", timingLabel: "Жауапты маман мен гид", timing: "Сапар сипатына қарай тағайындалып, брондау расталғанда хабарланады.", languageLabel: "Гидтің тілі", language: "Жеке еркін саяхатшыларға әдетте ағылшын тіліндегі гид тағайындалады. Барлық гид корей тілінде сөйлемейді; корей тіліндегі гидті брондаудан бұрын сұраңыз." },
   }[lang];
   const groups = [
     { id: "operations", title: copy[1], text: copy[2] },
@@ -33,7 +39,14 @@ export default function LocalTeam({ lang = "ko" }: { lang?: TeamLanguage }) {
           </div>
         </div>
       ))}
-      <p className="team-assignment-note">{copy[5]}</p>
+      <aside className="team-assignment-note" aria-label={assignment.title}>
+        <h3>{assignment.title}</h3>
+        <p>{assignment.intro}</p>
+        <dl>
+          <div><dt>{assignment.timingLabel}</dt><dd>{assignment.timing}</dd></div>
+          <div><dt>{assignment.languageLabel}</dt><dd>{assignment.language}</dd></div>
+        </dl>
+      </aside>
     </section>
   );
 }
