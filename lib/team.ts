@@ -10,18 +10,18 @@ export const teamMembers = [
       "kk": "Ли Джинги"
     },
     "role": {
-      "ko": "트립소다 카자흐스탄 대표",
-      "en": "CEO · Tripsoda Kazakhstan",
-      "ru": "Руководитель Tripsoda Kazakhstan",
-      "kk": "Tripsoda Kazakhstan басшысы"
+      "ko": "트립소다 COO · 트립소다 카자흐스탄 CEO",
+      "en": "COO, Tripsoda · CEO, Tripsoda Kazakhstan",
+      "ru": "COO Tripsoda · CEO Tripsoda Kazakhstan",
+      "kk": "Tripsoda COO · Tripsoda Kazakhstan CEO"
     },
     "bio": {
-      "ko": "트립소다와 카자흐스탄 현지 법인을 연결하며, 맞춤여행부터 기업 행사까지 현지 운영을 이끕니다.",
-      "en": "Connects Tripsoda with its Kazakhstan operation, overseeing tailor-made travel and business arrangements.",
-      "ru": "Связывает Tripsoda с командой в Казахстане и руководит организацией индивидуальных поездок и деловых мероприятий.",
-      "kk": "Tripsoda мен Қазақстандағы жергілікті команданы байланыстырып, жеке сапарлар мен іскерлік іс-шараларды ұйымдастыруды басқарады."
+      "ko": "트립소다 공동창업자이자 COO, 트립소다 카자흐스탄 CEO를 맡고 있습니다. 기획 및 운영을 총괄하여 최고의 중앙아시아 모험을 진두지휘합니다.",
+      "en": "Co-founder and COO of Tripsoda, and CEO of Tripsoda Kazakhstan. Leads planning and operations to deliver exceptional adventures across Central Asia.",
+      "ru": "Сооснователь и COO Tripsoda, CEO Tripsoda Kazakhstan. Руководит планированием и операционной работой, создавая лучшие приключения в Центральной Азии.",
+      "kk": "Tripsoda негізін қалаушылардың бірі әрі COO, Tripsoda Kazakhstan CEO. Орталық Азиядағы үздік шытырман сапарларды ұйымдастыру үшін жоспарлау мен операциялық жұмысты басқарады."
     },
-    "image": "/images/team/jinki.jpg"
+    "image": "/images/team/jinki-business.jpg"
   },
   {
     "id": "alua",
