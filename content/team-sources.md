@@ -14,9 +14,9 @@ Verified 2026-10-28. User requested Jinki, Alua, Zhibek in Operations and Nazerk
 - Photo assets extracted from existing company product panels for the user-authorized company site. No synthetic portraits or customer review photos used. Jinki Slack avatar was checked but not used.
 - Assignment note reflects the existing Slack instruction that these are representative team members and other guides may be assigned.
 
-## Jinki profile update · 2026-10-28
+## Profile updates · 2026-10-28
 
 - Role and introduction supplied directly by the user: Tripsoda co-founder / COO, Tripsoda Kazakhstan CEO; leads planning and operations for Central Asia adventures. Translated consistently for en/ru/kk.
-- Business portrait: company-shared Shihyunhada business profile archive, Slack file F069PQNPVM5; original filename `12.20-이진기_비즈니스-포맷.jpg`.
-- Source announcement: https://tripsoda.slack.com/archives/C01B6V7VCUC/p1702544174190259
-- Original studio image used without facial or clothing alteration; card crop is CSS only. Previous travel photo is no longer referenced.
+- User chose to keep Jinki’s original travel photo. The business portrait candidate was inspected but is not used.
+- Nora’s travel photo is extracted from her named profile in the existing official product team panel: https://d1b30z42byad8k.cloudfront.net/prod/pd-detail/mtqlzhsb-61f0bcd2 (https://tripsoda.com/store/product/detail/814).
+- User clarified guide assignment: selected additional guides; coordinator/guide allocated by trip/event type and announced at booking confirmation; not all guides speak Korean; English-speaking guide is the default for individual independent travellers. Applied to all four languages and removed blanket Korean-language team wording.

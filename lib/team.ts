@@ -21,7 +21,7 @@ export const teamMembers = [
       "ru": "Сооснователь и COO Tripsoda, CEO Tripsoda Kazakhstan. Руководит планированием и операционной работой, создавая лучшие приключения в Центральной Азии.",
       "kk": "Tripsoda негізін қалаушылардың бірі әрі COO, Tripsoda Kazakhstan CEO. Орталық Азиядағы үздік шытырман сапарларды ұйымдастыру үшін жоспарлау мен операциялық жұмысты басқарады."
     },
-    "image": "/images/team/jinki-business.jpg"
+    "image": "/images/team/jinki.jpg"
   },
   {
     "id": "alua",
@@ -90,7 +90,7 @@ export const teamMembers = [
       "ru": "Гид с опытом более пяти лет, училась в Корее, имеет опыт VIP-сопровождения и координации съёмок.",
       "kk": "Кореяда оқыған, бес жылдан астам тәжірибесі бар гид. VIP сүйемелдеу және түсірілімдерді үйлестіру тәжірибесі бар."
     },
-    "image": "/images/guides/nora.jpg"
+    "image": "/images/team/nora-travel.jpg"
   },
   {
     "id": "nazerke",
