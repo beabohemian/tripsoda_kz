@@ -1042,6 +1042,12 @@ export default function Home({
                     <option value="booking">{x.booking}</option>
                   </select>
                 </label>
+                <p className="form-requirements">{{
+                  ko: "필수 입력: 이름, 이메일, 연락처, 인원, 요청사항. 여행 조건은 선택입니다.",
+                  en: "Required: name, email, contact, group size and requirements. Other trip details are optional.",
+                  ru: "Обязательны: имя, email, контакт, число участников и пожелания. Другие детали поездки — по желанию.",
+                  kk: "Міндетті: аты-жөні, email, байланыс, адам саны және өтініш. Сапардың басқа мәліметтері — ерікті.",
+                }[lang]}</p>
                 <div className="form-grid">
                   <label>
                     {c.labels.name}
@@ -1057,7 +1063,6 @@ export default function Home({
                     <label>
                       {c.labels.company}
                       <input
-                        required
                         value={form.company}
                         maxLength={150}
                         autoComplete="organization"
@@ -1088,7 +1093,7 @@ export default function Home({
                     <input
                       type="tel"
                       autoComplete="tel"
-                      required={legacyMail}
+                      required
                       maxLength={60}
                       value={form.phone}
                       onChange={(e) => update("phone", e.target.value)}

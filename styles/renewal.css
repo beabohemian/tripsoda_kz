@@ -1640,3 +1640,5 @@
   .team-group + .team-group { margin-top: 40px; }
   .guide-grid .team-photo { aspect-ratio: 1.15 / 1; }
 }
+
+.form-requirements { margin: 0 0 20px; color: #59675f; font-size: 13px; line-height: 1.7; }

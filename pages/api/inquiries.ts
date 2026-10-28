@@ -36,6 +36,7 @@ export default async function handler(
     !p ||
     !text(p.name, 100, true) ||
     !text(p.email, 200, true) ||
+    !text(p.phone, 60, true) ||
     !/^\S+@\S+\.\S+$/.test(p.email) ||
     !text(p.company, 150) ||
     !text(p.message, 2500, true) ||
@@ -53,7 +54,6 @@ export default async function handler(
     p.consent !== true ||
     !text(p.date, 10) ||
     (p.date && !/^\d{4}-\d{2}-\d{2}$/.test(p.date)) ||
-    (p.audience === "business" && !p.company.trim()) ||
     !/^[a-f0-9-]{36}$/.test(p.key || "")
   )
     return res.status(400).json({ error: "INVALID_REQUEST" });
@@ -62,6 +62,7 @@ export default async function handler(
     const payload = {
       name: p.name.trim(),
       email: p.email.trim(),
+      phone: p.phone.trim(),
       company: p.company.trim(),
       message: p.message.trim(),
       budget: p.budget.trim(),

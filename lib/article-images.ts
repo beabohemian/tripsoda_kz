@@ -22,6 +22,6 @@ export type ArticleHeroImage = ArticleHeroImageBase &
 
 export function getHeroImageAttribution(image: ArticleHeroImage): string {
   return image.kind === "ai-generated"
-    ? "AI 생성 이미지 · Higgsfield"
+    ? ""
     : `사진 제공 · ${image.credit}`;
 }
