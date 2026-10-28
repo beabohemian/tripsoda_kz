@@ -16,10 +16,10 @@ export const teamMembers = [
       "kk": "Tripsoda COO · Tripsoda Kazakhstan CEO"
     },
     "bio": {
-      "ko": "트립소다 공동창업자이자 COO, 트립소다 카자흐스탄 CEO를 맡고 있습니다. 기획 및 운영을 총괄하여 최고의 중앙아시아 모험을 진두지휘합니다.",
-      "en": "Co-founder and COO of Tripsoda, and CEO of Tripsoda Kazakhstan. Leads planning and operations to deliver exceptional adventures across Central Asia.",
-      "ru": "Сооснователь и COO Tripsoda, CEO Tripsoda Kazakhstan. Руководит планированием и операционной работой, создавая лучшие приключения в Центральной Азии.",
-      "kk": "Tripsoda негізін қалаушылардың бірі әрі COO, Tripsoda Kazakhstan CEO. Орталық Азиядағы үздік шытырман сапарларды ұйымдастыру үшін жоспарлау мен операциялық жұмысты басқарады."
+      "ko": "트립소다 공동창업자이자 COO, 트립소다 카자흐스탄 CEO를 맡고 있습니다. 한국과 중앙아시아를 오가며, 여행과 모험의 시작부터 끝까지 진두지휘합니다.",
+      "en": "Co-founder and COO of Tripsoda, and CEO of Tripsoda Kazakhstan. Working between Korea and Central Asia, he leads every journey and adventure from start to finish.",
+      "ru": "Сооснователь и COO Tripsoda, CEO Tripsoda Kazakhstan. Работая между Кореей и Центральной Азией, руководит путешествиями и приключениями от начала до конца.",
+      "kk": "Tripsoda негізін қалаушылардың бірі әрі COO, Tripsoda Kazakhstan CEO. Корея мен Орталық Азия арасында жұмыс істеп, саяхаттар мен шытырман сапарларды басынан аяғына дейін басқарады."
     },
     "image": "/images/team/jinki.jpg"
   },

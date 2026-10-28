@@ -1626,7 +1626,16 @@
 .guide-grid .team-bio { font-size: 14px; line-height: 1.85; margin-top: 14px; }
 .guide-grid .team-photo { height: auto; aspect-ratio: 1 / 1; object-position: center; }
 .guide-grid .team-photo-jinki { object-position: 67% center; }
-.team-assignment-note { margin-top: 28px; max-width: 780px; }
+.team-assignment-note { margin-top: 28px; padding: 26px 28px; background: #f5f8f6; border: 1px solid #e3ebe6; border-radius: 18px; }
+.team-assignment-note h3 { color: #233c32; font-size: 16px; font-weight: 700; margin: 0 0 6px; }
+.team-assignment-note > p { margin: 0; font-size: 13px; }
+.team-assignment-note dl { display: grid; grid-template-columns: 1fr 1.35fr; gap: 28px; margin: 20px 0 0; }
+.team-assignment-note dt { font-weight: 650; color: #33483e; font-size: 13px; margin-bottom: 5px; }
+.team-assignment-note dd { margin: 0; font-size: 13px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .team-assignment-note { padding: 22px; }
+  .team-assignment-note dl { grid-template-columns: 1fr; gap: 16px; margin-top: 18px; }
+}
 @media (max-width: 760px) {
   .team-group + .team-group { margin-top: 40px; }
   .guide-grid .team-photo { aspect-ratio: 1.15 / 1; }
