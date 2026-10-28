@@ -77,9 +77,9 @@ export default function Guide({
             />
             <figcaption>
               <span>{a.heroImage.caption}</span>
-              <small>
-                {getHeroImageAttribution(a.heroImage)} · {a.heroImage.rights}
-              </small>
+              {a.heroImage.kind === "photograph" && (
+                <small>{getHeroImageAttribution(a.heroImage)}</small>
+              )}
             </figcaption>
           </figure>
         )}
