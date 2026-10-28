@@ -19,7 +19,7 @@ const guides: Guide[] = [
         id: 'g2',
         name: '노라 (Nora)',
         role: '전문 관광 가이드 / VIP 의전 & 투어',
-        image: '/images/guides/nora.jpg',
+        image: '/images/team/nora-travel.jpg',
         languages: ['한국어', '러시아어', '영어', '카자흐어'],
         bio: '한국 숭실대학교 유학 경험과 다양한 국제 행사 및 방송 촬영 통역 경력을 보유한 베테랑 가이드입니다. VIP 의전부터 트레킹, 방송 코디네이터까지 품격 있는 맞춤형 투어를 진행합니다.',
         specialties: ['VIP 의전/투어', '방송/미디어 코디네이터', '고려 역사 투어'],
