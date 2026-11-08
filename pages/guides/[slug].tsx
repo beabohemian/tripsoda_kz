@@ -2,13 +2,13 @@ import Head from "next/head";
 import { GetStaticPropsContext } from "next";
 import GuideShell from "../../components/GuideShell";
 import { getHeroImageAttribution } from "../../lib/article-images";
-import { Article, getArticles } from "../../lib/articles";
+import { PublicArticle, getArticles } from "../../lib/articles";
 export default function Guide({
   article: a,
   related,
 }: {
-  article: Article;
-  related: Article[];
+  article: PublicArticle;
+  related: PublicArticle[];
 }) {
   const url = `https://kz.tripsoda.com/guides/${a.slug}/`;
   const imageUrl = a.heroImage
@@ -77,7 +77,7 @@ export default function Guide({
             />
             <figcaption>
               <span>{a.heroImage.caption}</span>
-              {a.heroImage.kind === "photograph" && (
+              {a.heroImage.credit && (
                 <small>{getHeroImageAttribution(a.heroImage)}</small>
               )}
             </figcaption>

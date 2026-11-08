@@ -20,8 +20,11 @@ export type ArticleHeroImage = ArticleHeroImageBase &
       }
   );
 
-export function getHeroImageAttribution(image: ArticleHeroImage): string {
-  return image.kind === "ai-generated"
-    ? ""
-    : `사진 제공 · ${image.credit}`;
+export type PublicArticleHeroImage = Pick<
+  ArticleHeroImageBase,
+  "src" | "alt" | "caption" | "width" | "height"
+> & { credit?: string };
+
+export function getHeroImageAttribution(image: PublicArticleHeroImage): string {
+  return image.credit ? `사진 제공 · ${image.credit}` : "";
 }
