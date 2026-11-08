@@ -1,8 +1,8 @@
 import Head from "next/head";
 import GuideShell from "../../components/GuideShell";
 import { getHeroImageAttribution } from "../../lib/article-images";
-import { Article, getArticles } from "../../lib/articles";
-export default function Guides({ articles }: { articles: Article[] }) {
+import { PublicArticle, getArticles } from "../../lib/articles";
+export default function Guides({ articles }: { articles: PublicArticle[] }) {
   return (
     <GuideShell>
       <Head>

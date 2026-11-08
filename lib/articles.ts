@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import type { ArticleHeroImage } from "./article-images";
+import type { ArticleHeroImage, PublicArticleHeroImage } from "./article-images";
 export type Article = {
   slug: string;
   title: string;
@@ -14,7 +14,11 @@ export type Article = {
   sources: { title: string; url: string }[];
   heroImage?: ArticleHeroImage;
 };
-export function getArticles(): Article[] {
+export type PublicArticle = Omit<Article, "heroImage"> & {
+  heroImage?: PublicArticleHeroImage;
+};
+
+export function getArticles(): PublicArticle[] {
   const dir = path.join(process.cwd(), "content/articles");
   return fs
     .readdirSync(dir)
@@ -22,6 +26,21 @@ export function getArticles(): Article[] {
     .map(
       (f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) as Article,
     )
+    .map(({ heroImage, ...article }): PublicArticle => {
+      if (!heroImage) return article;
+      const { src, alt, caption, width, height } = heroImage;
+      return {
+        ...article,
+        heroImage: {
+          src,
+          alt,
+          caption,
+          width,
+          height,
+          ...(heroImage.kind === "photograph" ? { credit: heroImage.credit } : {}),
+        },
+      };
+    })
     .sort(
       (a, b) =>
         b.published.localeCompare(a.published) || a.slug.localeCompare(b.slug),
